@@ -1,0 +1,12 @@
+.canvas-conteiner {
+  background: url(../img/wheelDecor.png) center no-repeat;
+  text-align: center;
+  position: relative;
+}
+
+#prizePointer {
+    position: absolute;
+    left: 48%;
+    top: 0;
+    z-index: 999;
+}
