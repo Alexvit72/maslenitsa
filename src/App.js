@@ -3,9 +3,6 @@ import bridge from '@vkontakte/vk-bridge';
 import View from '@vkontakte/vkui/dist/components/View/View';
 //import ScreenSpinner from '@vkontakte/vkui/dist/components/ScreenSpinner/ScreenSpinner';
 import '@vkontakte/vkui/dist/vkui.css';
-
-import { Winwheel } from './Winwheel';
-
 import Loading from './panels/Loading';
 import Start from './panels/Start';
 import Main from './panels/Main';
@@ -15,19 +12,19 @@ const App = () => {
 	const [activePanel, setActivePanel] = useState('start');
 	const [result, setResult] = useState(false);
 	const [progress, setProgress] = useState(40);
+	const [final, setFinal] = useState(null);
+	//const [fetchedUser, setUser] = useState(null);
+	//const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
 
-//	const [fetchedUser, setUser] = useState(null);
-//	const [popout, setPopout] = useState(<ScreenSpinner size='large' />);
-
-	/*useEffect(() => {
-		bridge.subscribe(({ detail: { type, data }}) => {
+/*	useEffect(() => {
+		/*bridge.subscribe(({ detail: { type, data }}) => {
 			if (type === 'VKWebAppUpdateConfig') {
 				const schemeAttribute = document.createAttribute('scheme');
 				schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
 				document.body.attributes.setNamedItem(schemeAttribute);
 			}
-		});
-		async function fetchData() {
+		});*/
+		/*async function fetchData() {
 			const user = await bridge.send('VKWebAppGetUserInfo');
 			setUser(user);
 			setPopout(null);
@@ -35,18 +32,18 @@ const App = () => {
 		fetchData();
 	}, []);*/
 
-
-
 	const go = e => {
 		setActivePanel(e.currentTarget.dataset.to);
 	};
 
 	return (
-		<View activePanel={activePanel} /*popout={popout}*/>
-			<Loading id='loading' /*fetchedUser={fetchedUser}*/ go={go} progress={progress} />
+		<View activePanel={activePanel}
+			popout={result == '' ? '' :
+			<Final result={result == 'win'} setResult={setResult}  />}
+		>
+			<Loading id='loading' /*fetchedUser={fetchedUser}*/ go={go} 			progress={progress} />
 			<Start id='start' go={go} />
-		<Main id='main' go={go} setResult={setResult} setActivePanel={setActivePanel} />
-			<Final id='final' go={go} result={result} />
+			<Main id='main' go={go} setResult={setResult} />
 		</View>
 	);
 }

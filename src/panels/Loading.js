@@ -8,7 +8,7 @@ import Progress from '@vkontakte/vkui/dist/components/Progress/Progress';
 
 const Loading = props => (
   <Panel id={props.id}>
-    <Header>MaslenitsaWheel</Header>
+    <Header>Maslenitsa</Header>
     <Div>
       <Progress value={props.progress} />
     </Div>

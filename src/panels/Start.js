@@ -12,7 +12,7 @@ const Start = props => {
 	return (
 		<Panel id={props.id}>
 			<PanelHeader>
-				MaslenitsaWheel
+				Maslenitsa
 			</PanelHeader>
 			<Card mode='shadow'>
 				<ol>
