@@ -44,7 +44,7 @@ const Main = ({ id, go, setResult}) => {
 		Matter.Events.on(render.engine, 'afterUpdate', function(event) {
 			if (currentRotation > 0.0001) {
 				Matter.Composite.rotate(composites[0], currentRotation, {x: 200, y: 200});
-				Matter.Composite.rotate(composites[1], currentRotation / 4, {x: 200, y: 200});
+				Matter.Composite.rotate(composites[1], currentRotation / 2, {x: 200, y: 200});
 				currentRotation *= 0.99;
 			} else {
 				console.log(currentRotation);
@@ -67,6 +67,8 @@ const Main = ({ id, go, setResult}) => {
 			}
 		}
 		console.log(selectedBall);
+		Matter.Body.setPosition(selectedBall, {x: 50, y: 350});
+		Matter.Body.setStatic(selectedBall, true);
 		setResult(selectedBall.label);
 		setIsRotaiting(false);
 	}
