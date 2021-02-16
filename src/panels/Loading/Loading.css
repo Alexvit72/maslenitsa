@@ -1,0 +1,7 @@
+.Loading {
+  background: url(../../img/back_desk.svg) center bottom no-repeat, url(../../img/light.svg) center top no-repeat;
+}
+
+.Loading .Logo {
+  margin: 300px 0 200px;
+}
