@@ -19,6 +19,7 @@ const App = () => {
 	const [attempts, setAttempts] = useState(0);
 
 	useEffect(() => {
+		setActivePanel('start');
 		/*bridge.subscribe(({ detail: { type, data }}) => {
 			if (type === 'VKWebAppUpdateConfig') {
 				const schemeAttribute = document.createAttribute('scheme');
@@ -51,7 +52,8 @@ const App = () => {
 			<Final result={result == 'win'}
 			 setResult={setResult} setActivePanel={setActivePanel}
 			 link={'https://vk.com/im?sel=-49256266'} />}
-		>
+			 >
+
 			<Loading id='loading' img={img1} className='Loading' />
 			<Start id='start' className='Start' setActivePanel={setActivePanel} />
 			<Main id='main' className='Main' go={go} setResult={setResult} attempts={attempts} decreaseAttempts={decreaseAttempts} />
