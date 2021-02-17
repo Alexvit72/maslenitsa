@@ -8,10 +8,12 @@ import Start from './panels/Start/Start';
 import Main from './panels/Main/Main';
 import Final from './components/Final';
 import img1 from './img/1.png';
+import './App.css';
+import './reset.css';
 
 const App = () => {
 
-	const [activePanel, setActivePanel] = useState('loading');
+	const [activePanel, setActivePanel] = useState('start');
 	const [result, setResult] = useState('');
 	const [progress, setProgress] = useState(40);
 	const [fetchedUser, setUser] = useState(null);

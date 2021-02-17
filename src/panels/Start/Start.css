@@ -1,3 +1,9 @@
 .Start {
-  background: url(../../img/back_desk.svg) center bottom no-repeat, url(../../img/light.svg) center top no-repeat;
+  padding: 132px 60px 66px;
+  min-height: 100vh;
+  background: url(../../img/light_desk.svg) center top no-repeat, url(../../img/back_desk.svg) center 146px no-repeat, #ECF3FB;
+}
+
+.Start .Card .prezent {
+  top: -133px;
 }

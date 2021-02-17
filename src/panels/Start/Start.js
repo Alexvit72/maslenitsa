@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import bridge from '@vkontakte/vk-bridge';
 
 import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
-import Logo from '../../components/Logo';
-import Headline from '../../components/Headline';
-import Button from '../../components/Button';
+import Card from '../../components/Card';
+import logo from '../../img/logo.png';
 
 import './Start.css';
 
@@ -22,23 +21,20 @@ const Start = props => {
 		fetchAllowMessage();
 	}
 
+	const list = (
+	<ol>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ol>
+);
+
 	return (
 		<Panel id={props.id}>
 			<div className={props.className}>
-				<Logo className='Logo' />
-				<div>
-					<Headline className='Headline' text='Как играть?' />
-					<ol>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-					</ol>
-					<Button className='Button' label='Начать'
-						onClick={clickHandler}
-					/>
-				</div>
+				<Card className='Card' title='Как играть?' img={logo} text={list} label='Начать' onClick={clickHandler} />
 			</div>
 		</Panel>
 	);

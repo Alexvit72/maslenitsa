@@ -1,0 +1,29 @@
+.Card {
+  position: relative;
+  text-align: center;
+  background: #fff;
+  border-radius: 10px;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0em;
+  text-align: center;
+  padding: 68px 58px 26px;
+}
+
+.Card .prezent {
+  top: -90px;
+}
+
+.Card .prezent, .Card .button-wrapper {
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+
+.Card .button-wrapper {
+  bottom: -27px;
+}

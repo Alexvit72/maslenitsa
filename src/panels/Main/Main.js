@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import Matter from 'matter-js'
 
 import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
-/*import PanelHeader from '@vkontakte/vkui/dist/components/PanelHeader/PanelHeader';
-import PanelHeaderBack from '@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack';*/
+
 import Power from '../../components/Power';
 import Headline from '../../components/Headline';
 import Button from '../../components/Button';
@@ -22,8 +21,8 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts}) => {
 	const [render, setRender] = useState(null);
 	const [timerId, setTimerId] = useState('');
 	const [isRotating, setIsRotaiting] = useState(false);
-	const [startPositionX, setstartPositionX] = useState(168.5);
-	const [startPositionY, setStartPositionY] = useState(329.5);
+	const [startPositionX, setstartPositionX] = useState(170.25);
+	const [startPositionY, setStartPositionY] = useState(336.5);
 
 	function powerCountStart() {
 		console.log('down');
@@ -40,59 +39,68 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts}) => {
 
 	function rotate() {
 		let composites = render.engine.world.composites;
-		//console.log(composites);
-		let outputBody = composites[2].bodies[0];
+		console.log(composites);
+		let outputCover = composites[2].bodies[2];
+		let outputBody = composites[2].bodies[3];
 		//let startPositionX = outputBody.position.x;
 		//let startPositionY = outputBody.position.y;
-		console.log(startPositionX, startPositionY);
+		console.log(outputBody.position.x, outputBody.position.y);
 		clearInterval(timerId);
 		let currentRotation = progress / 10;
 		setProgress(0);
-		//setIsRotaiting(true);
+		setIsRotaiting(true);
 		decreaseAttempts();
-		//console.log(progress);
-		Matter.Events.on(render.engine, 'afterUpdate', function(event) {
+		Matter.Events.on(render.engine, 'afterUpdate', function bar()  {
 			if (currentRotation > 0.01) {
 				Matter.Composite.rotate(composites[0], currentRotation, {x: 200, y: 200});
 				Matter.Composite.rotate(composites[2], currentRotation, {x: 200, y: 200});
 				Matter.Composite.rotate(composites[1], currentRotation / 2, {x: 200, y: 200});
 				currentRotation *= 0.99;
 			} else {
-				//currentRotation = 0.01
 				if (outputBody.position.x - startPositionX > 0.5 || outputBody.position.y - startPositionY > 0.5 || startPositionX - outputBody.position.x > 10 || startPositionY - outputBody.position.y > 10) {
+					Matter.Composite.remove(composites[2], outputCover);
 					Matter.Composite.rotate(composites[0], currentRotation, {x: 200, y: 200});
 					Matter.Composite.rotate(composites[2], currentRotation, {x: 200, y: 200});
-				} else {/*
-					if (outputBody.position.x - startPositionX > 0.5 || outputBody.position.y - startPositionY > 0.5) {
-						currentRotation = 0.002;
-						Matter.Composite.rotate(composites[0], currentRotation, {x: 200, y: 200});
-						Matter.Composite.rotate(composites[2], currentRotation, {x: 200, y: 200});
-					} else {*/
-						console.log(outputBody.position);
-						Matter.Events.off(render.engine);
-						showResult();
+				} else {
+					Matter.Events.off(render.engine, 'afterUpdate', bar);
+					showResult();
 				}
 			}
-
 		});
 	}
 
 	function showResult() {
+
 		let balls = render.engine.world.composites[1].bodies;
 		let selectedBall = balls[0];
 		for (let ball of balls) {
-			if (ball.position.y < selectedBall.position.y) {
-				if (Math.abs(startPositionX - ball.position.x) < Math.abs(startPositionX - selectedBall.position.x)) {
-					selectedBall = ball;
-				}
+			if (ball.position.y > selectedBall.position.y) {
+				selectedBall = ball;
 			}
 		}
-		//Matter.Body.translate(selectedBall, {x: 20, y: 20});
-		//console.log(selectedBall);
-		Matter.Body.setPosition(selectedBall, {x: 50, y: 350});
-		Matter.Body.setStatic(selectedBall, true);
-		setResult(selectedBall.label);
-		setIsRotaiting(false);
+		console.log(selectedBall);
+		let index = balls.indexOf(selectedBall);
+		let otherBalls = [].concat(balls.slice(0, index), balls.slice(index + 1));
+		for (let ball of otherBalls) {
+			Matter.Body.setStatic(ball, true);
+		}
+		let output = render.engine.world.composites[2];
+		let outputBody = output.bodies[2];
+
+		const scale = () => {
+			Matter.Composite.remove(output, outputBody);
+			Matter.Body.setStatic(selectedBall, true);
+			Matter.Events.on(render.engine, 'afterUpdate', function(event) {
+				if (selectedBall.position.y < 380) {
+					Matter.Body.setPosition(selectedBall, {x: selectedBall.position.x, y: selectedBall.position.y + 1});
+				} else {
+					Matter.Events.off(render.engine, 'afterUpdate');
+					setResult(selectedBall.label);
+					setIsRotaiting(false);
+				}
+			});
+		};
+		setTimeout(scale, 500);
 	}
 
 	return (

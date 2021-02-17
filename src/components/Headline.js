@@ -1,4 +1,5 @@
 import React from 'react';
+import './Headline.css';
 
 const Headline = props => (
   <h2 className={props.className}>
