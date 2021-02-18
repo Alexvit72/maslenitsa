@@ -9,9 +9,9 @@
   text-align: center;
 }
 
-  .Button:hover, .Button_item:hover {
-    cursor: pointer;
-  }
+.Button:hover, .Button_item:hover {
+  cursor: pointer;
+}
 
 .Button, .Button_item {
   border-radius: 20px;
@@ -22,4 +22,5 @@
   background: #5BC1FF;
   box-shadow: inset 0px 2.62745px 5.2549px #AEE0FF, inset 0px -2.62745px 6.56863px rgba(28, 113, 165, 0.39);
   color: #F9F9FA;
+  outline: 0;
 }

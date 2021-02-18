@@ -20,7 +20,7 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts}) => {
 	const [render, setRender] = useState(null);
 	const [timerId, setTimerId] = useState('');
 	const [isRotating, setIsRotaiting] = useState(false);
-	const [startPositionX, setstartPositionX] = useState(170.25);
+	const [startPositionX, setstartPositionX] = useState(120.2);
 	const [startPositionY, setStartPositionY] = useState(336.5);
 
 	function powerCountStart() {
@@ -41,6 +41,7 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts}) => {
 		let composites = render.engine.world.composites;
 		let outputCover = composites[2].bodies[2];
 		let outputBody = composites[2].bodies[3];
+		console.log(outputBody.position);
 		//let startPositionX = outputBody.position.x;
 		//let startPositionY = outputBody.position.y;
 		console.log(outputBody.position.x, outputBody.position.y);
@@ -52,15 +53,15 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts}) => {
 		decreaseAttempts();
 		Matter.Events.on(render.engine, 'afterUpdate', function bar()  {
 			if (currentRotation > 0.01) {
-				Matter.Composite.rotate(composites[0], currentRotation, {x: 200, y: 200});
-				Matter.Composite.rotate(composites[2], currentRotation, {x: 200, y: 200});
-				Matter.Composite.rotate(composites[1], currentRotation / 2, {x: 200, y: 200});
+				Matter.Composite.rotate(composites[0], currentRotation, {x: 150, y: 200});
+				Matter.Composite.rotate(composites[2], currentRotation, {x: 150, y: 200});
+				Matter.Composite.rotate(composites[1], currentRotation / 2, {x: 150, y: 200});
 				currentRotation *= 0.99;
 			} else {
 				if (outputBody.position.x - startPositionX > 0.5 || outputBody.position.y - startPositionY > 0.5 || startPositionX - outputBody.position.x > 10 || startPositionY - outputBody.position.y > 10) {
 					Matter.Composite.remove(composites[2], outputCover);
-					Matter.Composite.rotate(composites[0], currentRotation, {x: 200, y: 200});
-					Matter.Composite.rotate(composites[2], currentRotation, {x: 200, y: 200});
+					Matter.Composite.rotate(composites[0], currentRotation, {x: 150, y: 200});
+					Matter.Composite.rotate(composites[2], currentRotation, {x: 150, y: 200});
 				} else {
 					Matter.Events.off(render.engine, 'afterUpdate', bar);
 					showResult();

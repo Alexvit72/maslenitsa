@@ -5,7 +5,7 @@ import PopoutWrapper from '@vkontakte/vkui/dist/components/PopoutWrapper/PopoutW
 import Card from './Card';
 
 import win from '../img/prezentWin.svg';
-import lose from '../img/prezentLose.svg';
+import lose from '../img/prezentLose.png';
 //import './Final.css';
 
 const Final = props => {
