@@ -1,8 +1,11 @@
+@import '../App.css';
+
 .Button {
   padding: 4px;
   background: #fff;
   box-shadow: inset 0px -3.94118px 3.94118px rgba(91, 193, 255, 0.26);
-  border-radius: 23px;}
+  border-radius: 23px;
+}
 
 .Button, .Button_item {
   border-radius: 20px;
@@ -11,7 +14,7 @@
 .Button_item {
   background: #5BC1FF;
   box-shadow: inset 0px 2.62745px 5.2549px #AEE0FF, inset 0px -2.62745px 6.56863px rgba(28, 113, 165, 0.39);
-  font-family: Baloo Cyrillic;
+  font-family: ' Baloo Cyrillic';
   font-size: 33px;
   font-style: normal;
   font-weight: 400;
