@@ -13,7 +13,7 @@ import './reset.css';
 
 const App = () => {
 
-	const [activePanel, setActivePanel] = useState('start');
+	const [activePanel, setActivePanel] = useState('main');
 	const [result, setResult] = useState('');
 	const [progress, setProgress] = useState(40);
 	const [fetchedUser, setUser] = useState(null);

@@ -16,7 +16,6 @@ import './Main.css';
 
 const Main = ({ id, className, go, setResult, attempts, decreaseAttempts}) => {
 
-	const [timer, setTimer] = useState('');
 	const [progress, setProgress] = useState(1);
 	const [render, setRender] = useState(null);
 	const [timerId, setTimerId] = useState('');
@@ -25,27 +24,28 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts}) => {
 	const [startPositionY, setStartPositionY] = useState(336.5);
 
 	function powerCountStart() {
-		console.log('down');
+		let count = 0;
 		let timerId = setInterval(() => {
-			if (progress < 10) {
-				setProgress(progress => progress + 1);
+			if (count < 20) {
+				setProgress(count);
+				count++;
 			} else {
+				setProgress(20)
 				clearInterval(timerId);
 			}
-			console.log(progress);
-		}, 130);
+		}, 50);
 		setTimerId(timerId);
 	}
 
 	function rotate() {
 		let composites = render.engine.world.composites;
-		console.log(composites);
 		let outputCover = composites[2].bodies[2];
 		let outputBody = composites[2].bodies[3];
 		//let startPositionX = outputBody.position.x;
 		//let startPositionY = outputBody.position.y;
 		console.log(outputBody.position.x, outputBody.position.y);
 		clearInterval(timerId);
+		console.log(progress);
 		let currentRotation = progress / 10;
 		setProgress(0);
 		setIsRotaiting(true);
@@ -112,19 +112,18 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts}) => {
 				</header>
 				<Dropdown className='Dropdown' />
 				<div className='game-container'>
-					<Headline text='Испытай удачу' />
+					<Headline className='Headline' text='Испытай удачу!' />
 					<div className='scene-container'>
-						<Scene setRender={setRender} />
-						<Power className='Power' value={progress * 10} />
+						<Scene className='Scene' setRender={setRender} />
 					</div>
 					<div>
-						<Button
+						<Power className='Power' value={progress * 5} />
+						<Button className='Button'
 							disabled={/*count === 0 ||*/ isRotating}
 							onMouseDown={powerCountStart}
 							onMouseUp={rotate}
 							label='Крутить'
 						/>
-						<p>Повтор через {timer}</p>
 					</div>
 				</div>
 			</div>

@@ -1,12 +1,8 @@
 .Headline {
-  font-family: Baloo Cyrillic;
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 57px;
+  font: 36px/57px Baloo;
   letter-spacing: 0em;
   text-align: center;
-  text-shadow: 0px 2px 0px 0px rgba(31, 33, 83, 0.1);
+  text-shadow: 0px 2px 0px rgba(31, 33, 83, 0.1);
   color:#3AB5FF;
 
 

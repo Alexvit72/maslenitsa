@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import Matter from 'matter-js';
 import ball from '../img/ball.svg';
 import back from '../img/back.svg';
+import './Scene.css';
 
-const Scene = ({setRender}) => {
+const Scene = ({ setRender, className }) => {
 
   const sceneRef = useRef(null);
 
@@ -69,6 +70,7 @@ const Scene = ({setRender}) => {
 
   }, []);
 
-    return <div ref={sceneRef}></div>;
+    return <div ref={sceneRef} className={className}></div>;
 }
+
 export default Scene;
