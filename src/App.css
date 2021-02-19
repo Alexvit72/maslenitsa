@@ -1,0 +1,9 @@
+@font-face {
+  font-family: Baloo;
+  src: url(./fonts/Baloo-Cyrillic.ttf);
+}
+
+@font-face {
+  font-family: Inter;
+  src: url(./fonts/Inter-Regular.ttf);
+}

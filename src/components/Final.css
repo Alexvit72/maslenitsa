@@ -1,0 +1,12 @@
+.Final .Card {
+  width: 320px;
+}
+
+.Final .lose .prezent {
+  top: -70px;
+}
+
+.Final .lose .Headline {
+  color: #E40010;
+  text-shadow: 0px 2px 0px rgba(31, 33, 83, 0.1);
+}

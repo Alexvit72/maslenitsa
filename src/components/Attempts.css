@@ -1,0 +1,37 @@
+.Attempts {
+  background: #fff;
+  box-shadow: inset 0px -2.17647px 2.17647px rgba(91, 193, 255, 0.26);
+  border-radius: 11px;
+  padding: 2px;
+}
+
+.Attempts_item {
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0px 4px 4px rgba(91, 193, 255, 0.1);
+}
+
+.heart {
+  margin: 2px 4.5px 0;
+}
+
+.count {
+  font: 24px/31px Baloo;
+  display: flex;
+  align-items: center;
+  color: #003A8B;
+}
+
+.add {
+  height: 33px;
+}
+
+.add:hover {
+  cursor: pointer;
+}
+
+.count span {
+  font: 10px/16px Baloo;
+  letter-spacing: 0em;
+  margin: 8px 5px 0 8px;
+}

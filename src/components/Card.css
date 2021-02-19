@@ -1,16 +1,11 @@
 .Card {
   position: relative;
-  text-align: center;
   background: #fff;
   border-radius: 10px;
-  font-family: Inter;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 30px;
+  font: 14px / 30px Inter;
   letter-spacing: 0em;
   text-align: center;
-  padding: 68px 58px 26px;
+  padding: 68px 20px 26px;
 }
 
 .Card .prezent {
@@ -22,6 +17,11 @@
   right: 0;
   left: 0;
   margin: auto;
+}
+
+.Card .text {
+  color: #7D7E8D;
+  margin: 20px 21px 45px;
 }
 
 .Card .button-wrapper {

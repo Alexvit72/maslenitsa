@@ -12,7 +12,7 @@ const Card = props => {
         className='Headline'
         text={props.title}
       />
-      <div>{props.text}</div>
+      <div className='text'>{props.text}</div>
       <div className='button-wrapper'>
         <Button
           className='Button'

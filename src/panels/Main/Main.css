@@ -1,6 +1,109 @@
 .Main {
-  background: url(../../img/back_desk.svg) no-repeat, rgba(236, 243, 251, 1);
-;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: url(../../img/sun.png) no-repeat 97.5% 13%, url(../../img/wooman.png) no-repeat 0% 219px, url(../../img/peunik.png) 94% 340px no-repeat, url(../../img/shoose.png) no-repeat 88% 487px, url(../../img/back_desk.svg) no-repeat center 50px, rgba(236, 243, 251, 1);
   text-align: center;
   position: relative;
+}
+
+.Main header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.Main .Attempts {
+  margin: 26px 23px;
+}
+
+.Main .Headline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 35px;
+  max-width: 350px;
+}
+
+.Main .Logo {
+  width: 190px;
+  padding: 10px 25px;
+}
+
+.Main .logo_img {
+  width: 100%;
+}
+
+.Dropdown.hidden {
+  display: none;
+}
+
+.Dropdown.visible {
+  display: block;
+  position: absolute;
+
+}
+
+.scene-container {
+  margin-top: 45px;
+}
+
+.game-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content:  space-between;
+
+}
+
+.Main .Button {
+  margin: 20px;
+}
+
+@media (max-width: 797px) {
+
+  .Main {
+    background: url(../../img/sun.png) no-repeat 105% 10%, url(../../img/wooman.png) no-repeat -42% 219px, url(../../img/peunik.png) 103% 340px no-repeat, url(../../img/shoose.png) no-repeat 95% 487px, url(../../img/back_desk.svg) no-repeat center 50px, rgba(236, 243, 251, 1);
+    height: 100vh;
+  }
+
+  .Main header {
+    position: static;
+  }
+
+  .Main .Logo {
+    padding: 39px 8px 25px;
+  }
+
+  .Main .Attempts {
+    margin: 66px 14px;
+  }
+
+  .Main .Headline {
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 165px;
+  }
+
+
+  .scene-container {
+    margin: 0 0 45px;
+  }
+
+  .game-container {
+    height: auto;
+  }
+
+  .Main .Button {
+    margin-bottom: 30px;
+  }
+
+
 }

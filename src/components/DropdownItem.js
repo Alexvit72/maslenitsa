@@ -6,10 +6,10 @@ const DropdownItem = props => {
       <input type='checkbox' checked={props.checked} />
       <span>
         {props.text1}
-        <a href={props.link}>{props.linkText}</a>
+        {props.link != '' ? <a href={props.link}>{props.linkText}</a> : ''}
         {props.text2}
       </span>
-      <span> +3 попытки</span>
+      <span> + {props.attempts} попытки</span>
     </div>
   );
 };

@@ -1,9 +1,38 @@
 .Start {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 132px 60px 66px;
-  min-height: 100vh;
+  height: 100%;
   background: url(../../img/light_desk.svg) center top no-repeat, url(../../img/back_desk.svg) center 146px no-repeat, #ECF3FB;
+}
+
+.Start .Card {
+  height: 351px;
 }
 
 .Start .Card .prezent {
   top: -133px;
+}
+
+@media (max-width: 797px) {
+
+  .Start {
+    padding: 0;
+    justify-content: flex-end;
+  }
+
+  .Start .Card {
+    height: 451px;
+    margin-top: 201px;
+  }
+
+  .Start .Card .prezent {
+    top: -160px;
+  }
+
+  ..Start .Card .Button {
+    bottom: 108px;
+  }
+
 }

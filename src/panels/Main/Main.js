@@ -14,59 +14,70 @@ import Dropdown from '../../components/Dropdown';
 
 import './Main.css';
 
-const Main = ({ id, className, go, setResult, attempts, decreaseAttempts}) => {
+const Main = ({ id, className, go, setResult, attempts, decreaseAttempts, vk_id}) => {
 
-	const [timer, setTimer] = useState('');
 	const [progress, setProgress] = useState(1);
+	const [win, setWin] = useState(false);
 	const [render, setRender] = useState(null);
 	const [timerId, setTimerId] = useState('');
 	const [isRotating, setIsRotaiting] = useState(false);
-	const [startPositionX, setstartPositionX] = useState(170.25);
-	const [startPositionY, setStartPositionY] = useState(336.5);
+	const [startPositionX, setstartPositionX] = useState(0);
+	const [startPositionY, setStartPositionY] = useState(0);
+	const [isDrop, setIsDrop] = useState(false);
 
 	function powerCountStart() {
-		console.log('down');
+		let count = 0;
 		let timerId = setInterval(() => {
-			if (progress < 10) {
-				setProgress(progress => progress + 1);
+			if (count < 20) {
+				setProgress(count);
+				count++;
 			} else {
+				setProgress(20)
 				clearInterval(timerId);
 			}
-			console.log(progress);
-		}, 130);
+		}, 50);
 		setTimerId(timerId);
 	}
 
 	function rotate() {
+
+		//getResult();
+
 		let composites = render.engine.world.composites;
-		console.log(composites);
 		let outputCover = composites[2].bodies[2];
 		let outputBody = composites[2].bodies[3];
-		//let startPositionX = outputBody.position.x;
-		//let startPositionY = outputBody.position.y;
-		console.log(outputBody.position.x, outputBody.position.y);
+		let startPositionX = outputBody.position.x;
+		let startPositionY = outputBody.position.y;
+
 		clearInterval(timerId);
 		let currentRotation = progress / 10;
 		setProgress(0);
 		setIsRotaiting(true);
 		decreaseAttempts();
+
 		Matter.Events.on(render.engine, 'afterUpdate', function bar()  {
 			if (currentRotation > 0.01) {
-				Matter.Composite.rotate(composites[0], currentRotation, {x: 200, y: 200});
-				Matter.Composite.rotate(composites[2], currentRotation, {x: 200, y: 200});
-				Matter.Composite.rotate(composites[1], currentRotation / 2, {x: 200, y: 200});
+				Matter.Composite.rotate(composites[0], currentRotation, {x: 150, y: 200});
+				Matter.Composite.rotate(composites[2], currentRotation, {x: 150, y: 200});
+				Matter.Composite.rotate(composites[1], currentRotation / 2, {x: 150, y: 200});
 				currentRotation *= 0.99;
 			} else {
 				if (outputBody.position.x - startPositionX > 0.5 || outputBody.position.y - startPositionY > 0.5 || startPositionX - outputBody.position.x > 10 || startPositionY - outputBody.position.y > 10) {
 					Matter.Composite.remove(composites[2], outputCover);
-					Matter.Composite.rotate(composites[0], currentRotation, {x: 200, y: 200});
-					Matter.Composite.rotate(composites[2], currentRotation, {x: 200, y: 200});
+					Matter.Composite.rotate(composites[0], currentRotation, {x: 150, y: 200});
+					Matter.Composite.rotate(composites[2], currentRotation, {x: 150, y: 200});
 				} else {
 					Matter.Events.off(render.engine, 'afterUpdate', bar);
 					showResult();
 				}
 			}
 		});
+
+	}
+
+	async function getResult() {
+		let response = await fetch(`https://maslenitsa.promo-dixy.ru/api/result?vk_id=${vk_id}`);
+		setWin(response.result);
 	}
 
 	function showResult() {
@@ -95,12 +106,17 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts}) => {
 					Matter.Body.setPosition(selectedBall, {x: selectedBall.position.x, y: selectedBall.position.y + 1});
 				} else {
 					Matter.Events.off(render.engine, 'afterUpdate');
-					setResult(selectedBall.label);
+					setResult(win);
 					setIsRotaiting(false);
 				}
 			});
 		};
 		setTimeout(scale, 500);
+
+	}
+
+	function toggleDrop() {
+		setIsDrop((isDrop) => !isDrop);
 	}
 
 	return (
@@ -108,23 +124,22 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts}) => {
 			<div className={className}>
 				<header>
 					<Logo className='Logo' />
-					<Attempts className='Attempts' attempts={attempts} />
+					<Attempts className='Attempts' attempts={attempts} clickHandler={toggleDrop} />
 				</header>
-				<Dropdown className='Dropdown' />
+				<Dropdown className={'Dropdown' + (isDrop ? ' visible' : ' hidden')} />
 				<div className='game-container'>
-					<Headline text='Испытай удачу' />
+					<Headline className='Headline' text={attempts > 0 ? 'Испытай удачу!' : 'Использованы все попытки'} />
 					<div className='scene-container'>
-						<Scene setRender={setRender} />
-						<Power className='Power' value={progress * 10} />
+						<Scene className='Scene' setRender={setRender} />
 					</div>
 					<div>
-						<Button
-							disabled={/*count === 0 ||*/ isRotating}
+						<Power className='Power' value={progress * 5} />
+						<Button className='Button'
+							disabled={attempts <= 0 || isRotating}
 							onMouseDown={powerCountStart}
 							onMouseUp={rotate}
 							label='Крутить'
 						/>
-						<p>Повтор через {timer}</p>
 					</div>
 				</div>
 			</div>
