@@ -14,14 +14,16 @@ import Dropdown from '../../components/Dropdown';
 
 import './Main.css';
 
-const Main = ({ id, className, go, setResult, attempts, decreaseAttempts}) => {
+const Main = ({ id, className, go, setResult, attempts, decreaseAttempts, vk_id}) => {
 
 	const [progress, setProgress] = useState(1);
+	const [win, setWin] = useState(false);
 	const [render, setRender] = useState(null);
 	const [timerId, setTimerId] = useState('');
 	const [isRotating, setIsRotaiting] = useState(false);
-	const [startPositionX, setstartPositionX] = useState(120.2);
-	const [startPositionY, setStartPositionY] = useState(336.5);
+	const [startPositionX, setstartPositionX] = useState(0);
+	const [startPositionY, setStartPositionY] = useState(0);
+	const [isDrop, setIsDrop] = useState(false);
 
 	function powerCountStart() {
 		let count = 0;
@@ -38,19 +40,21 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts}) => {
 	}
 
 	function rotate() {
+
+		//getResult();
+
 		let composites = render.engine.world.composites;
 		let outputCover = composites[2].bodies[2];
 		let outputBody = composites[2].bodies[3];
-		console.log(outputBody.position);
-		//let startPositionX = outputBody.position.x;
-		//let startPositionY = outputBody.position.y;
-		console.log(outputBody.position.x, outputBody.position.y);
+		let startPositionX = outputBody.position.x;
+		let startPositionY = outputBody.position.y;
+
 		clearInterval(timerId);
-		console.log(progress);
 		let currentRotation = progress / 10;
 		setProgress(0);
 		setIsRotaiting(true);
 		decreaseAttempts();
+
 		Matter.Events.on(render.engine, 'afterUpdate', function bar()  {
 			if (currentRotation > 0.01) {
 				Matter.Composite.rotate(composites[0], currentRotation, {x: 150, y: 200});
@@ -68,6 +72,12 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts}) => {
 				}
 			}
 		});
+
+	}
+
+	async function getResult() {
+		let response = await fetch(`https://maslenitsa.promo-dixy.ru/api/result?vk_id=${vk_id}`);
+		setWin(response.result);
 	}
 
 	function showResult() {
@@ -96,12 +106,17 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts}) => {
 					Matter.Body.setPosition(selectedBall, {x: selectedBall.position.x, y: selectedBall.position.y + 1});
 				} else {
 					Matter.Events.off(render.engine, 'afterUpdate');
-					setResult(selectedBall.label);
+					setResult(win);
 					setIsRotaiting(false);
 				}
 			});
 		};
 		setTimeout(scale, 500);
+
+	}
+
+	function toggleDrop() {
+		setIsDrop((isDrop) => !isDrop);
 	}
 
 	return (
@@ -109,18 +124,18 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts}) => {
 			<div className={className}>
 				<header>
 					<Logo className='Logo' />
-					<Attempts className='Attempts' attempts={attempts} />
+					<Attempts className='Attempts' attempts={attempts} clickHandler={toggleDrop} />
 				</header>
-				<Dropdown className='Dropdown' />
+				<Dropdown className={'Dropdown' + (isDrop ? ' visible' : ' hidden')} />
 				<div className='game-container'>
-					<Headline className='Headline' text='Испытай удачу!' />
+					<Headline className='Headline' text={attempts > 0 ? 'Испытай удачу!' : 'Использованы все попытки'} />
 					<div className='scene-container'>
 						<Scene className='Scene' setRender={setRender} />
 					</div>
 					<div>
 						<Power className='Power' value={progress * 5} />
 						<Button className='Button'
-							disabled={/*count === 0 ||*/ isRotating}
+							disabled={attempts <= 0 || isRotating}
 							onMouseDown={powerCountStart}
 							onMouseUp={rotate}
 							label='Крутить'

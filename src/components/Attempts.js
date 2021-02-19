@@ -11,9 +11,9 @@ const Attempts = props => {
           <img src={heart} />
         </div>
         <div className='count'>
-          {props.attempts} <span>попыток</span>
+          {props.attempts}<span>попыток</span>
         </div>
-        <div className='add'>
+        <div className='add' onClick={props.clickHandler}>
           <img src={add} />
         </div>
       </div>

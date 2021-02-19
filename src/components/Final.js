@@ -6,7 +6,7 @@ import Card from './Card';
 
 import win from '../img/prezentWin.svg';
 import lose from '../img/prezentLose.png';
-//import './Final.css';
+import './Final.css';
 
 const Final = props => {
 
@@ -15,16 +15,16 @@ function handleClick() {
 	props.setActivePanel('start');
 }
 
-	return <PopoutWrapper alignX='center' alignY='center'>
+	return <PopoutWrapper alignX='center' alignY='center' className='Final'>
 		{props.result ?
-			<Card className='Card'
+			<Card className='Card win'
 				img={win}
 				title='Победа!'
 				text='Проверьте личные сообщения, мы отправили вам подарок'
-				label={<a href={props.link}>Забрать</a>}
+				label={<a href={props.link} target='_blank'>Забрать</a>}
 				onClick={handleClick}
 			/> :
-			<Card className='Card'
+			<Card className='Card lose'
 				img={lose}
 				title='Попробуй ещё'
 				text='Не расстраивайся, может, повезет в следующий раз'

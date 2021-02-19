@@ -26,6 +26,10 @@
   height: 33px;
 }
 
+.add:hover {
+  cursor: pointer;
+}
+
 .count span {
   font: 10px/16px Baloo;
   letter-spacing: 0em;
