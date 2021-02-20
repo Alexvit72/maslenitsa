@@ -1,0 +1,14 @@
+.DropdownItem {
+  display: flex;
+  justify-content: space-between;
+  font: 11px/30px Inter;
+  color: #46474F;
+}
+
+.label {
+  cursor: pointer;
+}
+
+.bonus {
+  color: #7D7E8D;
+}

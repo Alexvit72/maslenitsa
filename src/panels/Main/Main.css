@@ -47,7 +47,8 @@
 .Dropdown.visible {
   display: block;
   position: absolute;
-
+  right: 23px;
+  top: 70px;
 }
 
 .scene-container {

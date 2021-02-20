@@ -14,7 +14,7 @@ import Dropdown from '../../components/Dropdown';
 
 import './Main.css';
 
-const Main = ({ id, className, go, setResult, attempts, decreaseAttempts, vk_id}) => {
+const Main = ({ id, className, go, setResult, setActivePanel, decreaseAttempts, vk_id, userActivity}) => {
 
 	const [progress, setProgress] = useState(1);
 	const [win, setWin] = useState(false);
@@ -41,7 +41,7 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts, vk_id}
 
 	function rotate() {
 
-		//getResult();
+		getResult();
 
 		let composites = render.engine.world.composites;
 		let outputCover = composites[2].bodies[2];
@@ -124,18 +124,18 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts, vk_id}
 			<div className={className}>
 				<header>
 					<Logo className='Logo' />
-					<Attempts className='Attempts' attempts={attempts} clickHandler={toggleDrop} />
+					<Attempts className='Attempts' attempts={userActivity.attempts} clickHandler={toggleDrop} />
 				</header>
-				<Dropdown className={'Dropdown' + (isDrop ? ' visible' : ' hidden')} />
+				<Dropdown className={'Dropdown' + (isDrop ? ' visible' : ' hidden')} userActivity={userActivity} setActivePanel={setActivePanel} />
 				<div className='game-container'>
-					<Headline className='Headline' text={attempts > 0 ? 'Испытай удачу!' : 'Использованы все попытки'} />
+					<Headline className='Headline' text={userActivity.attempts > 0 ? 'Испытай удачу!' : 'Использованы все попытки'} />
 					<div className='scene-container'>
 						<Scene className='Scene' setRender={setRender} />
 					</div>
 					<div>
 						<Power className='Power' value={progress * 5} />
 						<Button className='Button'
-							disabled={attempts <= 0 || isRotating}
+							disabled={userActivity.attempts <= 0 || isRotating}
 							onMouseDown={powerCountStart}
 							onMouseUp={rotate}
 							label='Крутить'
@@ -151,7 +151,6 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts, vk_id}
 Main.propTypes = {
 	id: PropTypes.string.isRequired,
 	go: PropTypes.func.isRequired,
-	//count: PropTypes.number.isRequired
 };
 
 export default Main;

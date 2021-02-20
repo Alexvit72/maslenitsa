@@ -1,11 +1,12 @@
 .Button {
   padding: 4px;
   background: #fff;
-  box-shadow: inset 0px -3.94118px 3.94118px rgba(91, 193, 255, 0.26);
   border-radius: 23px;
+  box-shadow: inset 0px -3.94118px 3.94118px rgba(255, 193, 93, 0.26);
   font:  400 33px/51px Baloo;
   letter-spacing: 0em;
-  text-shadow: 0.656862735748291px 0.656862735748291px 1.313725471496582px 0px rgba(0, 0, 0, 0.16) inset;
+  text-shadow: 0.656862735748291px 0.656862735748291px 1.313725471496582px rgba(0, 0, 0, 0.16) inset;
+
   text-align: center;
 }
 
@@ -13,14 +14,10 @@
   cursor: pointer;
 }
 
-.Button, .Button_item {
-  border-radius: 20px;
-}
-
 .Button_item {
   padding: 10px 55px;
-  background: #5BC1FF;
-  box-shadow: inset 0px 2.62745px 5.2549px #AEE0FF, inset 0px -2.62745px 6.56863px rgba(28, 113, 165, 0.39);
-  color: #F9F9FA;
-  outline: 0;
+  background: #FF9E00;
+  box-shadow: inset 0px 2.62745px 5.2549px #FFD5AE, inset 0px -2.62745px 6.56863px rgba(170, 61, 0, 0.39);
+  border-radius: 20px;
+  color: rgba(249, 249, 250, 1);
 }

@@ -31,11 +31,13 @@
     "eruda": "^2.2.0",
     "eruda-code": "^2.0.0",
     "eruda-dom": "^2.0.0",
+    "formik": "^2.2.6",
     "matter-js": "^0.16.1",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "yup": "^0.32.9"
   },
   "browserslist": {
     "production": [

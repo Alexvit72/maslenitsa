@@ -1,0 +1,21 @@
+.Form {
+  display: flex;
+  flex-direction: column;
+  padding: 163px 60px 20px;
+  background: url(../../img/light_desk.svg) center top no-repeat, url(../../img/back_desk.svg) center 146px no-repeat, #ECF3FB;
+  font: 14px/23px Inter;
+  color: #7D7E8D;
+  text-align: center;
+}
+
+.form-footer {
+  margin-top: 50px;
+}
+
+.Form .Card .prezent {
+  top: -133px;
+}
+
+.Form .Card .text {
+  margin: 0;
+}

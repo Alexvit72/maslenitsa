@@ -1,37 +1,70 @@
 import React, { useState } from 'react';
-import DropdownItem from './DropdownItem'
+import bridge from '@vkontakte/vk-bridge';
+import DropdownItem from './DropdownItem';
+import './Dropdown.css';
 
 const Dropdown = props => {
 
   const [subscribed, setSubscribed] = useState(false);
-  const [commented, setCommented] = useState(false);
+  const [filled, setFilled] = useState(false);
   const [reposted, setReposted] = useState(false);
+
+  /*for (let task of props.userActivity.tasks) {
+    if (task.name == 'Подписка на сообщество') {
+      setSubscribed(task.completed);
+    } else if (task.name == 'Репост записи с игрой') {
+      setReposted(task.completed);
+    } else if (task.name == 'Заполнение анкеты') {
+      setFilled(task.completed);
+    }
+  }*/
+
+  async function handleChange(event) {
+    if (event.target.name == 'anket') {
+      props.setActivePanel('form');
+      setFilled(true);
+    } else if (event.target.name == 'subscribe') {
+      let response = await bridge.send('VKWebAppAllowMessagesFromGroup',
+        {'group_id': 49256266});
+			if (response.result) {
+				setSubscribed(true);
+			} else {
+        console.log(response.error_data.error_reason);
+      }
+    } else if (event.target.name == 'repost') {
+      let response = await bridge.send('VKWebAppShowWallPostBox',
+      {
+        'message': 'Hello!',
+        'attachments': 'http://habrahabr.ru'
+      });
+      if (response.post_id) {
+        setReposted(true);
+      } else {
+        console.log(response.error_data.error_reason);
+      }
+    }
+  }
+
+  function toShare() {
+
+  }
 
   return (
     <div className={props.className}>
-      <DropdownItem className='DropdownItem_subscribe'
-        checked={subscribed} text1=' Подписаться на '
-        link={''} linkText='группу' attempts='3'
-      />
-      <DropdownItem className='DropdownItem_comment'
-        checked={commented} text1=' Комментарий к '
-        link={''} linkText='записи' attempts='1'
-      />
-      <DropdownItem className='DropdownItem_repost'
-        checked={reposted} text1=' Репост ' text2=' группы'
-        link={''} linkText='записи' attempts='2'
-      />
-      <DropdownItem className='DropdownItem_subscribe-send'
-        checked={reposted} text1=' Подписка на рассылку ' text2=''
-        link={''} linkText='' attempts='2'
-      />
-      <DropdownItem className='DropdownItem_anket'
-        checked={reposted} text1=' Заполнить анкету ' text2=''
-        link={''} linkText='' attempts='2'
-      />
-      <DropdownItem className='DropdownItem_subscribe-send-vk'
-        checked={reposted} text1=' Подписка на рассылку Дикси ВК ' text2='' link={''} linkText='' attempts='1'
-      />
+      <div className='DropdownItem-wrapper'>
+        <DropdownItem className='DropdownItem subscribe' name='subscribe' checked={subscribed} text=' Подписаться на группу' attempts='3' onChange={handleChange}
+        />
+        <DropdownItem className='DropdownItem repost' name='repost'
+          checked={reposted} text=' Репост записи группы'
+          attempts='2' onChange={handleChange}
+        />
+        <DropdownItem className='DropdownItem anket' name='anket'
+          checked={filled} text=' Заполнить анкету ' attempts='2' onChange={handleChange}
+        />
+        <button className='share' onClick={toShare}>
+          Поделиться
+        </button>
+      </div>
     </div>
   );
 };

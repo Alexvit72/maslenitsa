@@ -10,18 +10,7 @@ import './Start.css';
 
 const Start = props => {
 
-	function clickHandler() {
-		async function fetchAllowMessage() {
-			const response = await bridge.send('VKWebAppAllowMessagesFromGroup', {'group_id': 49256266});
-			console.log(response);
-			if (response.result) {
-				props.setActivePanel('main');
-			}
-		}
-		fetchAllowMessage();
-	}
-
-	const list = (
+const list = (
 	<ol>
 		<li></li>
 		<li></li>
@@ -34,7 +23,7 @@ const Start = props => {
 	return (
 		<Panel id={props.id}>
 			<div className={props.className}>
-				<Card className='Card' title='Как играть?' img={logo} text={list} label='Начать' onClick={clickHandler} />
+				<Card className='Card' title='Как играть?' img={logo} text={list} label='Начать' onClick={() => props.setActivePanel('main')} />
 			</div>
 		</Panel>
 	);

@@ -1,0 +1,19 @@
+.Dropdown {
+  width: 268px;
+  background: #fff;
+  box-shadow: inset 0px -2.17647px 2.17647px rgba(91, 193, 255, 0.26);
+  border-radius: 13px;
+  padding: 4px;
+  z-index: 10;
+}
+
+.DropdownItem-wrapper {
+  background: #fff;
+  box-shadow: inset 0px 4px 4px rgba(91, 193, 255, 0.1);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.share {
+  cursor: pointer;
+}

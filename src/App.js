@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import bridge from '@vkontakte/vk-bridge';
 import View from '@vkontakte/vkui/dist/components/View/View';
-//import ScreenSpinner from '@vkontakte/vkui/dist/components/ScreenSpinner/ScreenSpinner';
 import '@vkontakte/vkui/dist/vkui.css';
+
 import Loading from './panels/Loading/Loading';
 import Start from './panels/Start/Start';
 import Main from './panels/Main/Main';
+import Form from './panels/Form/Form';
 import Final from './components/Final';
 import img1 from './img/1.png';
 import img2 from './img/2.png';
@@ -23,23 +24,17 @@ const App = () => {
 	const [activePanel, setActivePanel] = useState('loading');
 	const [result, setResult] = useState('');
 	const [fetchedUser, setUser] = useState({});
-	const [userActivity, setUserActivity] = useState(null);
+	const [userActivity, setUserActivity] = useState({attempts: 10});
 	const [attempts, setAttempts] = useState(10);
 	const [percentIndex, setPercentIndex] = useState(0);
 
 	useEffect(() => {
 		showLoading();
-		/*bridge.subscribe(({ detail: { type, data }}) => {
-			if (type === 'VKWebAppUpdateConfig') {
-				const schemeAttribute = document.createAttribute('scheme');
-				schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
-				document.body.attributes.setNamedItem(schemeAttribute);
-			}
-		});*/
 	}, []);
 
 	useEffect(() => {
 		fetchData();
+		console.log(fetchedUser);
 		console.log(userActivity);
 	}, []);
 
@@ -69,7 +64,6 @@ const App = () => {
 		setUser(user);
 		const response = await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${user.id}`);
 		setUserActivity(response);
-		setAttempts(userActivity.attempts);
 	}
 
 	let images = [img1, img2, img3, img4, img5, img6, img7];
@@ -84,8 +78,8 @@ const App = () => {
 		>
 			<Loading id='loading' img={images[percentIndex]} className='Loading' percent={percents[percentIndex]} />
 			<Start id='start' className='Start' setActivePanel={setActivePanel} />
-			<Main id='main' className='Main' go={go} setResult={setResult} attempts={attempts} decreaseAttempts={decreaseAttempts} vk_id={fetchedUser.id} />
-			<Main id='form' className='Form' go={go} />
+			<Main id='main' className='Main' go={go} setResult={setResult} setActivePanel={setActivePanel} vk_id={fetchedUser.id} decreaseAttempts={decreaseAttempts} userActivity={userActivity} />
+			<Form id='form' className='Form' go={go} />
 		</View>
 	);
 }

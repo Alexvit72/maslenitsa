@@ -7,6 +7,9 @@
   text-align: center;
   padding: 68px 20px 26px;
 }
+.Card .Headline {
+  margin-top: 15px;
+}
 
 .Card .prezent {
   top: -90px;
@@ -25,5 +28,5 @@
 }
 
 .Card .button-wrapper {
-  bottom: -27px;
+  bottom: -35px;
 }

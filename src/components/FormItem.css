@@ -1,0 +1,49 @@
+.FormItem {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 612px;
+  margin: 30px auto 20px;
+}
+
+.Field, .Field:focus {
+  border: none;
+  outline: none;
+}
+
+.select {
+  display: none;
+}
+
+.field-wrapper {
+  position: relative;
+  border: 1px solid #B1B2BA;
+  box-sizing: border-box;
+  border-radius: 20px;
+  padding: 23px 21px 5px;
+  width: 300px;
+  margin-bottom: 13px;
+}
+
+.field-wrapper:focus-within {
+  border-color: #FF9E00;
+}
+
+.place {
+  position: absolute;
+  left: 21px;
+  top: 14px;
+  color: #46474F;
+  text-align: left;
+}
+
+.place.products {
+  font: 14px/14px Inter;
+  max-width: 250px;
+}
+
+.arrow {
+  position: absolute;
+  top: 14px;
+  right: -10px;
+}

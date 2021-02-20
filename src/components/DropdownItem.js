@@ -1,15 +1,16 @@
 import React from 'react';
+import './DropdownItem.css';
 
 const DropdownItem = props => {
   return (
     <div className={props.className}>
-      <input type='checkbox' checked={props.checked} />
-      <span>
-        {props.text1}
-        {props.link != '' ? <a href={props.link}>{props.linkText}</a> : ''}
-        {props.text2}
-      </span>
-      <span> + {props.attempts} попытки</span>
+      <label className='label'>
+        <input type='checkbox' checked={props.checked}
+          name={props.name} onChange={(event) => props.onChange(event)}
+        />
+        {props.text}
+      </label>
+      <span className='bonus'>+{props.attempts} попытки</span>
     </div>
   );
 };
