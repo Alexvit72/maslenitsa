@@ -150,7 +150,6 @@ const Main = ({ id, className, go, setResult, setActivePanel, decreaseAttempts, 
 
 Main.propTypes = {
 	id: PropTypes.string.isRequired,
-	go: PropTypes.func.isRequired,
 };
 
 export default Main;

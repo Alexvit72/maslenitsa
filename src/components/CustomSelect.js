@@ -3,7 +3,7 @@ import DropdownItem from './DropdownItem';
 
 const CustomSelect = props => {
 
-  const [fruits, setFruits] = useState(false);
+  /*const [fruits, setFruits] = useState(false);
   const [cheeses, setCheeses] = useState(false);
   const [beveredges, setBeveredges] = useState(false);
   const [milk, setMilk] = useState(false);
@@ -18,16 +18,17 @@ const CustomSelect = props => {
 
   useEffect(addProducts, [fruits, cheeses, beveredges, milk, pasta, fish, other]);
 
+
   function handleChecked(event) {
     let item = event.target.closest('.DropdownItem');
     let name = event.target.name;
     let func = products[name][1];
-    let value = products[name][0];
+    let arg = products[name][0];
     if (result.length < 3) {
-      func((value) => !value);
+      func((arg) => !arg);
     } else if (result.length == 3) {
-      if (value) {
-        func((value) => !value);
+      if (arg) {
+        func((arg) => !arg);
       }
     }
   }
@@ -41,16 +42,18 @@ const CustomSelect = props => {
       }
     }
     setResult(arr);
+    let str = arr.join('; ');
+    setValue(str);
   }
 
-  function handleBlur() {
-    
+  function showValue() {
+    let str = result.join('; ');
+    setValue(str);
   }
 
   return (
     <>
-      <input type='text' className={props.className} name={props.name} value={value} onChange={(event) => setValue(event.target.value)}
-      onBlur={handleBlur} />
+      <input id={props.id} type={props.type} className={props.className} onChange={props.onChange} onBlur={props.onBlur} name={props.name} value={props.value} />
       <div className='select'>
         <DropdownItem className='DropdownItem' name='fruits' checked={fruits} onChange={(event) => handleChecked(event)} text1='Свежие фрукты, овощи, зелень' />
         <DropdownItem className='DropdownItem' name='cheeses' checked={cheeses} onChange={(event) => handleChecked(event)} text1='Сыры, колбасы' />
@@ -61,7 +64,7 @@ const CustomSelect = props => {
         <DropdownItem className='DropdownItem' name='other' checked={other} onChange={(event) => handleChecked(event)} text1='другие товары' />
       </div>
     </>
-  );
+  );*/
 
 };
 

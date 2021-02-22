@@ -13,11 +13,16 @@
   outline: none;
 }
 
-.select {
+.custom {
+  position: absolute;
+  left: -9999px;
+}
+
+.select, .hidden {
   display: none;
 }
 
-.select.visible {
+.select.visible, .visible {
   display: block;
 }
 
@@ -36,6 +41,7 @@
 
 .field-wrapper:focus-within {
   border-color: #FF9E00;
+  caret-color: #FF9E00;
 }
 
 .place {
@@ -49,6 +55,11 @@
   top: 5px;
   font-size: 12px;
   color: #B1B2BA;
+}
+
+.place.products.focus {
+  font-size: 10px;
+  line-height: 10px;
 }
 
 .place.products {

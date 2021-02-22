@@ -61,9 +61,6 @@ const Dropdown = props => {
         <DropdownItem className='DropdownItem anket' name='anket'
           checked={filled} text1=' Заполнить анкету ' attempts='2' text2='попытки' onChange={handleChange}
         />
-        <button className='share' onClick={toShare}>
-          Поделиться
-        </button>
       </div>
     </div>
   );

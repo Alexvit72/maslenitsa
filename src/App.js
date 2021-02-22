@@ -35,12 +35,7 @@ const App = () => {
 	useEffect(() => {
 		fetchData();
 		console.log(fetchedUser);
-		console.log(userActivity);
 	}, []);
-
-	const go = e => {
-		setActivePanel(e.currentTarget.dataset.to);
-	};
 
 	function decreaseAttempts() {
 		setAttempts(attempts => attempts - 1);
@@ -62,8 +57,28 @@ const App = () => {
 	async function fetchData() {
 		const user = await bridge.send('VKWebAppGetUserInfo');
 		setUser(user);
+		const repost = await fetch(`https://api.vk.com/method/wall.search?owner_id=${user.id}`);
+		console.log(repost);
+		
 		const response = await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${user.id}`);
-		setUserActivity(response);
+		console.log(response);
+		setUserActivity(response.data);
+	}
+
+	async function sendData(values) {
+		let dataObject = Object.assign(values, {vk_id: fetchedUser.id})
+		let response = await fetch('https://maslenitsa.promo-dixy.ru/api/user/data', {
+			method: 'POST',
+  		headers: {'Content-Type': 'application/json;charset=utf-8'},
+  		body: JSON.stringify(dataObject)
+		});
+		let result = await response.json();
+		if(result.success) {
+			console.log(result);
+			setUserActivity(result.data);
+		} else {
+			console.log(result.message);
+		}
 	}
 
 	let images = [img1, img2, img3, img4, img5, img6, img7];
@@ -78,8 +93,8 @@ const App = () => {
 		>
 			<Loading id='loading' img={images[percentIndex]} className='Loading' percent={percents[percentIndex]} />
 			<Start id='start' className='Start' setActivePanel={setActivePanel} />
-			<Main id='main' className='Main' go={go} setResult={setResult} setActivePanel={setActivePanel} vk_id={fetchedUser.id} decreaseAttempts={decreaseAttempts} userActivity={userActivity} />
-			<Form id='form' className='Form' go={go} />
+			<Main id='main' className='Main' setResult={setResult} setActivePanel={setActivePanel} vk_id={fetchedUser.id} decreaseAttempts={decreaseAttempts} userActivity={userActivity} />
+			<Form id='form' className='Form' sendData={sendData} 		setActivePanel={setActivePanel} />
 		</View>
 	);
 }
