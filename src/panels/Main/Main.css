@@ -86,16 +86,23 @@
     margin: 66px 14px;
   }
 
+  .Dropdown.visible {
+    display: block;
+    position: absolute;
+    right: 14px;
+    top: 110px;
+  }
+
   .Main .Headline {
     left: 0;
     right: 0;
     margin: auto;
-    top: 165px;
+    top: 175px;
   }
 
 
   .scene-container {
-    margin: 0 0 45px;
+    margin: 0 0 30px;
   }
 
   .game-container {

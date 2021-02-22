@@ -128,7 +128,7 @@ const Main = ({ id, className, go, setResult, setActivePanel, decreaseAttempts, 
 				</header>
 				<Dropdown className={'Dropdown' + (isDrop ? ' visible' : ' hidden')} userActivity={userActivity} setActivePanel={setActivePanel} />
 				<div className='game-container'>
-					<Headline className='Headline' text={userActivity.attempts > 0 ? 'Испытай удачу!' : 'Использованы все попытки'} />
+					<Headline className='Headline' text='Испытай удачу!' />
 					<div className='scene-container'>
 						<Scene className='Scene' setRender={setRender} />
 					</div>

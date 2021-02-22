@@ -9,6 +9,8 @@ const Button = props => {
       onClick={props.onClick}
       onMouseUp={props.onMouseUp}
       onMouseDown={props.onMouseDown}
+      type={props.type}
+      form={props.form}
     >
       {props.label}
     </button>

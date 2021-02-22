@@ -14,6 +14,10 @@
   padding: 16px;
 }
 
+.DropdownItem {
+  margin-bottom: 10px;
+}
+
 .share {
   cursor: pointer;
 }

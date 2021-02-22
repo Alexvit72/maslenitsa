@@ -52,14 +52,14 @@ const Dropdown = props => {
   return (
     <div className={props.className}>
       <div className='DropdownItem-wrapper'>
-        <DropdownItem className='DropdownItem subscribe' name='subscribe' checked={subscribed} text=' Подписаться на группу' attempts='3' onChange={handleChange}
+        <DropdownItem className='DropdownItem subscribe' name='subscribe' checked={subscribed} text1=' Подписаться на группу' attempts='3' text2='попытки' onChange={handleChange}
         />
         <DropdownItem className='DropdownItem repost' name='repost'
-          checked={reposted} text=' Репост записи группы'
-          attempts='2' onChange={handleChange}
+          checked={reposted} text1=' Репост записи группы'
+          attempts='2' text2='попытки' onChange={handleChange}
         />
         <DropdownItem className='DropdownItem anket' name='anket'
-          checked={filled} text=' Заполнить анкету ' attempts='2' onChange={handleChange}
+          checked={filled} text1=' Заполнить анкету ' attempts='2' text2='попытки' onChange={handleChange}
         />
         <button className='share' onClick={toShare}>
           Поделиться

@@ -3,12 +3,12 @@
   flex-direction: column;
   justify-content: center;
   padding: 132px 60px 66px;
-  height: 100%;
+  height: 100vh;
   background: url(../../img/light_desk.svg) center top no-repeat, url(../../img/back_desk.svg) center 146px no-repeat, #ECF3FB;
 }
 
 .Start .Card {
-  height: 351px;
+  height: 370px;
 }
 
 .Start .Card .prezent {
@@ -23,16 +23,16 @@
   }
 
   .Start .Card {
-    height: 451px;
-    margin-top: 201px;
+    height: 580px;
+    margin-top: 100px;
   }
 
   .Start .Card .prezent {
     top: -160px;
   }
 
-  ..Start .Card .Button {
-    bottom: 108px;
+  .Start .Card .button-wrapper {
+    bottom: 35px;
   }
 
 }

@@ -18,6 +18,8 @@ const Card = props => {
           className='Button'
           label={props.label}
           onClick={props.onClick}
+          form={props.form}
+          type={props.type}
         />
       </div>
     </div>

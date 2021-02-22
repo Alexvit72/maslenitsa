@@ -5,12 +5,11 @@ const DropdownItem = props => {
   return (
     <div className={props.className}>
       <label className='label'>
-        <input type='checkbox' checked={props.checked}
-          name={props.name} onChange={(event) => props.onChange(event)}
+        <input type='checkbox' className='checkbox' name={props.name} checked={props.checked} onChange={(event) => props.onChange(event)}
         />
-        {props.text}
+        <span className='action'>{props.text1}</span>
+        <span className='bonus'>{props.text2 ? '+' + props.attempts + props.text2 : ''}</span>
       </label>
-      <span className='bonus'>+{props.attempts} попытки</span>
     </div>
   );
 };

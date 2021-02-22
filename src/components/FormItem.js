@@ -2,62 +2,60 @@ import React, { useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
+import CustomSelect from './CustomSelect';
 import downArrow from '../img/downArrow.svg';
 import './FormItem.css';
+
+const phoneRegExp = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
+const MyCustomSelect = (props) => <CustomSelect {...props} />;
 
 const FormItem = props => {
   return (
       <Formik
-        initialValues={{ firstName: '', phone: '', email: '' }}
+        initialValues={{ firstName: '', phone: '', email: '', favorite_products: []}}
         validationSchema={Yup.object({
           firstName: Yup.string()
             .required('Это поле обязательно'),
           phone: Yup.string()
-            .max(20, 'Must be 20 characters or less')
+            .matches(phoneRegExp, 'Введите действительный номер телефона')
             .required('Это поле обязательно'),
           email: Yup.string()
             .email('Введите действительный адрес')
             .required('Это поле обязательно'),
+          favorite_products: Yup.array()
+          .required('Это поле обязательно')
         })}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
+            props.setData(values);
             alert(JSON.stringify(values, null, 2));
             setSubmitting(false);
           }, 400);
         }}
       >
-        <Form className={props.className}>
-          <div className='field-wrapper'>
+        <Form id='user_anket' className={props.className}>
+
+          <div className='field-wrapper' onClick={(event) => props.focusField(event)}>
             <label className='place' htmlFor="firstName">Имя</label>
             <Field className='Field' name="firstName" type="text" />
-            <ErrorMessage className='error' name="firstName" />
+            <span className='error'><ErrorMessage name="firstName" /></span>
           </div>
-          <div className='field-wrapper'>
+          <div className='field-wrapper' onClick={(event) => props.focusField(event)}>
             <label className='place' htmlFor="phone">Телефон</label>
             <Field className='Field' name="phone" type="tel" />
-            <ErrorMessage className='error' name="phone" />
+            <span className='error'><ErrorMessage name="phone" /></span>
           </div>
-          <div className='field-wrapper'>
+          <div className='field-wrapper' onClick={(event) => props.focusField(event)}>
             <label className='place' htmlFor="email">Email</label>
             <Field className='Field' name="email" type="email" />
-            <ErrorMessage className='error' name="email" />
+            <span className='error'><ErrorMessage name="email" /></span>
           </div>
-          <div className='field-wrapper'>
-            <label className='place products' htmlFor="favorite_products">Какие продукты чаще всего покупаете в Дикси (не более трёх) <img className='arrow' src={downArrow} /></label>
-            <Field className='Field' name="favorite_products" type="text" />
-            <ErrorMessage className='error' name="favorite_products" />
+          <div className='field-wrapper favorite_products' onClick={(event) => props.focusField(event)}>
+            <label className='place products' htmlFor="favorite_products">Какие продукты чаще всего покупаете в Дикси (не более трёх)</label>
+            <Field className='Field' name="favorite_products" as={CustomSelect} />
+            <img className='arrow' src={downArrow} />
+            <span className='error'><ErrorMessage name="favorite_products" /></span>
           </div>
-
-          <Field className='Field select' name="favorite_products" as="select" multiple>
-            <option value="Свежие фрукты, овощи, зелень">Свежие фрукты, овощи, зелень</option>
-            <option value="Сыры, колбасы">Сыры, колбасы</option>
-            <option value="Напитки">Напитки</option>
-            <option value="Молочные продукты">Молочные продукты</option>
-            <option value="Макароны, крупы, мука">Макароны, крупы, мука</option>
-            <option value="Рыба, морепродукты">Рыба, морепродукты</option>
-            <option value="другие товары">другие товары</option>
-          </Field>
-
         </Form>
       </Formik>
   );
