@@ -21,3 +21,7 @@
   border-radius: 20px;
   color: rgba(249, 249, 250, 1);
 }
+
+.Button a {
+  text-decoration: none;
+}

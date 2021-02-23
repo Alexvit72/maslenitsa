@@ -1,9 +1,7 @@
 .Form {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  padding: 163px 60px 20px;
-  background: url(../../img/light_desk.svg) center top no-repeat, url(../../img/back_desk.svg) center 146px no-repeat, #ECF3FB;
+  min-height: 100%;
+  padding: 143px 40px 20px;
+  background: url(../../img/light_desk.svg) center top no-repeat, url(../../img/back_desk.svg) center 80px / 100% 100% no-repeat, #ECF3FB;
   font: 14px/23px Inter;
   color: #7D7E8D;
   text-align: center;
@@ -11,15 +9,12 @@
 
 .Form .Card {
   position: relative;
+  width: 680px;
+  margin: 0 auto 20px;
 }
 
 .form-footer {
-  margin-top: 50px;
-  position: absolute;
-  bottom: -30%;
-  left: 0;
-  right: 0;
-  margin: 0 auto 20px;
+  margin: 50px auto 0;
 }
 
 .Form .Card .prezent {
@@ -37,16 +32,19 @@
 @media (max-width: 797px) {
 
   .Form {
+    position: relative;
     padding: 0;
   }
 
   .Form .Card {
-    padding-bottom: 160px;
-    margin-top: 178px;
+    width: 100%;
+    padding: 68px 20px 160px;
+    margin: 178px 0 0;
   }
 
   .form-footer {
-    bottom: 0;
+    position: absolute;
+    bottom: 30px;
   }
 
   .Form .Card .button-wrapper {

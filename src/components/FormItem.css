@@ -3,19 +3,14 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-  max-width: 612px;
-  margin: 30px auto 20px;
+  width: 612px;
+  margin: 30px auto 32px;
 }
 
 .Field, .Field:focus {
   width: 93%;
   border: none;
   outline: none;
-}
-
-.custom {
-  position: absolute;
-  left: -9999px;
 }
 
 .select, .hidden {
@@ -33,10 +28,11 @@
   border-radius: 20px;
   padding: 30px 21px 9px;
   width: 300px;
-  margin-bottom: 13px;
+  margin-bottom: 12px;
   font: 14px/14px Inter;
   text-align: left;
   background: #fff;
+  cursor: pointer;
 }
 
 .field-wrapper:focus-within {
@@ -88,6 +84,7 @@
   .FormItem {
     justify-content: center;
     margin-top: 10px;
+    width: 97%;
   }
 
   .field-wrapper {

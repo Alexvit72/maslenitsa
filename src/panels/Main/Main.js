@@ -14,7 +14,7 @@ import Dropdown from '../../components/Dropdown';
 
 import './Main.css';
 
-const Main = ({ id, className, go, setResult, setActivePanel, decreaseAttempts, vk_id, userActivity}) => {
+const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, userActivity }) => {
 
 	const [progress, setProgress] = useState(1);
 	const [win, setWin] = useState(false);
@@ -76,7 +76,7 @@ const Main = ({ id, className, go, setResult, setActivePanel, decreaseAttempts, 
 	}
 
 	async function getResult() {
-		let response = await fetch(`https://maslenitsa.promo-dixy.ru/api/result?vk_id=${vk_id}`);
+		let response = await fetch(`https://maslenitsa.promo-dixy.ru/api/result?vk_id=${userActivity.vk_id}`);
 		setWin(response.result);
 	}
 

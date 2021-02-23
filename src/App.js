@@ -59,7 +59,7 @@ const App = () => {
 		setUser(user);
 		const repost = await fetch(`https://api.vk.com/method/wall.search?owner_id=${user.id}`);
 		console.log(repost);
-		
+
 		const response = await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${user.id}`);
 		console.log(response);
 		setUserActivity(response.data);
@@ -93,7 +93,7 @@ const App = () => {
 		>
 			<Loading id='loading' img={images[percentIndex]} className='Loading' percent={percents[percentIndex]} />
 			<Start id='start' className='Start' setActivePanel={setActivePanel} />
-			<Main id='main' className='Main' setResult={setResult} setActivePanel={setActivePanel} vk_id={fetchedUser.id} decreaseAttempts={decreaseAttempts} userActivity={userActivity} />
+			<Main id='main' className='Main' setResult={setResult} setActivePanel={setActivePanel} decreaseAttempts={decreaseAttempts} userActivity={userActivity} />
 			<Form id='form' className='Form' sendData={sendData} 		setActivePanel={setActivePanel} />
 		</View>
 	);

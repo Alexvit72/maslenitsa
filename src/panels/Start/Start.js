@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import bridge from '@vkontakte/vk-bridge';
 
 import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
 import Card from '../../components/Card';
@@ -10,15 +9,15 @@ import './Start.css';
 
 const Start = props => {
 
-const list = (
-	<ol>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-	</ol>
-);
+const list = ['1. Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+'2. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+'3. Lorem ipsum dolor sit amet, consectetur ad',
+'4. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+'3. Lorem ipsum dolor sit amet, consectetur ad'].map((item, index) => {
+	return <p className='list-item' key={index}>{item}</p>;
+});
+
+
 
 	return (
 		<Panel id={props.id}>
