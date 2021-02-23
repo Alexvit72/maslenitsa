@@ -21,7 +21,7 @@ import './reset.css';
 
 const App = () => {
 
-	const [activePanel, setActivePanel] = useState('loading');
+	const [activePanel, setActivePanel] = useState('main');
 	const [result, setResult] = useState('');
 	const [fetchedUser, setUser] = useState({});
 	const [userActivity, setUserActivity] = useState({attempts: 10});
