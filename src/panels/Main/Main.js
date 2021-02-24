@@ -17,7 +17,7 @@ import './Main.css';
 const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, userActivity }) => {
 
 	const [progress, setProgress] = useState(1);
-	const [win, setWin] = useState(false);
+	const [win, setWin] = useState();
 	const [render, setRender] = useState(null);
 	const [timerId, setTimerId] = useState('');
 	const [isRotating, setIsRotaiting] = useState(false);
@@ -77,7 +77,16 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 
 	async function getResult() {
 		let response = await fetch(`https://maslenitsa.promo-dixy.ru/api/result?vk_id=${userActivity.vk_id}`);
-		setWin(response.result);
+		console.log(response);
+		if (response.ok) {
+			let data = await response.json();
+			console.log(data);
+			let res = data.result;
+			setWin(res);
+			console.log(win);
+		} else {
+			console.log(response);
+		}
 	}
 
 	function showResult() {
@@ -98,20 +107,21 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 		let output = render.engine.world.composites[2];
 		let outputBody = output.bodies[2];
 
-		const scale = () => {
+		const moveBall = () => {
 			Matter.Composite.remove(output, outputBody);
 			Matter.Body.setStatic(selectedBall, true);
 			Matter.Events.on(render.engine, 'afterUpdate', function(event) {
-				if (selectedBall.position.y < 380) {
+				if (selectedBall.position.y < 360) {
 					Matter.Body.setPosition(selectedBall, {x: selectedBall.position.x, y: selectedBall.position.y + 1});
 				} else {
 					Matter.Events.off(render.engine, 'afterUpdate');
-					setResult(win);
-					setIsRotaiting(false);
+					setTimeout(() => setResult(win), 1000);
 				}
 			});
 		};
-		setTimeout(scale, 500);
+
+		setTimeout(moveBall, 500);
+		setIsRotaiting(false);
 
 	}
 

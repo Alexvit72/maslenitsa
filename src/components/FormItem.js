@@ -82,7 +82,7 @@ const FormItem = props => {
         values.phone = values.phone.replace(/\D/g, '');
         delete values.stringOfProducts;
         props.sendData(values);
-        console.log(values);
+        //console.log(values);
         props.setActivePanel('start');
       }
     }

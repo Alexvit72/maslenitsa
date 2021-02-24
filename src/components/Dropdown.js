@@ -4,49 +4,49 @@ import DropdownItem from './DropdownItem';
 import './Dropdown.css';
 
 const Dropdown = props => {
-
-  const [subscribed, setSubscribed] = useState(false);
-  const [filled, setFilled] = useState(false);
-  const [reposted, setReposted] = useState(false);
-
-  /*for (let task of props.userActivity.tasks) {
+  let startSubscribed = false;
+  let startReposted = false;
+  let startFilled = false;
+  for (let task of props.userActivity.tasks) {
     if (task.name == 'Подписка на сообщество') {
-      setSubscribed(task.completed);
+      startSubscribed = task.completed;
     } else if (task.name == 'Репост записи с игрой') {
-      setReposted(task.completed);
+      startReposted = task.completed;
     } else if (task.name == 'Заполнение анкеты') {
-      setFilled(task.completed);
+      startFilled = task.completed;
     }
-  }*/
+  }
+
+  const [subscribed, setSubscribed] = useState(startSubscribed);
+  const [filled, setFilled] = useState(startFilled);
+  const [reposted, setReposted] = useState(startReposted);
 
   async function handleChange(event) {
     if (event.target.name == 'anket') {
       props.setActivePanel('form');
-      setFilled(true);
+      //setFilled(true);
     } else if (event.target.name == 'subscribe') {
-      let response = await bridge.send('VKWebAppAllowMessagesFromGroup',
+      let responseSubscribe = await bridge.send('VKWebAppAllowMessagesFromGroup',
         {'group_id': 49256266});
-			if (response.result) {
+        console.log(responseSubscribe);
+			if (responseSubscribe.result) {
 				setSubscribed(true);
 			} else {
-        console.log(response.error_data.error_reason);
+        console.log(responseSubscribe.error_data.error_reason);
       }
     } else if (event.target.name == 'repost') {
-      let response = await bridge.send('VKWebAppShowWallPostBox',
+      let responseRepost = await bridge.send('VKWebAppShowWallPostBox',
       {
         'message': 'Hello!',
         'attachments': 'http://habrahabr.ru'
       });
-      if (response.post_id) {
+      console.log(responseRepost);
+      if (responseRepost.type == "VKWebAppShowWallPostBoxResult") {
         setReposted(true);
-      } else {
-        console.log(response.error_data.error_reason);
+      } else if (responseRepost.type == "VKWebAppShowWallPostBoxFailed ") {
+        console.error(responseRepost.error_data.error_reason);
       }
     }
-  }
-
-  function toShare() {
-
   }
 
   return (

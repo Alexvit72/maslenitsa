@@ -21,10 +21,10 @@ import './reset.css';
 
 const App = () => {
 
-	const [activePanel, setActivePanel] = useState('main');
+	const [activePanel, setActivePanel] = useState('loading');
 	const [result, setResult] = useState('');
-	const [fetchedUser, setUser] = useState({});
-	const [userActivity, setUserActivity] = useState({attempts: 10});
+	const [fetchedUser, setUser] = useState(null);
+	const [userActivity, setUserActivity] = useState(null);
 	const [attempts, setAttempts] = useState(10);
 	const [percentIndex, setPercentIndex] = useState(0);
 
@@ -35,6 +35,7 @@ const App = () => {
 	useEffect(() => {
 		fetchData();
 		console.log(fetchedUser);
+		console.log(userActivity);
 	}, []);
 
 	function decreaseAttempts() {
@@ -57,21 +58,30 @@ const App = () => {
 	async function fetchData() {
 		const user = await bridge.send('VKWebAppGetUserInfo');
 		setUser(user);
-		const repost = await fetch(`https://api.vk.com/method/wall.search?owner_id=${user.id}`);
-		console.log(repost);
+		console.log(user);
 
-		const response = await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${user.id}`);
+		/*const repost = await fetch(`https://api.vk.com/method/wall.search?owner_id=${user.id}`);
+		console.log(repost);*/
+
+		const response = await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${user.id}&exist_repost=${1}`);
 		console.log(response);
-		setUserActivity(response.data);
+		if (response.ok) {
+			let data = await response.json();
+			console.log(data);
+			setUserActivity(data.data);
+		} else {
+			console.log(response);
+		}
 	}
 
 	async function sendData(values) {
-		let dataObject = Object.assign(values, {vk_id: fetchedUser.id})
+		let dataObject = Object.assign(values, {vk_id: userActivity.vk_id})
 		let response = await fetch('https://maslenitsa.promo-dixy.ru/api/user/data', {
 			method: 'POST',
   		headers: {'Content-Type': 'application/json;charset=utf-8'},
   		body: JSON.stringify(dataObject)
 		});
+		console.log(response);
 		let result = await response.json();
 		if(result.success) {
 			console.log(result);
@@ -85,7 +95,7 @@ const App = () => {
 	let percents = [0, 15, 27, 48, 63, 84, 100];
 
 	return (
-		<View activePanel={percentIndex == 6 && fetchedUser != null ? activePanel : 'loading'}
+		<View activePanel={percentIndex == 6 && userActivity != null ? activePanel : 'loading'}
 			popout={result === '' ? '' :
 			<Final result={result}
 			 setResult={setResult} setActivePanel={setActivePanel}
