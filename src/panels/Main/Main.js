@@ -47,6 +47,7 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 			}, 10);
 			setTimerId(timerId);
 		}
+
 	}
 
 	useEffect(() => {
@@ -62,7 +63,7 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 		setIsRotaiting(true);
 		clearInterval(timerId);
 
-		getResult();
+		// getResult();
 
 		let composites = render.engine.world.composites;
 		let outputCover = composites[2].bodies[2];
@@ -71,19 +72,19 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 		let startPositionY = outputBody.position.y;
 
 		let currentRotation = progress / 10;
-		decreaseAttempts();
+		// decreaseAttempts();
 
-		Matter.Events.on(render.engine, 'afterUpdate', function bar()  {
+		Matter.Events.on(render.engine, 'afterUpdate', function bar() {
 			if (currentRotation > 0.01) {
-				Matter.Composite.rotate(composites[0], currentRotation, {x: 150, y: 200});
-				Matter.Composite.rotate(composites[2], currentRotation, {x: 150, y: 200});
-				Matter.Composite.rotate(composites[1], currentRotation / 2, {x: 150, y: 200});
+				Matter.Composite.rotate(composites[0], currentRotation, { x: 150, y: 200 });
+				Matter.Composite.rotate(composites[2], currentRotation, { x: 150, y: 200 });
+				Matter.Composite.rotate(composites[1], currentRotation / 2, { x: 150, y: 200 });
 				currentRotation *= 0.99;
 			} else {
 				if (outputBody.position.x - startPositionX > 0.5 || outputBody.position.y - startPositionY > 0.5 || startPositionX - outputBody.position.x > 10 || startPositionY - outputBody.position.y > 10) {
 					Matter.Composite.remove(composites[2], outputCover);
-					Matter.Composite.rotate(composites[0], currentRotation, {x: 150, y: 200});
-					Matter.Composite.rotate(composites[2], currentRotation, {x: 150, y: 200});
+					Matter.Composite.rotate(composites[0], currentRotation, { x: 150, y: 200 });
+					Matter.Composite.rotate(composites[2], currentRotation, { x: 150, y: 200 });
 				} else {
 					Matter.Events.off(render.engine, 'afterUpdate', bar);
 					showResult();
@@ -127,9 +128,9 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 		const moveBall = () => {
 			Matter.Composite.remove(output, outputBody);
 			Matter.Body.setStatic(selectedBall, true);
-			Matter.Events.on(render.engine, 'afterUpdate', function(event) {
+			Matter.Events.on(render.engine, 'afterUpdate', function (event) {
 				if (selectedBall.position.y < 360) {
-					Matter.Body.setPosition(selectedBall, {x: selectedBall.position.x, y: selectedBall.position.y + 1});
+					Matter.Body.setPosition(selectedBall, { x: selectedBall.position.x, y: selectedBall.position.y + 1 });
 				} else {
 					Matter.Events.off(render.engine, 'afterUpdate');
 					setTimeout(() => setResult(win), 1000);
@@ -151,9 +152,9 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 			<div className={className}>
 				<header>
 					<Logo className='Logo' />
-					<Attempts className='Attempts' attempts={userActivity.attempts} clickHandler={toggleDrop} />
+					{/* <Attempts className='Attempts' attempts={userActivity.attempts} clickHandler={toggleDrop} /> */}
 				</header>
-				<Dropdown className={'Dropdown' + (isDrop ? ' visible' : ' hidden')} userActivity={userActivity} setActivePanel={setActivePanel} />
+				{/* <Dropdown className={'Dropdown' + (isDrop ? ' visible' : ' hidden')} userActivity={userActivity} setActivePanel={setActivePanel} /> */}
 				<div className='game-container'>
 					<Headline className='Headline' text='Испытай удачу!' />
 					<div className='scene-container'>
@@ -162,8 +163,10 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 					<div>
 						<Power className='Power' value={progress * 5} />
 						<Button className='Button'
-							disabled={userActivity.attempts <= 0 || isRotaiting}
-							onClick={rotate}
+							// disabled={userActivity.attempts <= 0 || isRotaiting}
+							// onClick={rotate}
+							onMouseDown={changePower}
+							onMouseUp={rotate}
 							label='Крутить'
 						/>
 					</div>

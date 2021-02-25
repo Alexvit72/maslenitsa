@@ -55,14 +55,14 @@ const App = () => {
 		}, 500);
 	}
 
-	async function fetchUser () {
+	async function fetchUser() {
+	
 		const user = await bridge.send('VKWebAppGetUserInfo');
 		setUser(user);
 		console.log(fetchedUser);
 	}
 
 	async function fetchData() {
-
 		/*const repost = await fetch(`https://api.vk.com/method/wall.search?owner_id=${user.id}`);
 		console.log(repost);*/
 
@@ -70,29 +70,29 @@ const App = () => {
 		console.log(response);
 		if (response.ok) {
 			let data = await response.json();
-			console.log(data);
+
 			setUserActivity(data.data);
 			setActivePanel('main');
 		} else {
 			console.log(response);
 		}
-		console.log(userActivity);
+		
 	}
 
 	async function sendData(values) {
-		let dataObject = Object.assign(values, {vk_id: userActivity.vk_id})
+		let dataObject = Object.assign(values, { vk_id: userActivity.vk_id })
 		let response = await fetch('https://maslenitsa.promo-dixy.ru/api/user/data', {
 			method: 'POST',
-  		headers: {
+			headers: {
 				'Content-Type': 'application/json;charset=utf-8',
 				'Accept': 'application/json;charset=utf-8'
 			},
-  		body: JSON.stringify(dataObject)
+			body: JSON.stringify(dataObject)
 		});
 		console.log(response);
 		let result = await response.json();
 		console.log(result);
-		if(result.success) {
+		if (result.success) {
 			setUserActivity(result.data);
 		} else {
 			console.log(result.message);
@@ -103,16 +103,16 @@ const App = () => {
 	let percents = [0, 15, 27, 48, 63, 84, 100];
 
 	return (
-		<View activePanel={percentIndex == 6 && fetchedUser != null ? activePanel : 'loading'} // && fetchedUser != null
+		<View activePanel='main' // {percentIndex == 6 && fetchedUser != null ? activePanel : 'loading'}
 			popout={result === '' ? '' :
-			<Final result={result}
-			 setResult={setResult} setActivePanel={setActivePanel}
-			 link={'https://vk.com/im?sel=-49256266'} />}
+				<Final result={result}
+					setResult={setResult} setActivePanel={setActivePanel}
+					link={'https://vk.com/im?sel=-49256266'} />}
 		>
 			<Loading id='loading' img={images[percentIndex]} className='Loading' percent={percents[percentIndex]} />
 			<Start id='start' className='Start' setActivePanel={setActivePanel} fetchData={fetchData} />
 			<Main id='main' className='Main' setResult={setResult} setActivePanel={setActivePanel} decreaseAttempts={decreaseAttempts} userActivity={userActivity} />
-			<Form id='form' className='Form' sendData={sendData} 		setActivePanel={setActivePanel} />
+			<Form id='form' className='Form' sendData={sendData} setActivePanel={setActivePanel} />
 		</View>
 	);
 }

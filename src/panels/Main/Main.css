@@ -32,7 +32,7 @@
 }
 
 .Main .Logo {
-  width: 190px;
+  width: 16rem;
   padding: 10px 25px;
 }
 
@@ -59,7 +59,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content:  space-between;
+  justify-content: space-between;
 
 }
 
@@ -67,11 +67,12 @@
   margin: 20px;
 }
 
-@media (max-width: 797px) {
-
+@media screen and (max-width: 797px) {
   .Main {
-    background: url(../../img/sun.png) no-repeat 105% 10%, url(../../img/wooman.png) no-repeat -42% 219px, url(../../img/peunik.png) 103% 340px no-repeat, url(../../img/shoose.png) no-repeat 95% 487px, url(../../img/back_desk.svg) no-repeat center 50px, rgba(236, 243, 251, 1);
-    height: 100vh;
+    background: url(../../img/sun.png) no-repeat 105% 5%, url(../../img/wooman.png) no-repeat -42% 219px, url(../../img/peunik.png) 103% 340px no-repeat, url(../../img/shoose.png) no-repeat 95% 487px, url(../../img/back_desk.svg) no-repeat center 50px, rgba(236, 243, 251, 1);
+    /* height: 100vh; */
+    height: auto;
+    min-height: 80vh;
   }
 
   .Main header {
@@ -79,7 +80,7 @@
   }
 
   .Main .Logo {
-    padding: 39px 8px 25px;
+    padding: 1rem 8px 25px;
   }
 
   .Main .Attempts {
@@ -98,15 +99,19 @@
     right: 0;
     margin: auto;
     top: 175px;
+    transform: scale(1.1);
+    top: -1.5rem;
   }
 
 
   .scene-container {
     margin: 0 0 30px;
+    margin-top: -3rem;
   }
 
   .game-container {
     height: auto;
+    transform: scale(.87) translateY(-4rem);
   }
 
   .Main .Button {
@@ -114,4 +119,14 @@
   }
 
 
+}
+
+@media screen and (max-width: 357px) {
+  .Main {
+    background: url(../../img/sun.png) no-repeat 105% 5%, url(../../img/wooman.png) no-repeat -42% 219px, url(../../img/peunik.png) 103% 340px no-repeat, url(../../img/shoose.png) no-repeat 95% 487px, url(../../img/back_desk.svg) no-repeat center 50px, rgba(236, 243, 251, 1);
+  }
+
+  .Main .Logo {
+    width: 12rem;
+  }
 }
