@@ -1,3 +1,51 @@
 .Start {
-  background: url(../../img/back_desk.svg) center bottom no-repeat, url(../../img/light.svg) center top no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 132px 60px 66px;
+  height: 100vh;
+  background: url(../../img/light_desk.svg) center top no-repeat, url(../../img/back_desk.svg) center 146px no-repeat, #ECF3FB;
+}
+
+.Start .Card .prezent {
+  top: -133px;
+}
+
+.Start .Card .text {
+  text-align: left;
+}
+
+.list-item {
+  margin-bottom: 10px;
+}
+
+.list-item::first-letter {
+  font: 16px Baloo;
+  color: #F60112;
+}
+
+@media (max-width: 797px) {
+
+  .Start {
+    padding: 0;
+    justify-content: flex-end;
+  }
+
+ .Start .Card {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .Start .Card .prezent {
+    top: -150px;
+  }
+
+  .Start .Card .text {
+    margin-bottom: 120px;
+  }
+
+  .Start .Card .button-wrapper {
+    bottom: 35px;
+  }
+
 }

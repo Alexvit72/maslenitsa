@@ -1,7 +1,53 @@
 .Loading {
-  background: url(../../img/back_desk.svg) center bottom no-repeat, url(../../img/light.svg) center top no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  background: url(../../img/light_desk.svg) center top no-repeat, url(../../img/back_desk.svg) center 146px no-repeat, #ECF3FB;
 }
 
 .Loading .Logo {
-  margin: 300px 0 200px;
+  margin: 50px 0 80px;
+}
+
+.loading-progress {
+  position: relative;
+}
+
+.loading-progress img {
+  width: 140px;
+}
+
+.loading-progress_percent {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  top: 24%;
+  font: 32px / 50px Baloo;
+  color: #003A8B;
+}
+
+.loading-progress_value {
+  font: 48px / 76px Baloo;
+}
+
+@media (max-width: 797px) {
+
+  .Loading {
+    background: url(../../img/light.svg) center top no-repeat, url(../../img/back_desk.svg) center 210px no-repeat, #ECF3FB;
+  }
+
+  .Loading .Logo {
+    margin: 150px 0 80px;
+  }
+
+  .loading-progress img {
+    width: 100%;
+  }
+
 }

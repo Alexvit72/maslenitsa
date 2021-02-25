@@ -1,44 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import bridge from '@vkontakte/vk-bridge';
 
 import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
-import Logo from '../../components/Logo';
-import Headline from '../../components/Headline';
-import Button from '../../components/Button';
+import Card from '../../components/Card';
+import logo from '../../img/logo.png';
 
 import './Start.css';
 
 const Start = props => {
 
-	function clickHandler() {
-		async function fetchAllowMessage() {
-			const response = await bridge.send('VKWebAppAllowMessagesFromGroup', {'group_id': 49256266});
-			console.log(response);
-			if (response.result) {
-				props.setActivePanel('main');
-			}
-		}
-		fetchAllowMessage();
-	}
+	const list = ['1. Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+	'2. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+	'3. Lorem ipsum dolor sit amet, consectetur ad',
+	'4. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+	'3. Lorem ipsum dolor sit amet, consectetur ad'].map((item, index) => {
+		return <p className='list-item' key={index}>{item}</p>;
+	});
 
 	return (
 		<Panel id={props.id}>
 			<div className={props.className}>
-				<Logo className='Logo' />
-				<div>
-					<Headline className='Headline' text='Как играть?' />
-					<ol>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-					</ol>
-					<Button className='Button' label='Начать'
-						onClick={clickHandler}
-					/>
-				</div>
+				<Card className='Card' title='Как играть?' img={logo} text={list} label='Начать' onClick={props.fetchData} />
 			</div>
 		</Panel>
 	);

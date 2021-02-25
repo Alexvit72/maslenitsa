@@ -11,7 +11,11 @@ const Loading = props => (
     <div className={props.className}>
       <Logo className='Logo' />
       <div className='loading-progress'>
-        <img className='loading-progress_img' src={props.img} alt='loading' />
+        <img className='loading-progress_img' src={props.img} />
+        <p className='loading-progress_percent'>
+          <span className='loading-progress_value'>
+          {props.percent}</span><span> %</span>
+        </p>
       </div>
     </div>
   </Panel>

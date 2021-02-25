@@ -1,0 +1,55 @@
+.Form {
+  min-height: 100%;
+  padding: 143px 40px 20px;
+  background: url(../../img/light_desk.svg) center top no-repeat, url(../../img/back_desk.svg) center 80px / 100% 100% no-repeat, #ECF3FB;
+  font: 14px/23px Inter;
+  color: #7D7E8D;
+  text-align: center;
+}
+
+.Form .Card {
+  position: relative;
+  width: 680px;
+  margin: 0 auto 20px;
+}
+
+.form-footer {
+  margin: 50px auto 0;
+}
+
+.Form .Card .prezent {
+  top: -133px;
+}
+
+.Form .Card .Headline {
+  margin-top: 25px;
+}
+
+.Form .Card .text {
+  margin: 0;
+}
+
+@media (max-width: 797px) {
+
+  .Form {
+    position: relative;
+    padding: 0;
+  }
+
+  .Form .Card {
+    width: 100%;
+    padding: 68px 20px 160px;
+    margin: 178px 0 0;
+  }
+
+  .form-footer {
+    position: absolute;
+    bottom: 30px;
+  }
+
+  .Form .Card .button-wrapper {
+    bottom: 115px;
+  }
+
+
+}

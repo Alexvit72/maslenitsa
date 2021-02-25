@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import Matter from 'matter-js'
 
 import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
-/*import PanelHeader from '@vkontakte/vkui/dist/components/PanelHeader/PanelHeader';
-import PanelHeaderBack from '@vkontakte/vkui/dist/components/PanelHeaderBack/PanelHeaderBack';*/
+
 import Power from '../../components/Power';
 import Headline from '../../components/Headline';
 import Button from '../../components/Button';
@@ -15,84 +14,136 @@ import Dropdown from '../../components/Dropdown';
 
 import './Main.css';
 
-const Main = ({ id, className, go, setResult, attempts, decreaseAttempts}) => {
+const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, userActivity }) => {
 
-	const [timer, setTimer] = useState('');
 	const [progress, setProgress] = useState(1);
+	const [win, setWin] = useState();
 	const [render, setRender] = useState(null);
 	const [timerId, setTimerId] = useState('');
-	const [isRotating, setIsRotaiting] = useState(false);
-	const [startPositionX, setstartPositionX] = useState(168.5);
-	const [startPositionY, setStartPositionY] = useState(329.5);
+	const [isRotaiting, setIsRotaiting] = useState(false);
+	const [startPositionX, setstartPositionX] = useState(0);
+	const [startPositionY, setStartPositionY] = useState(0);
+	const [isDrop, setIsDrop] = useState(false);
 
-	function powerCountStart() {
-		console.log('down');
-		let timerId = setInterval(() => {
-			if (progress < 10) {
-				setProgress(progress => progress + 1);
-			} else {
-				clearInterval(timerId);
-			}
-			console.log(progress);
-		}, 130);
-		setTimerId(timerId);
+	function changePower() {
+		if (!isRotaiting) {
+			let count = 1;
+			let isRising = true;
+			let timerId = setInterval(() => {
+				if (count < 20 && count > 1) {
+					if (isRising) {
+						count++;
+					} else {
+						count--;
+					}
+				} else if (count == 20) {
+					isRising = false;
+					count--;
+				} else if (count == 1) {
+					isRising = true;
+					count++;
+				}
+				setProgress(count);
+			}, 10);
+			setTimerId(timerId);
+		}
 	}
 
+	useEffect(() => {
+		let power = document.querySelector('.Power_icon');
+		power.addEventListener('click', function func() {
+			changePower();
+			this.removeEventListener('click', func);
+		});
+	}, []);
+
 	function rotate() {
-		let composites = render.engine.world.composites;
-		//console.log(composites);
-		let outputBody = composites[2].bodies[0];
-		//let startPositionX = outputBody.position.x;
-		//let startPositionY = outputBody.position.y;
-		console.log(startPositionX, startPositionY);
+
+		setIsRotaiting(true);
 		clearInterval(timerId);
+
+		getResult();
+
+		let composites = render.engine.world.composites;
+		let outputCover = composites[2].bodies[2];
+		let outputBody = composites[2].bodies[3];
+		let startPositionX = outputBody.position.x;
+		let startPositionY = outputBody.position.y;
+
 		let currentRotation = progress / 10;
-		setProgress(0);
-		//setIsRotaiting(true);
 		decreaseAttempts();
-		//console.log(progress);
-		Matter.Events.on(render.engine, 'afterUpdate', function(event) {
+
+		Matter.Events.on(render.engine, 'afterUpdate', function bar()  {
 			if (currentRotation > 0.01) {
-				Matter.Composite.rotate(composites[0], currentRotation, {x: 200, y: 200});
-				Matter.Composite.rotate(composites[2], currentRotation, {x: 200, y: 200});
-				Matter.Composite.rotate(composites[1], currentRotation / 2, {x: 200, y: 200});
+				Matter.Composite.rotate(composites[0], currentRotation, {x: 150, y: 200});
+				Matter.Composite.rotate(composites[2], currentRotation, {x: 150, y: 200});
+				Matter.Composite.rotate(composites[1], currentRotation / 2, {x: 150, y: 200});
 				currentRotation *= 0.99;
 			} else {
-				//currentRotation = 0.01
 				if (outputBody.position.x - startPositionX > 0.5 || outputBody.position.y - startPositionY > 0.5 || startPositionX - outputBody.position.x > 10 || startPositionY - outputBody.position.y > 10) {
-					Matter.Composite.rotate(composites[0], currentRotation, {x: 200, y: 200});
-					Matter.Composite.rotate(composites[2], currentRotation, {x: 200, y: 200});
-				} else {/*
-					if (outputBody.position.x - startPositionX > 0.5 || outputBody.position.y - startPositionY > 0.5) {
-						currentRotation = 0.002;
-						Matter.Composite.rotate(composites[0], currentRotation, {x: 200, y: 200});
-						Matter.Composite.rotate(composites[2], currentRotation, {x: 200, y: 200});
-					} else {*/
-						console.log(outputBody.position);
-						Matter.Events.off(render.engine);
-						showResult();
+					Matter.Composite.remove(composites[2], outputCover);
+					Matter.Composite.rotate(composites[0], currentRotation, {x: 150, y: 200});
+					Matter.Composite.rotate(composites[2], currentRotation, {x: 150, y: 200});
+				} else {
+					Matter.Events.off(render.engine, 'afterUpdate', bar);
+					showResult();
 				}
 			}
-
 		});
+
+	}
+
+	async function getResult() {
+		let response = await fetch(`https://maslenitsa.promo-dixy.ru/api/result?vk_id=${userActivity.vk_id}`);
+		console.log(response);
+		if (response.ok) {
+			let data = await response.json();
+			console.log(data);
+			let res = data.result;
+			setWin(res);
+			console.log(win);
+		} else {
+			console.log(response);
+		}
 	}
 
 	function showResult() {
+
 		let balls = render.engine.world.composites[1].bodies;
 		let selectedBall = balls[0];
 		for (let ball of balls) {
-			if (ball.position.y < selectedBall.position.y) {
-				if (Math.abs(startPositionX - ball.position.x) < Math.abs(startPositionX - selectedBall.position.x)) {
-					selectedBall = ball;
-				}
+			if (ball.position.y > selectedBall.position.y) {
+				selectedBall = ball;
 			}
 		}
-		//Matter.Body.translate(selectedBall, {x: 20, y: 20});
-		//console.log(selectedBall);
-		Matter.Body.setPosition(selectedBall, {x: 50, y: 350});
-		Matter.Body.setStatic(selectedBall, true);
-		setResult(selectedBall.label);
+		let index = balls.indexOf(selectedBall);
+		let otherBalls = [].concat(balls.slice(0, index), balls.slice(index + 1));
+		for (let ball of otherBalls) {
+			Matter.Body.setStatic(ball, true);
+		}
+		let output = render.engine.world.composites[2];
+		let outputBody = output.bodies[2];
+
+		const moveBall = () => {
+			Matter.Composite.remove(output, outputBody);
+			Matter.Body.setStatic(selectedBall, true);
+			Matter.Events.on(render.engine, 'afterUpdate', function(event) {
+				if (selectedBall.position.y < 360) {
+					Matter.Body.setPosition(selectedBall, {x: selectedBall.position.x, y: selectedBall.position.y + 1});
+				} else {
+					Matter.Events.off(render.engine, 'afterUpdate');
+					setTimeout(() => setResult(win), 1000);
+				}
+			});
+		};
+
+		setTimeout(moveBall, 500);
 		setIsRotaiting(false);
+
+	}
+
+	function toggleDrop() {
+		setIsDrop((isDrop) => !isDrop);
 	}
 
 	return (
@@ -100,23 +151,21 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts}) => {
 			<div className={className}>
 				<header>
 					<Logo className='Logo' />
-					<Attempts className='Attempts' attempts={attempts} />
+					<Attempts className='Attempts' attempts={userActivity.attempts} clickHandler={toggleDrop} />
 				</header>
-				<Dropdown className='Dropdown' />
+				<Dropdown className={'Dropdown' + (isDrop ? ' visible' : ' hidden')} userActivity={userActivity} setActivePanel={setActivePanel} />
 				<div className='game-container'>
-					<Headline text='Испытай удачу' />
+					<Headline className='Headline' text='Испытай удачу!' />
 					<div className='scene-container'>
-						<Scene setRender={setRender} />
-						<Power className='Power' value={progress * 10} />
+						<Scene className='Scene' setRender={setRender} />
 					</div>
 					<div>
-						<Button
-							disabled={/*count === 0 ||*/ isRotating}
-							onMouseDown={powerCountStart}
-							onMouseUp={rotate}
+						<Power className='Power' value={progress * 5} />
+						<Button className='Button'
+							disabled={userActivity.attempts <= 0 || isRotaiting}
+							onClick={rotate}
 							label='Крутить'
 						/>
-						<p>Повтор через {timer}</p>
 					</div>
 				</div>
 			</div>
@@ -127,8 +176,6 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts}) => {
 
 Main.propTypes = {
 	id: PropTypes.string.isRequired,
-	go: PropTypes.func.isRequired,
-	//count: PropTypes.number.isRequired
 };
 
 export default Main;

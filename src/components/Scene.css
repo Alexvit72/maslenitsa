@@ -1,0 +1,11 @@
+.Scene {
+  background: url(../img/state.svg) no-repeat 50% 98.5%, url(../img/tube.svg) no-repeat 50% 94%, url(../img/axe.svg) no-repeat 50% 69%, url(../img/shadow.svg) no-repeat 50% 99%;
+}
+
+@media (max-width: 309px) {
+
+  .Scene canvas {
+    width: 100vw;
+  }
+
+}

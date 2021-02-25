@@ -1,0 +1,44 @@
+.Card {
+  position: relative;
+  background: #fff;
+  border-radius: 10px;
+  font: 14px / 30px Inter;
+  letter-spacing: 0em;
+  text-align: center;
+  padding: 68px 35px 26px;
+}
+
+.Card .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  background: url(../img/close.png) center center / contain no-repeat;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.Card .Headline {
+  margin-top: 15px;
+}
+
+.Card .prezent {
+  top: -140px;
+}
+
+.Card .prezent, .Card .button-wrapper {
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+
+.Card .text {
+  color: #7D7E8D;
+  margin: 20px 0 45px;
+}
+
+.Card .button-wrapper {
+  bottom: -35px;
+}
