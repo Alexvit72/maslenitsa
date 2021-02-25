@@ -6,6 +6,8 @@
   letter-spacing: 0em;
   text-align: center;
   padding: 68px 35px 26px;
+  border-radius: 2rem;
+  box-shadow: 0px -1px 20px 0px #d6e4f5;
 }
 
 .Card .close {
@@ -17,6 +19,7 @@
   background: url(../img/close.png) center center / contain no-repeat;
   cursor: pointer;
   z-index: 5;
+
 }
 
 .Card .Headline {
@@ -27,7 +30,8 @@
   top: -140px;
 }
 
-.Card .prezent, .Card .button-wrapper {
+.Card .prezent,
+.Card .button-wrapper {
   position: absolute;
   right: 0;
   left: 0;

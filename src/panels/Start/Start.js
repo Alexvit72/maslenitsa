@@ -9,11 +9,12 @@ import './Start.css';
 
 const Start = props => {
 
-	const list = ['1. Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-	'2. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
-	'3. Lorem ipsum dolor sit amet, consectetur ad',
-	'4. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
-	'3. Lorem ipsum dolor sit amet, consectetur ad'].map((item, index) => {
+	const list = [
+		`1. Испытай удачу в нашей игре! Вращай барабан и выигрывай скидочные купоны в Дикси.`,
+		`2. Чтобы раскрутить барабан сильнее, зажми кнопку крутить, пока шкала силы не заполнится до нужного уровня.`,
+		`3. Ты можешь получить дополнительные попытки в игре. Для этого кликни по кнопке “+” в верхней части экрана и выбери задание из выпадающего списка.`,
+		`4. В случае выигрыша бот отправит скидку в личные сообщения . Для этого нужно разрешить сообществу отправлять сообщения. Приступим?`
+	].map((item, index) => {
 		return <p className='list-item' key={index}>{item}</p>;
 	});
 
