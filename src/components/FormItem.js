@@ -51,20 +51,20 @@ const FormItem = props => {
     setResult(arr);
   }
 
-  document.addEventListener('click', (event) => {
+  /*document.addEventListener('click', (event) => {
     if (!event.target.closest('.field-wrapper')) {
       if (document.querySelector('.select')) {
         document.querySelector('.select').classList.remove('visible');
       }
     }
-  });
+  });*/
 
   const formik = useFormik({
 
-    initialValues: { firstName: '', phone: '', email: ''},
+    initialValues: { first_name: '', phone: '', email: ''},
 
     validationSchema: Yup.object({
-      firstName: Yup.string()
+      first_name: Yup.string()
         .required('Это поле обязательно'),
       phone: Yup.string()
         .matches(phoneRegExp, 'Введите полный номер')
@@ -82,7 +82,6 @@ const FormItem = props => {
         values.phone = values.phone.replace(/\D/g, '');
         delete values.stringOfProducts;
         props.sendData(values);
-        //console.log(values);
         props.setActivePanel('start');
       }
     }
@@ -93,9 +92,9 @@ const FormItem = props => {
     <form id='user_anket' className={props.className} onSubmit={(event) => formik.handleSubmit(event)}>
 
       <div className='field-wrapper' onClick={(event) => props.focusField(event)}>
-        <label className='place' htmlFor="firstName">Имя</label>
-        <input className='Field' name="firstName" type="text" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.firstName} />
-        {formik.touched.firstName && formik.errors.firstName ? <div className='error'>{formik.errors.firstName}</div> : null}
+        <label className='place' htmlFor="first_name">Имя</label>
+        <input className='Field' name="first_name" type="text" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.firstName} />
+        {formik.touched.first_name && formik.errors.first_name ? <div className='error'>{formik.errors.first_name}</div> : null}
       </div>
 
       <div className='field-wrapper' onClick={(event) => props.focusField(event)}>

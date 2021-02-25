@@ -24,13 +24,12 @@ const Dropdown = props => {
   async function handleChange(event) {
     if (event.target.name == 'anket') {
       props.setActivePanel('form');
-      //setFilled(true);
     } else if (event.target.name == 'subscribe') {
       let responseSubscribe = await bridge.send('VKWebAppAllowMessagesFromGroup',
         {'group_id': 49256266});
         console.log(responseSubscribe);
 			if (responseSubscribe.result) {
-				setSubscribed(true);
+				setSubscribed(responseSubscribe.result);
 			} else {
         console.log(responseSubscribe.error_data.error_reason);
       }
@@ -52,14 +51,14 @@ const Dropdown = props => {
   return (
     <div className={props.className}>
       <div className='DropdownItem-wrapper'>
-        <DropdownItem className='DropdownItem subscribe' name='subscribe' checked={subscribed} text1=' Подписаться на группу' attempts='3' text2='попытки' onChange={handleChange}
+        <DropdownItem className='DropdownItem subscribe' name='subscribe' checked={subscribed} text1=' Подписаться на группу' attempts='3' text2='попытки' onChange={handleChange} disabled={subscribed}
         />
         <DropdownItem className='DropdownItem repost' name='repost'
           checked={reposted} text1=' Репост записи группы'
-          attempts='2' text2='попытки' onChange={handleChange}
+          attempts='2' text2='попытки' onChange={handleChange} disabled={reposted}
         />
         <DropdownItem className='DropdownItem anket' name='anket'
-          checked={filled} text1=' Заполнить анкету ' attempts='2' text2='попытки' onChange={handleChange}
+          checked={filled} text1=' Заполнить анкету ' attempts='2' text2='попытки' onChange={handleChange} disabled={false}
         />
       </div>
     </div>

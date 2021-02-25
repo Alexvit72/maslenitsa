@@ -61,6 +61,7 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 
 		setIsRotaiting(true);
 		clearInterval(timerId);
+
 		getResult();
 
 		let composites = render.engine.world.composites;
@@ -115,7 +116,6 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 				selectedBall = ball;
 			}
 		}
-		console.log(selectedBall);
 		let index = balls.indexOf(selectedBall);
 		let otherBalls = [].concat(balls.slice(0, index), balls.slice(index + 1));
 		for (let ball of otherBalls) {

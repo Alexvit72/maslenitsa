@@ -8,7 +8,7 @@ const Card = props => {
   return (
     <div className='card-wrapper'>
       <div className={props.className}>
-        {props.close ? <div className='close' onClick={props.onClick}></div> : ''}
+        {props.close ? <div className='close' onClick={props.onClose}></div> : ''}
         <img className='prezent' src={props.img} />
         <Headline
           className='Headline'
@@ -19,7 +19,7 @@ const Card = props => {
           <Button
             className='Button'
             label={props.label}
-            onClick={props.onClick}
+            onClick={(event) => props.onClick(event)}
             form={props.form}
             type={props.type}
           />
