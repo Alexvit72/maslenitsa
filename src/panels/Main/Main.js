@@ -20,27 +20,47 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 	const [win, setWin] = useState();
 	const [render, setRender] = useState(null);
 	const [timerId, setTimerId] = useState('');
-	const [isRotating, setIsRotaiting] = useState(false);
+	const [isRotaiting, setIsRotaiting] = useState(false);
 	const [startPositionX, setstartPositionX] = useState(0);
 	const [startPositionY, setStartPositionY] = useState(0);
 	const [isDrop, setIsDrop] = useState(false);
 
-	function powerCountStart() {
-		let count = 0;
-		let timerId = setInterval(() => {
-			if (count < 20) {
+	function changePower() {
+		if (!isRotaiting) {
+			let count = 1;
+			let isRising = true;
+			let timerId = setInterval(() => {
+				if (count < 20 && count > 1) {
+					if (isRising) {
+						count++;
+					} else {
+						count--;
+					}
+				} else if (count == 20) {
+					isRising = false;
+					count--;
+				} else if (count == 1) {
+					isRising = true;
+					count++;
+				}
 				setProgress(count);
-				count++;
-			} else {
-				setProgress(20)
-				clearInterval(timerId);
-			}
-		}, 50);
-		setTimerId(timerId);
+			}, 10);
+			setTimerId(timerId);
+		}
 	}
+
+	useEffect(() => {
+		let power = document.querySelector('.Power_icon');
+		power.addEventListener('click', function func() {
+			changePower();
+			this.removeEventListener('click', func);
+		});
+	}, []);
 
 	function rotate() {
 
+		setIsRotaiting(true);
+		clearInterval(timerId);
 		getResult();
 
 		let composites = render.engine.world.composites;
@@ -49,10 +69,7 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 		let startPositionX = outputBody.position.x;
 		let startPositionY = outputBody.position.y;
 
-		clearInterval(timerId);
 		let currentRotation = progress / 10;
-		setProgress(0);
-		setIsRotaiting(true);
 		decreaseAttempts();
 
 		Matter.Events.on(render.engine, 'afterUpdate', function bar()  {
@@ -145,9 +162,8 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 					<div>
 						<Power className='Power' value={progress * 5} />
 						<Button className='Button'
-							disabled={userActivity.attempts <= 0 || isRotating}
-							onMouseDown={powerCountStart}
-							onMouseUp={rotate}
+							disabled={userActivity.attempts <= 0 || isRotaiting}
+							onClick={rotate}
 							label='Крутить'
 						/>
 					</div>
