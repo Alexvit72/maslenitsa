@@ -50,11 +50,12 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 	}
 
 	useEffect(() => {
-		let power = document.querySelector('.Power_icon');
+		/*let power = document.querySelector('.Power_icon');
 		power.addEventListener('click', function func() {
 			changePower();
 			this.removeEventListener('click', func);
-		});
+		});*/
+		changePower();
 	}, []);
 
 	function rotate() {
