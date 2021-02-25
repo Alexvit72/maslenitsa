@@ -26,7 +26,7 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 	const [isDrop, setIsDrop] = useState(false);
 
 	function changePower() {
-		if (!isRotaiting) {
+		if (!isRotaiting > 0) { //&& userActivity.attempts
 			let count = 1;
 			let isRising = true;
 			let timerId = setInterval(() => {
@@ -51,11 +51,12 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 	}
 
 	useEffect(() => {
-		let power = document.querySelector('.Power_icon');
+		/*let power = document.querySelector('.Power_icon');
 		power.addEventListener('click', function func() {
 			changePower();
 			this.removeEventListener('click', func);
-		});
+		});*/
+		changePower();
 	}, []);
 
 	function rotate() {
