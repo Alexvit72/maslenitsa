@@ -17,6 +17,8 @@
 
 .list-item {
   margin-bottom: 10px;
+  font-size: 1rem;
+
 }
 
 .list-item::first-letter {
@@ -31,7 +33,7 @@
     justify-content: flex-end;
   }
 
- .Start .Card {
+  .Start .Card {
     padding-left: 20px;
     padding-right: 20px;
   }

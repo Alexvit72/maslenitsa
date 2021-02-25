@@ -50,4 +50,8 @@
     width: 100%;
   }
 
+  .loading-progress_value,
+  .loading-progress_value+span {
+    font-size: 1.5rem;
+  }
 }
