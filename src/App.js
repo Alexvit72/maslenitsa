@@ -103,7 +103,7 @@ const App = () => {
 	let percents = [0, 15, 27, 48, 63, 84, 100];
 
 	return (
-		<View activePanel={percentIndex == 6 && fetchedUser != null ? activePanel : 'loading'}
+		<View activePanel={percentIndex ==  && fetchedUser != null ? activePanel : 'loading'} // && fetchedUser != null
 			popout={result === '' ? '' :
 			<Final result={result}
 			 setResult={setResult} setActivePanel={setActivePanel}

@@ -1,17 +1,24 @@
 @font-face {
-  font-family: Baloo;
-  src: url(./fonts/baloo-cyrillic.ttf);
+  font-family: 'Baloo';
+  src: url(./fonts/Baloo-Cyrillic.ttf);
 }
 
 @font-face {
-  font-family: Inter;
-  src: url(./fonts/Inter-Regular.ttf);
+  font-family: 'Inter';
+  src: url('./fonts/Inter-Regular.ttf');
 }
 
 a {
   color: inherit;
 }
 
-button, button:focus, button:hover {
+button,
+button:focus,
+button:hover {
   outline: none !important;
+}
+
+#root {
+  margin: auto;
+  max-width: 798px;
 }
