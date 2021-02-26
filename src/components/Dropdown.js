@@ -22,6 +22,7 @@ const Dropdown = props => {
   const [filled, setFilled] = useState(startFilled);
   const [reposted, setReposted] = useState(startReposted);
 
+
   async function handleChange(event) {
 
     if (event.target.name == 'anket') {
@@ -36,7 +37,6 @@ const Dropdown = props => {
         const { type, data } = event.detail;
         if (type === 'VKWebAppJoinGroupResult') {
           setSubscribed(data.result);
-          //props.setAttempts((attempts) => attempts + 3);
           props.setActivePanel('start');
         }
         if (type === 'VKWebAppJoinGroupFailed') {

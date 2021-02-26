@@ -11,10 +11,11 @@ import Logo from '../../components/Logo';
 import Scene from '../../components/Scene';
 import Attempts from '../../components/Attempts';
 import Dropdown from '../../components/Dropdown';
+import Final from '../../components/Final';
 
 import './Main.css';
 
-const Main = ({ id, className, setResult, setActivePanel, showFinal, userActivity, setWin, getResult }) => {
+const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserActivity }) => {
 
 	const [progress, setProgress] = useState(1);
 	const [render, setRender] = useState(null);
@@ -64,8 +65,6 @@ const Main = ({ id, className, setResult, setActivePanel, showFinal, userActivit
 
 		clearInterval(timerId);
 
-		getResult();
-
 		let composites = render.engine.world.composites;
 		let outputCover = composites[2].bodies[2];
 		let outputBody = composites[2].bodies[3];
@@ -114,12 +113,19 @@ const Main = ({ id, className, setResult, setActivePanel, showFinal, userActivit
 		const moveBall = () => {
 			Matter.Composite.remove(output, outputBody);
 			Matter.Body.setStatic(selectedBall, true);
-			Matter.Events.on(render.engine, 'afterUpdate', function(event) {
+			Matter.Events.on(render.engine, 'afterUpdate', async function(event) {
 				if (selectedBall.position.y < 360) {
 					Matter.Body.setPosition(selectedBall, {x: selectedBall.position.x, y: selectedBall.position.y + 1});
 				} else {
 					Matter.Events.off(render.engine, 'afterUpdate');
-					setTimeout(showFinal, 1000);
+					let response = await fetch(`https://maslenitsa.promo-dixy.ru/api/result?vk_id=${userActivity.vk_id}`);
+					console.log(response);
+					let data = await response.json();
+					console.log(data);
+					setUserActivity(data.data);
+					setPopout(<Final result={data.result}
+					 setPopout={setPopout} setActivePanel={setActivePanel}
+					 link={'https://vk.com/im?sel=-49256266'} />);
 				}
 			});
 		};
