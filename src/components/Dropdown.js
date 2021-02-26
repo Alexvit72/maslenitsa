@@ -22,7 +22,6 @@ const Dropdown = props => {
   const [filled, setFilled] = useState(startFilled);
   const [reposted, setReposted] = useState(startReposted);
 
-
   async function handleChange(event) {
 
     if (event.target.name == 'anket') {
@@ -44,9 +43,9 @@ const Dropdown = props => {
           console.log(data.error_type, data.error_data);
         }
       });
-      bridge.send("VKWebAppJoinGroup", {"group_id": 49256266});
+      bridge.send("VKWebAppJoinGroup", { "group_id": 49256266 });
       bridge.send('VKWebAppAllowMessagesFromGroup',
-        {'group_id': 49256266});
+        { 'group_id': 49256266 });
 
     } else if (event.target.name == 'repost') {
       bridge.subscribe(event => {
@@ -57,6 +56,9 @@ const Dropdown = props => {
         const { type, data } = event.detail;
         if (type === 'VKWebAppShowWallPostBoxResult') {
           setReposted(true);
+          props.setAttempts(props.userActivity.attempts + 2);
+          props.fetchData()
+
         }
         if (type === 'VKWebAppShowWallPostBoxFailed') {
           // Catching the error
@@ -64,10 +66,10 @@ const Dropdown = props => {
         }
       });
       bridge.send('VKWebAppShowWallPostBox',
-      {
-        'message': 'Hello!',
-        'attachments': 'http://habrahabr.ru'
-      });
+        {
+          'message': 'Hello!',
+          'attachments': 'http://habrahabr.ru'
+        });
 
     }
   }

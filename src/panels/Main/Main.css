@@ -32,8 +32,8 @@
 }
 
 .Main .Logo {
-  width: 190px;
-  padding: 10px 25px;
+  width: 34%;
+
 }
 
 .Main .logo_img {
@@ -59,7 +59,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content:  space-between;
+  justify-content: space-between;
 
 }
 

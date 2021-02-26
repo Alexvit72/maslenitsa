@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 
 import DropdownItem from './DropdownItem';
 import downArrow from '../img/downArrow.svg';
-import './FormItem.css';
+import './FormItem.scss';
 
 const FormItem = props => {
 
@@ -51,13 +51,13 @@ const FormItem = props => {
     setResult(arr);
   }
 
-  /*document.addEventListener('click', (event) => {
-    if (!event.target.closest('.field-wrapper')) {
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.stringOfProducts')) {
       if (document.querySelector('.select')) {
         document.querySelector('.select').classList.remove('visible');
       }
     }
-  });*/
+  });
 
   const formik = useFormik({
 

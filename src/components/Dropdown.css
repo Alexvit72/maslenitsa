@@ -1,10 +1,11 @@
 .Dropdown {
-  width: 268px;
+  width: 40%;
   background: #fff;
-  box-shadow: inset 0px -2.17647px 2.17647px rgba(91, 193, 255, 0.26);
+  box-shadow: inset 0px -2.17647px 2.17647px rgb(91 193 255 / 26%), 1px 1px 16px #647ed0a6;
   border-radius: 13px;
   padding: 4px;
   z-index: 10;
+
 }
 
 .DropdownItem-wrapper {
