@@ -20,10 +20,11 @@
   display: flex;
   align-items: center;
   color: #003A8B;
+  margin-top: 2px;
 }
 
 .add {
-  height: 33px;
+  height: 35px;
 }
 
 .add:hover {
@@ -33,5 +34,5 @@
 .count span {
   font: 10px/16px Baloo;
   letter-spacing: 0em;
-  margin: 8px 5px 0 8px;
+  margin: 6px 5px 0 5px;
 }

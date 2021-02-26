@@ -6,9 +6,11 @@ const Button = props => {
   return <div className={props.className}>
     <button className='Button_item'
       disabled={props.disabled}
-      onClick={props.onClick}
+      onClick={(event) => props.onClick(event)}
       onMouseUp={props.onMouseUp}
       onMouseDown={props.onMouseDown}
+      type={props.type}
+      form={props.form}
     >
       {props.label}
     </button>

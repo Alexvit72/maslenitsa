@@ -6,7 +6,7 @@ import add from '../img/plus.svg';
 const Attempts = props => {
   return (
     <div className={props.className}>
-        <div className='Attempts_item'>
+      <div className='Attempts_item'>
         <div className='heart'>
           <img src={heart} />
         </div>

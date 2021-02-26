@@ -14,32 +14,54 @@ import Dropdown from '../../components/Dropdown';
 
 import './Main.css';
 
-const Main = ({ id, className, go, setResult, attempts, decreaseAttempts, vk_id}) => {
+const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, userActivity }) => {
 
 	const [progress, setProgress] = useState(1);
-	const [win, setWin] = useState(false);
+	const [win, setWin] = useState();
 	const [render, setRender] = useState(null);
 	const [timerId, setTimerId] = useState('');
-	const [isRotating, setIsRotaiting] = useState(false);
+	const [isRotaiting, setIsRotaiting] = useState(false);
 	const [startPositionX, setstartPositionX] = useState(0);
 	const [startPositionY, setStartPositionY] = useState(0);
 	const [isDrop, setIsDrop] = useState(false);
 
-	function powerCountStart() {
-		let count = 0;
-		let timerId = setInterval(() => {
-			if (count < 20) {
+	function changePower() {
+		if (!isRotaiting && userActivity.attempts > 0) {
+			let count = 1;
+			let isRising = true;
+			let timerId = setInterval(() => {
+				if (count < 20 && count > 1) {
+					if (isRising) {
+						count++;
+					} else {
+						count--;
+					}
+				} else if (count == 20) {
+					isRising = false;
+					count--;
+				} else if (count == 1) {
+					isRising = true;
+					count++;
+				}
 				setProgress(count);
-				count++;
-			} else {
-				setProgress(20)
-				clearInterval(timerId);
-			}
-		}, 50);
-		setTimerId(timerId);
+			}, 10);
+			setTimerId(timerId);
+		}
 	}
 
+	useEffect(() => {
+		/*let power = document.querySelector('.Power_icon');
+		power.addEventListener('click', function func() {
+			changePower();
+			this.removeEventListener('click', func);
+		});*/
+		changePower();
+	}, []);
+
 	function rotate() {
+
+		setIsRotaiting(true);
+		clearInterval(timerId);
 
 		//getResult();
 
@@ -49,10 +71,7 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts, vk_id}
 		let startPositionX = outputBody.position.x;
 		let startPositionY = outputBody.position.y;
 
-		clearInterval(timerId);
 		let currentRotation = progress / 10;
-		setProgress(0);
-		setIsRotaiting(true);
 		decreaseAttempts();
 
 		Matter.Events.on(render.engine, 'afterUpdate', function bar()  {
@@ -76,8 +95,17 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts, vk_id}
 	}
 
 	async function getResult() {
-		let response = await fetch(`https://maslenitsa.promo-dixy.ru/api/result?vk_id=${vk_id}`);
-		setWin(response.result);
+		let response = await fetch(`https://maslenitsa.promo-dixy.ru/api/result?vk_id=${userActivity.vk_id}`);
+		console.log(response);
+		if (response.ok) {
+			let data = await response.json();
+			console.log(data);
+			let res = data.result;
+			setWin(res);
+			console.log(win);
+		} else {
+			console.log(response);
+		}
 	}
 
 	function showResult() {
@@ -89,7 +117,6 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts, vk_id}
 				selectedBall = ball;
 			}
 		}
-		console.log(selectedBall);
 		let index = balls.indexOf(selectedBall);
 		let otherBalls = [].concat(balls.slice(0, index), balls.slice(index + 1));
 		for (let ball of otherBalls) {
@@ -98,20 +125,21 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts, vk_id}
 		let output = render.engine.world.composites[2];
 		let outputBody = output.bodies[2];
 
-		const scale = () => {
+		const moveBall = () => {
 			Matter.Composite.remove(output, outputBody);
 			Matter.Body.setStatic(selectedBall, true);
 			Matter.Events.on(render.engine, 'afterUpdate', function(event) {
-				if (selectedBall.position.y < 380) {
+				if (selectedBall.position.y < 360) {
 					Matter.Body.setPosition(selectedBall, {x: selectedBall.position.x, y: selectedBall.position.y + 1});
 				} else {
 					Matter.Events.off(render.engine, 'afterUpdate');
-					setResult(win);
-					setIsRotaiting(false);
+					setTimeout(() => setResult(win), 1000);
 				}
 			});
 		};
-		setTimeout(scale, 500);
+
+		setTimeout(moveBall, 500);
+		setIsRotaiting(false);
 
 	}
 
@@ -124,20 +152,19 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts, vk_id}
 			<div className={className}>
 				<header>
 					<Logo className='Logo' />
-					<Attempts className='Attempts' attempts={attempts} clickHandler={toggleDrop} />
+					<Attempts className='Attempts' attempts={userActivity.attempts} clickHandler={toggleDrop} />
 				</header>
-				<Dropdown className={'Dropdown' + (isDrop ? ' visible' : ' hidden')} />
+				<Dropdown className={'Dropdown' + (isDrop ? ' visible' : ' hidden')} userActivity={userActivity} setActivePanel={setActivePanel} />
 				<div className='game-container'>
-					<Headline className='Headline' text={attempts > 0 ? 'Испытай удачу!' : 'Использованы все попытки'} />
+					<Headline className='Headline' text='Испытай удачу!' />
 					<div className='scene-container'>
 						<Scene className='Scene' setRender={setRender} />
 					</div>
 					<div>
 						<Power className='Power' value={progress * 5} />
 						<Button className='Button'
-							disabled={attempts <= 0 || isRotating}
-							onMouseDown={powerCountStart}
-							onMouseUp={rotate}
+							disabled={userActivity.attempts <= 0 || isRotaiting}
+							onClick={rotate}
 							label='Крутить'
 						/>
 					</div>
@@ -150,8 +177,6 @@ const Main = ({ id, className, go, setResult, attempts, decreaseAttempts, vk_id}
 
 Main.propTypes = {
 	id: PropTypes.string.isRequired,
-	go: PropTypes.func.isRequired,
-	//count: PropTypes.number.isRequired
 };
 
 export default Main;

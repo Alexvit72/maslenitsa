@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import bridge from '@vkontakte/vk-bridge';
 import View from '@vkontakte/vkui/dist/components/View/View';
-//import ScreenSpinner from '@vkontakte/vkui/dist/components/ScreenSpinner/ScreenSpinner';
 import '@vkontakte/vkui/dist/vkui.css';
+
 import Loading from './panels/Loading/Loading';
 import Start from './panels/Start/Start';
 import Main from './panels/Main/Main';
+import Form from './panels/Form/Form';
 import Final from './components/Final';
 import img1 from './img/1.png';
 import img2 from './img/2.png';
@@ -22,30 +23,20 @@ const App = () => {
 
 	const [activePanel, setActivePanel] = useState('loading');
 	const [result, setResult] = useState('');
-	const [fetchedUser, setUser] = useState({});
+	const [fetchedUser, setUser] = useState(null);
 	const [userActivity, setUserActivity] = useState(null);
 	const [attempts, setAttempts] = useState(10);
 	const [percentIndex, setPercentIndex] = useState(0);
 
 	useEffect(() => {
 		showLoading();
-		/*bridge.subscribe(({ detail: { type, data }}) => {
-			if (type === 'VKWebAppUpdateConfig') {
-				const schemeAttribute = document.createAttribute('scheme');
-				schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
-				document.body.attributes.setNamedItem(schemeAttribute);
-			}
-		});*/
 	}, []);
 
 	useEffect(() => {
-		fetchData();
+		fetchUser();
+		console.log(fetchedUser);
 		console.log(userActivity);
 	}, []);
-
-	const go = e => {
-		setActivePanel(e.currentTarget.dataset.to);
-	};
 
 	function decreaseAttempts() {
 		setAttempts(attempts => attempts - 1);
@@ -64,28 +55,64 @@ const App = () => {
 		}, 500);
 	}
 
-	async function fetchData() {
+	async function fetchUser () {
 		const user = await bridge.send('VKWebAppGetUserInfo');
 		setUser(user);
-		const response = await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${user.id}`);
-		setUserActivity(response);
-		setAttempts(userActivity.attempts);
+		console.log(fetchedUser);
+	}
+
+	async function fetchData() {
+
+		/*const repost = await fetch(`https://api.vk.com/method/wall.search?owner_id=${user.id}`);
+		console.log(repost);*/
+
+		const response = await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${fetchedUser.id}&exist_repost=${1}`);
+		console.log(response);
+		if (response.ok) {
+			let data = await response.json();
+			console.log(data);
+			setUserActivity(data.data);
+			setActivePanel('main');
+		} else {
+			console.log(response);
+		}
+		console.log(userActivity);
+	}
+
+	async function sendData(values) {
+		let dataObject = Object.assign(values, {vk_id: userActivity.vk_id})
+		let response = await fetch('https://maslenitsa.promo-dixy.ru/api/user/data', {
+			method: 'POST',
+  		headers: {
+				'Content-Type': 'application/json;charset=utf-8',
+				'Accept': 'application/json;charset=utf-8'
+			},
+  		body: JSON.stringify(dataObject)
+		});
+		console.log(response);
+		let result = await response.json();
+		console.log(result);
+		if(result.success) {
+			setUserActivity(result.data);
+		} else {
+			console.log(result.message);
+		}
 	}
 
 	let images = [img1, img2, img3, img4, img5, img6, img7];
 	let percents = [0, 15, 27, 48, 63, 84, 100];
 
 	return (
-		<View activePanel={percentIndex == 6 && fetchedUser != null ? activePanel : 'loading'}
+		<View activePanel={percentIndex == 6 && fetchedUser != null ? activePanel : 'loading'} // && fetchedUser != null
 			popout={result === '' ? '' :
 			<Final result={result}
 			 setResult={setResult} setActivePanel={setActivePanel}
 			 link={'https://vk.com/im?sel=-49256266'} />}
 		>
 			<Loading id='loading' img={images[percentIndex]} className='Loading' percent={percents[percentIndex]} />
-			<Start id='start' className='Start' setActivePanel={setActivePanel} />
-			<Main id='main' className='Main' go={go} setResult={setResult} attempts={attempts} decreaseAttempts={decreaseAttempts} vk_id={fetchedUser.id} />
-			<Main id='form' className='Form' go={go} />
+			<Start id='start' className='Start' setActivePanel={setActivePanel} fetchData={fetchData} />
+			<Main id='main' className='Main' setResult={setResult} setActivePanel={setActivePanel} decreaseAttempts={decreaseAttempts} userActivity={userActivity} />
+			<Form id='form' className='Form' sendData={sendData} 		setActivePanel={setActivePanel} />
 		</View>
 	);
 }

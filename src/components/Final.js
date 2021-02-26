@@ -23,6 +23,7 @@ function handleClick() {
 				text='Проверьте личные сообщения, мы отправили вам подарок'
 				label={<a href={props.link} target='_blank'>Забрать</a>}
 				onClick={handleClick}
+				close={true}
 			/> :
 			<Card className='Card lose'
 				img={lose}
