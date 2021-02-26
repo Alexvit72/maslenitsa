@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
@@ -8,6 +8,10 @@ import logo from '../../img/logo.png';
 import './Start.css';
 
 const Start = props => {
+
+	useEffect(() => {
+		props.fetchData();
+	}, []);
 
 	const list = [
 		`1. Испытай удачу в нашей игре! Вращай барабан и выигрывай скидочные купоны в Дикси.`,
@@ -21,7 +25,7 @@ const Start = props => {
 	return (
 		<Panel id={props.id}>
 			<div className={props.className}>
-				<Card className='Card' title='Как играть?' img={logo} text={list} label='Начать' onClick={props.fetchData} />
+				<Card className='Card' title='Как играть?' img={logo} text={list} label='Начать' onClick={() => props.setActivePanel('main')} />
 			</div>
 		</Panel>
 	);

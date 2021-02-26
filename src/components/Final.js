@@ -11,7 +11,7 @@ import './Final.css';
 const Final = props => {
 
 function handleClick() {
-	props.setResult('');
+	props.setPopout('');
 	props.setActivePanel('start');
 }
 
@@ -22,7 +22,7 @@ function handleClick() {
 				title='Победа!'
 				text='Проверьте личные сообщения, мы отправили вам подарок'
 				label={<a href={props.link} target='_blank'>Забрать</a>}
-				onClick={handleClick}
+				onClose={handleClick}
 				close={true}
 			/> :
 			<Card className='Card lose'

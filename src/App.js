@@ -20,11 +20,12 @@ import './reset.css';
 
 const App = () => {
 
+	let activity = {attempts: 5, vk_id: 482884100};
+
 	const [activePanel, setActivePanel] = useState('loading');
-	const [result, setResult] = useState('');
+	const [popout, setPopout] = useState('');
 	const [fetchedUser, setUser] = useState(null);
 	const [userActivity, setUserActivity] = useState(null);
-	const [attempts, setAttempts] = useState(10);
 	const [percentIndex, setPercentIndex] = useState(0);
 
 	useEffect(() => {
@@ -32,14 +33,13 @@ const App = () => {
 	}, []);
 
 	useEffect(() => {
+		async function fetchUser() {
+			const user = await bridge.send('VKWebAppGetUserInfo');
+			setUser(user);
+		}
 		fetchUser();
 		console.log(fetchedUser);
-		console.log(userActivity);
 	}, []);
-
-	function decreaseAttempts() {
-		setAttempts(attempts => attempts - 1);
-	}
 
 	function showLoading() {
 		let index = 0;
@@ -54,29 +54,36 @@ const App = () => {
 		}, 500);
 	}
 
+<<<<<<< HEAD
 	async function fetchUser() {
 		const user = await bridge.send('VKWebAppGetUserInfo');
 		setUser(user);
 		console.log(fetchedUser);
 	}
+=======
+>>>>>>> 5dc847e50f32440b97f5291b3845d873f2e37c0a
 
 	async function fetchData() {
 
-		/*const repost = await fetch(`https://api.vk.com/method/wall.search?owner_id=${user.id}`);
-		console.log(repost);*/
+		let token = await bridge.send("VKWebAppGetAuthToken", {"app_id": 7750445, "scope": "wall"});
+		console.log(token);
 
-		const response = await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${fetchedUser.id}&exist_repost=${1}`);
+		let repost = await bridge.send("VKWebAppCallAPIMethod", {"method": "wall.getById", "params": {"posts": `${fetchedUser.id}_133`, "v": "5.130", "access_token": token.access_token}});
+		console.log(repost);
+
+		const response = await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${fetchedUser.id}&exist_repost=${repost.response.length ? 1 : 0}`);
 		console.log(response);
 		if (response.ok) {
 			let data = await response.json();
 			console.log(data);
 			setUserActivity(data.data);
-			setActivePanel('main');
 		} else {
 			console.log(response);
 		}
 		console.log(userActivity);
+
 	}
+
 
 	async function sendData(values) {
 		let dataObject = Object.assign(values, { vk_id: userActivity.vk_id })
@@ -102,16 +109,11 @@ const App = () => {
 	let percents = [0, 15, 27, 48, 63, 84, 100];
 
 	return (
-		<View activePanel={percentIndex == 6 && fetchedUser != null ? activePanel : 'loading'} // && fetchedUser != null
-			popout={result === '' ? '' :
-				<Final result={result}
-					setResult={setResult} setActivePanel={setActivePanel}
-					link={'https://vk.com/im?sel=-49256266'} />}
-		>
+		<View activePanel={percentIndex == 6 && fetchedUser != null ? activePanel : 'loading'} popout={popout}>
 			<Loading id='loading' img={images[percentIndex]} className='Loading' percent={percents[percentIndex]} />
 			<Start id='start' className='Start' setActivePanel={setActivePanel} fetchData={fetchData} />
-			<Main id='main' className='Main' setResult={setResult} setActivePanel={setActivePanel} decreaseAttempts={decreaseAttempts} userActivity={userActivity} />
-			<Form id='form' className='Form' sendData={sendData} setActivePanel={setActivePanel} />
+			<Main id='main' className='Main' setActivePanel={setActivePanel} userActivity={userActivity} setPopout={setPopout} setUserActivity={setUserActivity} />
+			<Form id='form' className='Form' sendData={sendData} 		setActivePanel={setActivePanel} />
 		</View>
 	);
 }
