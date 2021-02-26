@@ -3,9 +3,10 @@
   background: #fff;
   border-radius: 10px;
   font: 14px / 30px Inter;
+  font-family: 'Inter';
   letter-spacing: 0em;
   text-align: center;
-  padding: 68px 35px 26px;
+  padding: 4.5rem 2rem .5rem;
   border-radius: 2rem;
   box-shadow: 0px -1px 20px 0px #d6e4f5;
 }

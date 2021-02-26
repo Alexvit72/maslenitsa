@@ -29,12 +29,14 @@
   justify-content: center;
   align-items: baseline;
   top: 24%;
-  font: 32px / 50px Baloo;
+  font: 32px / 50px 'Baloo';
   color: #003A8B;
+  font-family: 'Baloo';
 }
 
 .loading-progress_value {
-  font: 48px / 76px Baloo;
+  font: 48px / 76px 'Baloo';
+  font-family: 'Baloo';
 }
 
 @media (max-width: 797px) {

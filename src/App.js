@@ -15,7 +15,6 @@ import img4 from './img/4.png';
 import img5 from './img/5.png';
 import img6 from './img/6.png';
 import img7 from './img/7.png';
-import './fonts/baloo.css'
 import './App.css';
 import './reset.css';
 
@@ -55,6 +54,14 @@ const App = () => {
 		}, 500);
 	}
 
+<<<<<<< HEAD
+	async function fetchUser() {
+		const user = await bridge.send('VKWebAppGetUserInfo');
+		setUser(user);
+		console.log(fetchedUser);
+	}
+=======
+>>>>>>> 5dc847e50f32440b97f5291b3845d873f2e37c0a
 
 	async function fetchData() {
 
@@ -79,19 +86,19 @@ const App = () => {
 
 
 	async function sendData(values) {
-		let dataObject = Object.assign(values, {vk_id: userActivity.vk_id})
+		let dataObject = Object.assign(values, { vk_id: userActivity.vk_id })
 		let response = await fetch('https://maslenitsa.promo-dixy.ru/api/user/data', {
 			method: 'POST',
-  		headers: {
+			headers: {
 				'Content-Type': 'application/json;charset=utf-8',
 				'Accept': 'application/json;charset=utf-8'
 			},
-  		body: JSON.stringify(dataObject)
+			body: JSON.stringify(dataObject)
 		});
 		console.log(response);
 		let result = await response.json();
 		console.log(result);
-		if(result.success) {
+		if (result.success) {
 			setUserActivity(result.data);
 		} else {
 			console.log(result.message);

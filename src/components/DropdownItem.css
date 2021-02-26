@@ -8,6 +8,7 @@
   display: flex;
   justify-content: space-between;
   font: 11px/30px Inter;
+  font-family: 'Inter';
   color: #46474F;
 }
 
