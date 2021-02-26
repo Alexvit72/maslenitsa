@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import bridge from '@vkontakte/vk-bridge';
 
 import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
 import Card from '../../components/Card';
@@ -13,6 +14,21 @@ const Start = props => {
 		props.fetchData();
 	}, []);
 
+	function start() {
+		bridge.subscribe((event) => {
+			const { type, data } = event.detail;
+			if (type === 'VKWebAppAllowMessagesFromGroupResult') {
+				props.setActivePanel('main');
+			}
+			/*if (type === 'VKWebAppAllowMessagesFromGroupFailed') {
+				// Catching the error
+				console.log(data.error_type, data.error_data);
+			}*/
+		});
+		bridge.send('VKWebAppAllowMessagesFromGroup',
+			{'group_id': 120118192/*49256266*/});
+	}
+
 	const list = [
 		`1. Испытай удачу в нашей игре! Вращай барабан и выигрывай скидочные купоны в Дикси.`,
 		`2. Чтобы раскрутить барабан сильнее, зажми кнопку крутить, пока шкала силы не заполнится до нужного уровня.`,
@@ -25,7 +41,7 @@ const Start = props => {
 	return (
 		<Panel id={props.id}>
 			<div className={props.className}>
-				<Card className='Card' title='Как играть?' img={logo} text={list} label='Начать' onClick={() => props.setActivePanel('main')} />
+				<Card className='Card' title='Как играть?' img={logo} text={list} label='Начать' onClick={start} />
 			</div>
 		</Panel>
 	);
