@@ -54,18 +54,10 @@ const App = () => {
 		}, 500);
 	}
 
-<<<<<<< HEAD
-	async function fetchUser() {
-		const user = await bridge.send('VKWebAppGetUserInfo');
-		setUser(user);
-		console.log(fetchedUser);
-	}
-=======
->>>>>>> 5dc847e50f32440b97f5291b3845d873f2e37c0a
 
 	async function fetchData() {
 
-		let token = await bridge.send("VKWebAppGetAuthToken", {"app_id": 7750445, "scope": "wall"});
+		let token = await bridge.send("VKWebAppGetAuthToken", {"app_id": 7763188, "scope": "wall"});
 		console.log(token);
 
 		let repost = await bridge.send("VKWebAppCallAPIMethod", {"method": "wall.getById", "params": {"posts": `${fetchedUser.id}_133`, "v": "5.130", "access_token": token.access_token}});
