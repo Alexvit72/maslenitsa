@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/maslenitsa/static/css/main.4071e044.chunk.css",
-    "main.js": "/maslenitsa/static/js/main.e7a9b68b.chunk.js",
-    "main.js.map": "/maslenitsa/static/js/main.e7a9b68b.chunk.js.map",
+    "main.css": "/maslenitsa/static/css/main.50446257.chunk.css",
+    "main.js": "/maslenitsa/static/js/main.297f0cd5.chunk.js",
+    "main.js.map": "/maslenitsa/static/js/main.297f0cd5.chunk.js.map",
     "runtime-main.js": "/maslenitsa/static/js/runtime-main.7e331a21.js",
     "runtime-main.js.map": "/maslenitsa/static/js/runtime-main.7e331a21.js.map",
     "static/css/2.8c912331.chunk.css": "/maslenitsa/static/css/2.8c912331.chunk.css",
@@ -10,9 +10,9 @@
     "static/js/2.f80767cb.chunk.js.map": "/maslenitsa/static/js/2.f80767cb.chunk.js.map",
     "index.html": "/maslenitsa/index.html",
     "static/css/2.8c912331.chunk.css.map": "/maslenitsa/static/css/2.8c912331.chunk.css.map",
-    "static/css/main.4071e044.chunk.css.map": "/maslenitsa/static/css/main.4071e044.chunk.css.map",
+    "static/css/main.50446257.chunk.css.map": "/maslenitsa/static/css/main.50446257.chunk.css.map",
     "static/js/2.f80767cb.chunk.js.LICENSE.txt": "/maslenitsa/static/js/2.f80767cb.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/maslenitsa/static/media/Inter-Regular.9cd7588f.ttf",
+    "static/media/App.scss": "/maslenitsa/static/media/Inter-Regular.9cd7588f.ttf",
     "static/media/Scene.css": "/maslenitsa/static/media/tube.ceb9254f.svg",
     "static/media/back.06f262f9.svg": "/maslenitsa/static/media/back.06f262f9.svg",
     "static/media/Form.css": "/maslenitsa/static/media/light_desk.b55c63a6.svg",
@@ -33,7 +33,7 @@
     "static/js/runtime-main.7e331a21.js",
     "static/css/2.8c912331.chunk.css",
     "static/js/2.f80767cb.chunk.js",
-    "static/css/main.4071e044.chunk.css",
-    "static/js/main.e7a9b68b.chunk.js"
+    "static/css/main.50446257.chunk.css",
+    "static/js/main.297f0cd5.chunk.js"
   ]
 }
