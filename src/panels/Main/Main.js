@@ -14,16 +14,16 @@ import Dropdown from '../../components/Dropdown';
 
 import './Main.css';
 
-const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, userActivity }) => {
+const Main = ({ id, className, setResult, setActivePanel, showFinal, userActivity, setWin, getResult }) => {
 
 	const [progress, setProgress] = useState(1);
-	const [win, setWin] = useState();
 	const [render, setRender] = useState(null);
 	const [timerId, setTimerId] = useState('');
 	const [isRotaiting, setIsRotaiting] = useState(false);
 	const [startPositionX, setstartPositionX] = useState(0);
 	const [startPositionY, setStartPositionY] = useState(0);
 	const [isDrop, setIsDrop] = useState(false);
+	const [attempts, setAttempts] = useState(0);
 
 	function changePower() {
 		if (!isRotaiting && userActivity.attempts > 0) {
@@ -50,20 +50,21 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 	}
 
 	useEffect(() => {
-		/*let power = document.querySelector('.Power_icon');
-		power.addEventListener('click', function func() {
-			changePower();
-			this.removeEventListener('click', func);
-		});*/
 		changePower();
+		return function() {clearInterval(timerId)};
+	}, []);
+
+	useEffect(() => {
+		setAttempts(userActivity.attempts);
 	}, []);
 
 	function rotate() {
 
 		setIsRotaiting(true);
+
 		clearInterval(timerId);
 
-		//getResult();
+		getResult();
 
 		let composites = render.engine.world.composites;
 		let outputCover = composites[2].bodies[2];
@@ -72,7 +73,6 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 		let startPositionY = outputBody.position.y;
 
 		let currentRotation = progress / 10;
-		decreaseAttempts();
 
 		Matter.Events.on(render.engine, 'afterUpdate', function bar()  {
 			if (currentRotation > 0.01) {
@@ -92,20 +92,6 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 			}
 		});
 
-	}
-
-	async function getResult() {
-		let response = await fetch(`https://maslenitsa.promo-dixy.ru/api/result?vk_id=${userActivity.vk_id}`);
-		console.log(response);
-		if (response.ok) {
-			let data = await response.json();
-			console.log(data);
-			let res = data.result;
-			setWin(res);
-			console.log(win);
-		} else {
-			console.log(response);
-		}
 	}
 
 	function showResult() {
@@ -133,12 +119,13 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 					Matter.Body.setPosition(selectedBall, {x: selectedBall.position.x, y: selectedBall.position.y + 1});
 				} else {
 					Matter.Events.off(render.engine, 'afterUpdate');
-					setTimeout(() => setResult(win), 1000);
+					setTimeout(showFinal, 1000);
 				}
 			});
 		};
 
 		setTimeout(moveBall, 500);
+
 		setIsRotaiting(false);
 
 	}
@@ -152,9 +139,9 @@ const Main = ({ id, className, setResult, setActivePanel, decreaseAttempts, user
 			<div className={className}>
 				<header>
 					<Logo className='Logo' />
-					<Attempts className='Attempts' attempts={userActivity.attempts} clickHandler={toggleDrop} />
+					<Attempts className='Attempts' attempts={attempts} clickHandler={toggleDrop} />
 				</header>
-				<Dropdown className={'Dropdown' + (isDrop ? ' visible' : ' hidden')} userActivity={userActivity} setActivePanel={setActivePanel} />
+				<Dropdown className={'Dropdown' + (isDrop ? ' visible' : ' hidden')} userActivity={userActivity} setAttempts={setAttempts} setActivePanel={setActivePanel} />
 				<div className='game-container'>
 					<Headline className='Headline' text='Испытай удачу!' />
 					<div className='scene-container'>

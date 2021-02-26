@@ -79,7 +79,7 @@ const FormItem = props => {
         document.getElementById('error-products').classList.remove('hidden');
       } else {
         values.favorite_products = result;
-        values.phone = values.phone.replace(/\D/g, '');
+        values.phone = values.phone.replace(/\D/g, '').slice(0, 11);
         delete values.stringOfProducts;
         props.sendData(values);
         props.setActivePanel('start');
@@ -101,6 +101,7 @@ const FormItem = props => {
         <label className='place' htmlFor="phone">Телефон</label>
         <input className='Field' name="phone" type="text" onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.phone} />
         {formik.touched.phone && formik.errors.phone ? <div className='error'>{formik.errors.phone}</div> : null}
+        {formik.touched.phone && formik.errors.normPhone ? <div className='error'>{formik.errors.normPhone}</div> : null}
       </div>
 
       <div className='field-wrapper' onClick={(event) => props.focusField(event)}>

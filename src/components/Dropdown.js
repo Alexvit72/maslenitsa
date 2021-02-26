@@ -4,10 +4,11 @@ import DropdownItem from './DropdownItem';
 import './Dropdown.css';
 
 const Dropdown = props => {
+
   let startSubscribed = false;
   let startReposted = false;
   let startFilled = false;
-  for (let task of props.userActivity.tasks) {
+  /*for (let task of props.userActivity.tasks) {
     if (task.name == 'Подписка на сообщество') {
       startSubscribed = task.completed;
     } else if (task.name == 'Репост записи с игрой') {
@@ -15,36 +16,59 @@ const Dropdown = props => {
     } else if (task.name == 'Заполнение анкеты') {
       startFilled = task.completed;
     }
-  }
+  }*/
 
   const [subscribed, setSubscribed] = useState(startSubscribed);
   const [filled, setFilled] = useState(startFilled);
   const [reposted, setReposted] = useState(startReposted);
 
   async function handleChange(event) {
+
     if (event.target.name == 'anket') {
       props.setActivePanel('form');
+
     } else if (event.target.name == 'subscribe') {
-      let responseSubscribe = await bridge.send('VKWebAppAllowMessagesFromGroup',
-        {'group_id': 49256266});
-        console.log(responseSubscribe);
-			if (responseSubscribe.result) {
-				setSubscribed(responseSubscribe.result);
-			} else {
-        console.log(responseSubscribe.error_data.error_reason);
-      }
+      bridge.subscribe(event => {
+        if (!event.detail) {
+          return;
+        }
+        console.log(event.detail);
+        const { type, data } = event.detail;
+        if (type === 'VKWebAppJoinGroupResult') {
+          setSubscribed(data.result);
+          //props.setAttempts((attempts) => attempts + 3);
+          props.setActivePanel('start');
+        }
+        if (type === 'VKWebAppJoinGroupFailed') {
+          // Catching the error
+          console.log(data.error_type, data.error_data);
+        }
+      });
+      bridge.send("VKWebAppJoinGroup", {"group_id": 120118192});
+      /*bridge.send('VKWebAppAllowMessagesFromGroup',
+        {'group_id': 120118192/*49256266});*/
+
     } else if (event.target.name == 'repost') {
-      let responseRepost = await bridge.send('VKWebAppShowWallPostBox',
+      bridge.subscribe(event => {
+        if (!event.detail) {
+          return;
+        }
+        console.log(event.detail);
+        const { type, data } = event.detail;
+        if (type === 'VKWebAppShowWallPostBoxResult') {
+          setReposted(true);
+        }
+        if (type === 'VKWebAppShowWallPostBoxFailed') {
+          // Catching the error
+          console.log(data.error_type, data.error_data);
+        }
+      });
+      bridge.send('VKWebAppShowWallPostBox',
       {
         'message': 'Hello!',
         'attachments': 'http://habrahabr.ru'
       });
-      console.log(responseRepost);
-      if (responseRepost.type == "VKWebAppShowWallPostBoxResult") {
-        setReposted(true);
-      } else if (responseRepost.type == "VKWebAppShowWallPostBoxFailed ") {
-        console.error(responseRepost.error_data.error_reason);
-      }
+
     }
   }
 
@@ -58,8 +82,7 @@ const Dropdown = props => {
           attempts='2' text2='попытки' onChange={handleChange} disabled={reposted}
         />
         <DropdownItem className='DropdownItem anket' name='anket'
-          checked={filled} text1=' Заполнить анкету ' attempts='2' text2='попытки' onChange={handleChange} disabled={false}
-        />
+          checked={filled} text1=' Заполнить анкету ' attempts='2' text2='попытки' onChange={handleChange} />
       </div>
     </div>
   );

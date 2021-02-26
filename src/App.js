@@ -21,11 +21,13 @@ import './reset.css';
 
 const App = () => {
 
+	let activity = {attempts: 5, vk_id: 482884100};
+
 	const [activePanel, setActivePanel] = useState('loading');
-	const [result, setResult] = useState('');
+	const [popout, setPopout] = useState('');
+	const [result, setResult] = useState('true');
 	const [fetchedUser, setUser] = useState(null);
-	const [userActivity, setUserActivity] = useState(null);
-	const [attempts, setAttempts] = useState(10);
+	const [userActivity, setUserActivity] = useState(activity);
 	const [percentIndex, setPercentIndex] = useState(0);
 
 	useEffect(() => {
@@ -33,14 +35,33 @@ const App = () => {
 	}, []);
 
 	useEffect(() => {
+		async function fetchUser() {
+			const user = await bridge.send('VKWebAppGetUserInfo');
+			setUser(user);
+
+		/*let token = await bridge.send("VKWebAppGetAuthToken", {"app_id": 7750445, "scope": "wall"});
+			console.log(token);
+
+			let repost = await bridge.send("VKWebAppCallAPIMethod", {"method": "wall.getById", "params": {"posts": `${user.id}_133`, "v": "5.130", "access_token": token.access_token}});
+			console.log(repost);
+
+			const response = await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${user.id}&exist_repost=${repost.response.length ? 1 : 0}`);
+			console.log(response);
+			if (response.ok) {
+				let data = await response.json();
+				console.log(data);
+				setUserActivity(data.data);
+			} else {
+				console.log(response);
+			}*/
+		}
 		fetchUser();
 		console.log(fetchedUser);
-		console.log(userActivity);
+		//console.log(userActivity);
 	}, []);
 
-	function decreaseAttempts() {
-		setAttempts(attempts => attempts - 1);
-	}
+	//useEffect(() => console.log(result), [result]);
+
 
 	function showLoading() {
 		let index = 0;
@@ -55,29 +76,26 @@ const App = () => {
 		}, 500);
 	}
 
-	async function fetchUser () {
-		const user = await bridge.send('VKWebAppGetUserInfo');
-		setUser(user);
-		console.log(fetchedUser);
-	}
 
 	async function fetchData() {
+		let token = await bridge.send("VKWebAppGetAuthToken", {"app_id": 7750445, "scope": "wall"});
+		console.log(token);
 
-		/*const repost = await fetch(`https://api.vk.com/method/wall.search?owner_id=${user.id}`);
-		console.log(repost);*/
+		let repost = await bridge.send("VKWebAppCallAPIMethod", {"method": "wall.getById", "params": {"posts": `${fetchedUser.id}_133`, "v": "5.130", "access_token": token.access_token}});
+		console.log(repost);
 
-		const response = await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${fetchedUser.id}&exist_repost=${1}`);
+		const response = await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${fetchedUser.id}&exist_repost=${repost.response.length ? 1 : 0}`);
 		console.log(response);
 		if (response.ok) {
 			let data = await response.json();
 			console.log(data);
 			setUserActivity(data.data);
-			setActivePanel('main');
 		} else {
 			console.log(response);
 		}
 		console.log(userActivity);
 	}
+
 
 	async function sendData(values) {
 		let dataObject = Object.assign(values, {vk_id: userActivity.vk_id})
@@ -99,19 +117,29 @@ const App = () => {
 		}
 	}
 
+	async function getResult() {
+		let response = await fetch(`https://maslenitsa.promo-dixy.ru/api/result?vk_id=${userActivity.vk_id}`);
+		console.log(response);
+		let data = await response.json();
+		console.log(data);
+		setResult(data.result);
+		setUserActivity(data.data);
+	}
+
+	function showFinal() {
+		setPopout(<Final result={result}
+		 setPopout={setPopout} setActivePanel={setActivePanel}
+		 link={'https://vk.com/im?sel=-49256266'} />);
+	}
+
 	let images = [img1, img2, img3, img4, img5, img6, img7];
 	let percents = [0, 15, 27, 48, 63, 84, 100];
 
 	return (
-		<View activePanel={percentIndex == 6 && fetchedUser != null ? activePanel : 'loading'} // && fetchedUser != null
-			popout={result === '' ? '' :
-			<Final result={result}
-			 setResult={setResult} setActivePanel={setActivePanel}
-			 link={'https://vk.com/im?sel=-49256266'} />}
-		>
+		<View activePanel={percentIndex == 6 && fetchedUser != null ? activePanel : 'loading'} popout={popout}>
 			<Loading id='loading' img={images[percentIndex]} className='Loading' percent={percents[percentIndex]} />
 			<Start id='start' className='Start' setActivePanel={setActivePanel} fetchData={fetchData} />
-			<Main id='main' className='Main' setResult={setResult} setActivePanel={setActivePanel} decreaseAttempts={decreaseAttempts} userActivity={userActivity} />
+			<Main id='main' className='Main' setResult={setResult}  setActivePanel={setActivePanel} getResult={getResult} showFinal={showFinal} userActivity={userActivity} />
 			<Form id='form' className='Form' sendData={sendData} 		setActivePanel={setActivePanel} />
 		</View>
 	);
