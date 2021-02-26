@@ -15,7 +15,7 @@ import img4 from './img/4.png';
 import img5 from './img/5.png';
 import img6 from './img/6.png';
 import img7 from './img/7.png';
-
+import './fonts/baloo.css'
 import './App.css';
 import './reset.css';
 

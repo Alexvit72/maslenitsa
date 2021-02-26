@@ -14,15 +14,16 @@ const Loading = props => (
         <img className='loading-progress_img' src={props.img} />
         <p className='loading-progress_percent'>
           <span className='loading-progress_value'>
-          {props.percent}</span><span> %</span>
+            {props.percent}</span><span> %</span>
         </p>
       </div>
+      <div className='ageCorrection'>18+</div>
     </div>
   </Panel>
 );
 
 Loading.propTypes = {
-	id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default Loading;
