@@ -5,14 +5,16 @@
     url(../img/back_desk.svg) center 146px no-repeat, #ecf3fb;
   display: grid;
   place-items: center end;
+
   @media screen and (max-width: 600px) {
     place-items: center start;
     padding-top: 4rem;
   }
+
   .card-wrapper {
     display: grid;
     place-items: center;
-    padding: 1rem;
+    padding: 1rem 3rem;
 
     .Card {
       background: #fff;
@@ -20,38 +22,51 @@
       border-radius: 1rem;
       padding: 5rem 2rem 5rem;
       position: relative;
+
       @media screen and (max-width: 600px) {
         padding-bottom: 3rem;
       }
+
       @media screen and (max-width: 400px) {
         padding-top: 3rem;
       }
 
-      > img {
+      >img {
         position: absolute;
         top: -8rem;
         left: 0;
         right: 0;
         margin: auto;
         max-width: 70%;
+
         @media screen and (max-width: 600px) {
           top: -6rem;
           width: 300px;
           max-width: 100%;
         }
+
         @media screen and (max-width: 400px) {
           top: -6.5rem;
         }
+
+        @media screen and (max-width: 325px) {
+          top: -3.5rem;
+          width: 13rem;
+        }
       }
+
       .Headline {
         margin-bottom: 1rem;
+
         @media screen and (max-width: 600px) {
           font-size: 1.7rem;
         }
+
         @media screen and (max-width: 400px) {
           margin-bottom: 0.2rem;
         }
       }
+
       .button-wrapper {
         position: absolute;
         left: 0;
@@ -59,10 +74,12 @@
         margin: auto;
         width: fit-content;
         bottom: -2rem;
+
         @media screen and (max-width: 400px) {
           bottom: -1.5rem;
         }
       }
+
       .text {
         .list-item {
           font-family: "Inter";
@@ -70,28 +87,34 @@
           font-style: normal;
           color: #7d7e8d;
           line-height: 1.5;
+
           &::first-letter {
             font-family: "Baloo";
             font-size: 120%;
             color: #f60112;
           }
+
           @media screen and (max-width: 600px) {
             font-size: 0.95rem;
             line-height: 1.5;
           }
+
           @media screen and (max-width: 400px) {
             font-size: 0.87rem;
           }
         }
       }
     }
-    @media screen and (max-width: 400px) {
+
+    @media screen and (max-width: 500px) {
       padding: 1rem 0 0;
     }
   }
+
   @media screen and (max-width: 400px) {
     max-width: 100%;
     max-height: 100%;
     place-content: end;
+    padding-bottom: 2rem;
   }
 }

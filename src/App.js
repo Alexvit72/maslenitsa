@@ -99,7 +99,7 @@ const App = () => {
 	let percents = [0, 15, 27, 48, 63, 84, 100];
 
 	return (
-		<View activePanel={percentIndex == 6 && fetchedUser != null ? activePanel : 'start'} popout={popout}>
+		<View activePanel={percentIndex == 6 && fetchedUser != null ? activePanel : 'loading'} popout={popout}>
 			<Loading id='loading' img={images[percentIndex]} className='Loading' percent={percents[percentIndex]} />
 			<Start id='start' className='Start' setActivePanel={setActivePanel} fetchData={fetchData} />
 			<Main id='main' className='Main' setActivePanel={setActivePanel} userActivity={userActivity} setPopout={setPopout} setUserActivity={setUserActivity} />
