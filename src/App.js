@@ -58,7 +58,6 @@ const App = () => {
 	async function fetchData() {
 
 		let token = await bridge.send("VKWebAppGetAuthToken", {"app_id": 7763188, "scope": "wall"});
-		console.log(token);
 
 		let repost = await bridge.send("VKWebAppCallAPIMethod", {"method": "wall.getById", "params": {"posts": `${fetchedUser.id}_133`, "v": "5.130", "access_token": token.access_token}});
 		console.log(repost);
@@ -100,7 +99,7 @@ const App = () => {
 	let percents = [0, 15, 27, 48, 63, 84, 100];
 
 	return (
-		<View activePanel={percentIndex == 6 && fetchedUser != null ? activePanel : 'loading'} popout={popout}>
+		<View activePanel={percentIndex == 6 && fetchedUser != null ? activePanel : 'start'} popout={popout}>
 			<Loading id='loading' img={images[percentIndex]} className='Loading' percent={percents[percentIndex]} />
 			<Start id='start' className='Start' setActivePanel={setActivePanel} fetchData={fetchData} />
 			<Main id='main' className='Main' setActivePanel={setActivePanel} userActivity={userActivity} setPopout={setPopout} setUserActivity={setUserActivity} />
