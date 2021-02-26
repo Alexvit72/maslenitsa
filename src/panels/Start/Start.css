@@ -22,7 +22,8 @@
 }
 
 .list-item::first-letter {
-  font: 16px Baloo;
+  font: 16px 'Baloo';
+  font-family: 'Baloo';
   color: #F60112;
 }
 

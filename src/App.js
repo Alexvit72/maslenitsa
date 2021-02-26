@@ -15,7 +15,6 @@ import img4 from './img/4.png';
 import img5 from './img/5.png';
 import img6 from './img/6.png';
 import img7 from './img/7.png';
-import './fonts/baloo.css'
 import './App.css';
 import './reset.css';
 
@@ -55,7 +54,7 @@ const App = () => {
 		}, 500);
 	}
 
-	async function fetchUser () {
+	async function fetchUser() {
 		const user = await bridge.send('VKWebAppGetUserInfo');
 		setUser(user);
 		console.log(fetchedUser);
@@ -80,19 +79,19 @@ const App = () => {
 	}
 
 	async function sendData(values) {
-		let dataObject = Object.assign(values, {vk_id: userActivity.vk_id})
+		let dataObject = Object.assign(values, { vk_id: userActivity.vk_id })
 		let response = await fetch('https://maslenitsa.promo-dixy.ru/api/user/data', {
 			method: 'POST',
-  		headers: {
+			headers: {
 				'Content-Type': 'application/json;charset=utf-8',
 				'Accept': 'application/json;charset=utf-8'
 			},
-  		body: JSON.stringify(dataObject)
+			body: JSON.stringify(dataObject)
 		});
 		console.log(response);
 		let result = await response.json();
 		console.log(result);
-		if(result.success) {
+		if (result.success) {
 			setUserActivity(result.data);
 		} else {
 			console.log(result.message);
@@ -105,14 +104,14 @@ const App = () => {
 	return (
 		<View activePanel={percentIndex == 6 && fetchedUser != null ? activePanel : 'loading'} // && fetchedUser != null
 			popout={result === '' ? '' :
-			<Final result={result}
-			 setResult={setResult} setActivePanel={setActivePanel}
-			 link={'https://vk.com/im?sel=-49256266'} />}
+				<Final result={result}
+					setResult={setResult} setActivePanel={setActivePanel}
+					link={'https://vk.com/im?sel=-49256266'} />}
 		>
 			<Loading id='loading' img={images[percentIndex]} className='Loading' percent={percents[percentIndex]} />
 			<Start id='start' className='Start' setActivePanel={setActivePanel} fetchData={fetchData} />
 			<Main id='main' className='Main' setResult={setResult} setActivePanel={setActivePanel} decreaseAttempts={decreaseAttempts} userActivity={userActivity} />
-			<Form id='form' className='Form' sendData={sendData} 		setActivePanel={setActivePanel} />
+			<Form id='form' className='Form' sendData={sendData} setActivePanel={setActivePanel} />
 		</View>
 	);
 }

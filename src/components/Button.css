@@ -2,7 +2,8 @@
   background: #fff;
   border-radius: 23px;
   box-shadow: inset 0px -3.94118px 3.94118px rgba(255, 193, 93, 0.26);
-  font: 400 33px/51px Baloo;
+  font: 400 33px/51px 'Baloo';
+  font-family: 'Baloo';
   letter-spacing: 0em;
   text-shadow: 0.656862735748291px 0.656862735748291px 1.313725471496582px rgba(0, 0, 0, 0.16) inset;
   text-align: center;
