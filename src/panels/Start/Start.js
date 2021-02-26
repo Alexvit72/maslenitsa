@@ -26,7 +26,7 @@ const Start = props => {
 			}*/
 		});
 		bridge.send('VKWebAppAllowMessagesFromGroup',
-			{'group_id': 120118192/*49256266*/});
+			{'group_id': 49256266});
 	}
 
 	const list = [

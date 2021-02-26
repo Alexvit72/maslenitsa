@@ -44,9 +44,9 @@ const Dropdown = props => {
           console.log(data.error_type, data.error_data);
         }
       });
-      bridge.send("VKWebAppJoinGroup", {"group_id": 120118192});
-      /*bridge.send('VKWebAppAllowMessagesFromGroup',
-        {'group_id': 120118192/*49256266});*/
+      bridge.send("VKWebAppJoinGroup", {"group_id": 49256266});
+      bridge.send('VKWebAppAllowMessagesFromGroup',
+        {'group_id': 49256266});
 
     } else if (event.target.name == 'repost') {
       bridge.subscribe(event => {

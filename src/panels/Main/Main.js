@@ -60,9 +60,7 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 	}, []);
 
 	function rotate() {
-
 		setIsRotaiting(true);
-
 		clearInterval(timerId);
 
 		let composites = render.engine.world.composites;
@@ -119,9 +117,9 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 				} else {
 					Matter.Events.off(render.engine, 'afterUpdate');
 					let response = await fetch(`https://maslenitsa.promo-dixy.ru/api/result?vk_id=${userActivity.vk_id}`);
-					console.log(response);
+
 					let data = await response.json();
-					console.log(data);
+
 					setUserActivity(data.data);
 					setPopout(<Final result={data.result}
 					 setPopout={setPopout} setActivePanel={setActivePanel}

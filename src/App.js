@@ -87,9 +87,8 @@ const App = () => {
 			},
 			body: JSON.stringify(dataObject)
 		});
-		console.log(response);
+
 		let result = await response.json();
-		console.log(result);
 		if (result.success) {
 			setUserActivity(result.data);
 		} else {

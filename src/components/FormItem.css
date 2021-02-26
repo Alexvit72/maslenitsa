@@ -1,10 +1,7 @@
 .FormItem {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 612px;
-  margin: 30px auto 32px;
+  display: grid;
+  grid-template-areas: "name phone" "email prod";
+  grid-gap: 1rem;
 }
 
 .Field, .Field:focus {
@@ -26,13 +23,11 @@
   border: 1px solid #B1B2BA;
   box-sizing: border-box;
   border-radius: 20px;
-  padding: 30px 21px 9px;
-  width: 300px;
-  margin-bottom: 12px;
-  font: 14px/14px Inter;
-  text-align: left;
+  font-family: 'Inter';
+  font-size: .75rem;
   background: #fff;
   cursor: pointer;
+  min-height: 3.5rem;
 }
 
 .field-wrapper:focus-within {
@@ -42,8 +37,8 @@
 
 .place {
   position: absolute;
-  left: 21px;
-  top: 21px;
+  left: 1rem;
+  top: .5rem;
   color: #46474F;
 }
 
@@ -52,7 +47,9 @@
   font-size: 12px;
   color: #B1B2BA;
 }
-
+.stringOfProducts{
+  padding: 10px 1rem;
+}
 .place.products.focus {
   font-size: 10px;
   line-height: 10px;
@@ -61,6 +58,8 @@
 .place.products {
   top: 14px;
   max-width: 250px;
+  line-height: 1.5;
+  text-align: left;
 }
 
 .arrow {
@@ -80,15 +79,12 @@
 }
 
 @media (max-width: 797px) {
-
   .FormItem {
     justify-content: center;
     margin-top: 10px;
     width: 97%;
   }
-
   .field-wrapper {
     width: 100%;
   }
-
 }
