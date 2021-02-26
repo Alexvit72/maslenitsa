@@ -27,7 +27,7 @@ const App = () => {
 	const [popout, setPopout] = useState('');
 	const [result, setResult] = useState('true');
 	const [fetchedUser, setUser] = useState(null);
-	const [userActivity, setUserActivity] = useState(activity);
+	const [userActivity, setUserActivity] = useState(null);
 	const [percentIndex, setPercentIndex] = useState(0);
 
 	useEffect(() => {

@@ -9,9 +9,9 @@ import './Start.css';
 
 const Start = props => {
 
-	/*useEffect(() => {
+	useEffect(() => {
 		props.fetchData();
-	}, []);*/
+	}, []);
 
 	const list = [
 		`1. Испытай удачу в нашей игре! Вращай барабан и выигрывай скидочные купоны в Дикси.`,

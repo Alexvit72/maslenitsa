@@ -8,7 +8,7 @@ const Dropdown = props => {
   let startSubscribed = false;
   let startReposted = false;
   let startFilled = false;
-  /*for (let task of props.userActivity.tasks) {
+  for (let task of props.userActivity.tasks) {
     if (task.name == 'Подписка на сообщество') {
       startSubscribed = task.completed;
     } else if (task.name == 'Репост записи с игрой') {
@@ -16,7 +16,7 @@ const Dropdown = props => {
     } else if (task.name == 'Заполнение анкеты') {
       startFilled = task.completed;
     }
-  }*/
+  }
 
   const [subscribed, setSubscribed] = useState(startSubscribed);
   const [filled, setFilled] = useState(startFilled);
