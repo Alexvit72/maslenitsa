@@ -28,10 +28,10 @@ const Form = props => {
   return (
     <Panel id='form'>
       <div className={props.className}>
-        <Card className='Card' title='Заполните анкету' img={logo} label='Готово' type='submit' form='user_anket' text={form}
-        onClick={clickHandle} close={true} onClose={close} />
+        <Card className='Card' title='Заполни анкету' img={logo} label='Готово' type='submit' form='user_anket' text={form}
+          onClick={clickHandle} close={true} onClose={close} />
         <div className='form-footer'>
-          Нажимая на кнопку “Готово” я даю согласие на <a href=''>условия конфиденциальности</a> и <a href=''>обработку своих данных</a>
+          Нажимая на кнопку "Готово", я выражаю согласие с <a href='https://dixy.ru/politika-obrabotki-i-zashity.pdf' target="blank">условиями конфиденциальности и обработкой моих данных</a>
         </div>
       </div>
     </Panel>
