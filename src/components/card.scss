@@ -26,8 +26,18 @@
     .card-wrapper {
       .Card {
         padding-top: 3rem;
-        transform: scale(.9);
-        padding: 3rem .75rem;
+        transform: scale(0.9);
+        padding: 3rem 0.75rem;
+
+        > img {
+          max-width: 170px;
+        }
+        &.lose,
+        &.win {
+          img {
+            top: -6rem;
+          }
+        }
       }
     }
   }
@@ -54,7 +64,7 @@
       padding-top: 3rem;
     }
 
-    >img {
+    > img {
       position: absolute;
       top: -8rem;
       left: 0;
@@ -162,9 +172,6 @@
   }
 }
 
-
-
-
 .Logo {
   position: relative;
 
@@ -174,10 +181,10 @@
     top: 0;
     margin: auto;
     max-width: 100%;
-    animation: rotate .25s linear forwards;
-    transform: scale(.8);
-    transition: all .3s;
-    animation-duration: .5s;
+    animation: rotate 0.25s linear forwards;
+    transform: scale(0.8);
+    transition: all 0.3s;
+    animation-duration: 0.5s;
   }
 }
 
