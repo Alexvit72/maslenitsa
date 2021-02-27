@@ -1,10 +1,10 @@
 @font-face {
-  font-family: 'Inter';
-  src: url('./fonts/Inter-Regular.ttf');
+  font-family: "Inter";
+  src: url("./fonts/Inter-Regular.ttf");
 }
 
 @font-face {
-  font-family: 'Baloo';
+  font-family: "Baloo";
   src: url(./fonts/Baloo-Cyrillic.ttf);
   font-weight: 400;
   font-style: normal;
@@ -31,8 +31,28 @@ button:hover {
     width: 100vw;
     height: 100vh;
   }
-}
+  .Panel__in-before + div {
+    // iPhone X, iPhone 11 Pro, iPhone 12 Mini
+    @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+      padding-top: 50px;
+    }
 
+    // iPhone 11
+    @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
+      padding-top: 50px;
+    }
+
+    // iPhone 11 Pro Max
+    @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
+      padding-top: 50px;
+    }
+
+    // iPhone 12 and iPhone 12 Pro
+    @media only screen and (device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) {
+      padding-top: 50px;
+    }
+  }
+}
 
 .PopoutWrapper--masked .PopoutWrapper__overlay {
   backdrop-filter: blur(2px);
