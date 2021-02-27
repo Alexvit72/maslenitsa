@@ -18,7 +18,6 @@
 .list-item {
   margin-bottom: 10px;
   font-size: 1rem;
-
 }
 
 .list-item::first-letter {
@@ -28,27 +27,54 @@
 }
 
 @media (max-width: 797px) {
-
   .Start {
     padding: 0;
     justify-content: flex-end;
   }
-
   .Start .Card {
     padding-left: 20px;
     padding-right: 20px;
   }
-
   .Start .Card .prezent {
     top: -150px;
   }
-
   .Start .Card .text {
     margin-bottom: 120px;
   }
-
   .Start .Card .button-wrapper {
     bottom: 35px;
   }
+}
 
+@media (max-width: 600px) {
+  .list-item {
+    font-size: .85rem;
+    margin: 0;
+    line-height: 1.7;
+  }
+  .Start .Card {
+    padding-bottom: 1rem;
+  }
+  .Start .Card .text {
+    margin-bottom: 1rem;
+    margin-top: 0;
+  }
+  .Start .Card .button-wrapper {
+    position: static;
+  }
+  .Start .Card .prezent {
+    top: -90px;
+    max-width: 100%;
+  }
+  .Card .Headline {
+    margin-top: 0rem;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 415px) {
+  .Start .Card {
+    padding-top: 8rem;
+    min-height: 78vh;
+  }
 }

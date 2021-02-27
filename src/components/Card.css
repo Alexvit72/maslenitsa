@@ -13,14 +13,13 @@
 
 .Card .close {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 1rem;
+  right: 1rem;
   width: 20px;
   height: 20px;
   background: url(../img/close.png) center center / contain no-repeat;
   cursor: pointer;
   z-index: 5;
-
 }
 
 .Card .Headline {
@@ -31,8 +30,7 @@
   top: -140px;
 }
 
-.Card .prezent,
-.Card .button-wrapper {
+.Card .prezent, .Card .button-wrapper {
   position: absolute;
   right: 0;
   left: 0;

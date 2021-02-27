@@ -2,7 +2,8 @@ import React from 'react';
 import Headline from './Headline';
 import PopoutWrapper from '@vkontakte/vkui/dist/components/PopoutWrapper/PopoutWrapper';
 import Button from './Button';
-import './Card.css';
+// import './Card.css';
+import './card.scss'
 
 const Card = props => {
   return (

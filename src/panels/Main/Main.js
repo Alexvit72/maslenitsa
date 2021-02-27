@@ -15,7 +15,7 @@ import Final from '../../components/Final';
 
 import './Main.css';
 
-const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserActivity }) => {
+const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserActivity, fetchData }) => {
 
 	const [progress, setProgress] = useState(1);
 	const [render, setRender] = useState(null);
@@ -50,14 +50,9 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 		}
 	}
 
-	function clearPower() {
-		clearInterval(timerId);
-		setProgress(1);
-	}
-
 	useEffect(() => {
 		changePower();
-		return clearPower;
+		return function () { clearInterval(timerId) };
 	}, []);
 
 	useEffect(() => {
@@ -65,9 +60,7 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 	}, []);
 
 	function rotate() {
-
 		setIsRotaiting(true);
-
 		clearInterval(timerId);
 
 		let composites = render.engine.world.composites;
@@ -78,17 +71,17 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 
 		let currentRotation = progress / 10;
 
-		Matter.Events.on(render.engine, 'afterUpdate', function bar()  {
+		Matter.Events.on(render.engine, 'afterUpdate', function bar() {
 			if (currentRotation > 0.01) {
-				Matter.Composite.rotate(composites[0], currentRotation, {x: 150, y: 200});
-				Matter.Composite.rotate(composites[2], currentRotation, {x: 150, y: 200});
-				Matter.Composite.rotate(composites[1], currentRotation / 2, {x: 150, y: 200});
+				Matter.Composite.rotate(composites[0], currentRotation, { x: 150, y: 200 });
+				Matter.Composite.rotate(composites[2], currentRotation, { x: 150, y: 200 });
+				Matter.Composite.rotate(composites[1], currentRotation / 2, { x: 150, y: 200 });
 				currentRotation *= 0.99;
 			} else {
 				if (outputBody.position.x - startPositionX > 0.5 || outputBody.position.y - startPositionY > 0.5 || startPositionX - outputBody.position.x > 10 || startPositionY - outputBody.position.y > 10) {
 					Matter.Composite.remove(composites[2], outputCover);
-					Matter.Composite.rotate(composites[0], currentRotation, {x: 150, y: 200});
-					Matter.Composite.rotate(composites[2], currentRotation, {x: 150, y: 200});
+					Matter.Composite.rotate(composites[0], currentRotation, { x: 150, y: 200 });
+					Matter.Composite.rotate(composites[2], currentRotation, { x: 150, y: 200 });
 				} else {
 					Matter.Events.off(render.engine, 'afterUpdate', bar);
 					showResult();
@@ -118,19 +111,19 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 		const moveBall = () => {
 			Matter.Composite.remove(output, outputBody);
 			Matter.Body.setStatic(selectedBall, true);
-			Matter.Events.on(render.engine, 'afterUpdate', async function(event) {
+			Matter.Events.on(render.engine, 'afterUpdate', async function (event) {
 				if (selectedBall.position.y < 360) {
-					Matter.Body.setPosition(selectedBall, {x: selectedBall.position.x, y: selectedBall.position.y + 1});
+					Matter.Body.setPosition(selectedBall, { x: selectedBall.position.x, y: selectedBall.position.y + 1 });
 				} else {
 					Matter.Events.off(render.engine, 'afterUpdate');
 					let response = await fetch(`https://maslenitsa.promo-dixy.ru/api/result?vk_id=${userActivity.vk_id}`);
-					console.log(response);
+
 					let data = await response.json();
-					console.log(data);
+
 					setUserActivity(data.data);
-					setPopout(<Final result={data.result} setRender={setRender}
-					 setPopout={setPopout} setActivePanel={setActivePanel}
-					 link={'https://vk.com/im?sel=-49256266'} />);
+					setPopout(<Final result={data.result}
+						setPopout={setPopout} setActivePanel={setActivePanel}
+						link={'https://vk.com/im?sel=-49256266'} />);
 				}
 			});
 		};
@@ -152,7 +145,12 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 					<Logo className='Logo' />
 					<Attempts className='Attempts' attempts={attempts} clickHandler={toggleDrop} />
 				</header>
-				<Dropdown className={'Dropdown' + (isDrop ? ' visible' : ' hidden')} userActivity={userActivity} setAttempts={setAttempts} setActivePanel={setActivePanel} timerId={timerId} />
+				<Dropdown
+					className={'Dropdown' + (isDrop ? ' visible' : ' hidden')}
+					userActivity={userActivity}
+					fetchData={fetchData}
+					setAttempts={setAttempts}
+					setActivePanel={setActivePanel} />
 				<div className='game-container'>
 					<Headline className='Headline' text='Испытай удачу!' />
 					<div className='scene-container'>

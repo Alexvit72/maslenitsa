@@ -6,7 +6,7 @@ import Card from './Card';
 
 import win from '../img/prezentWin.svg';
 import lose from '../img/prezentLose.png';
-import './Final.css';
+import './Final.scss';
 
 const Final = props => {
 

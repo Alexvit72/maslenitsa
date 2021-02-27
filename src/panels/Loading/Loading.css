@@ -10,6 +10,18 @@
 
 .Loading .Logo {
   margin: 50px 0 80px;
+
+}
+
+.Logo>img {
+  animation: slideFromTop .75s cubic-bezier(0, 0, 0, 1.68);
+  position: relative;
+}
+
+@keyframes slideFromTop {
+  from {
+    transform: translateY(-100%);
+  }
 }
 
 .loading-progress {
@@ -43,13 +55,17 @@
   .Loading {
     background: url(../../img/light.svg) center top no-repeat, url(../../img/back_desk.svg) center 210px no-repeat, #ECF3FB;
   }
+
   .Loading .Logo {
     margin: 150px 0 80px;
   }
+
   .loading-progress img {
     width: 100%;
   }
-  .loading-progress_value, .loading-progress_value+span {
+
+  .loading-progress_value,
+  .loading-progress_value+span {
     font-size: 1.5rem;
   }
 }
