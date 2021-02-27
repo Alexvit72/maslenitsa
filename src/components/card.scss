@@ -21,7 +21,6 @@
 
     .card-wrapper {
       .Card {
-        >img {}
 
         &.lose,
         &.win {
@@ -166,7 +165,15 @@
       max-width: 320px;
 
       img {
-        top: -5rem;
+        top: -5.5rem;
+        max-width: 150px;
+      }
+    }
+
+    &.win {
+      img {
+        top: -6rem;
+        max-width: 170px;
       }
     }
   }

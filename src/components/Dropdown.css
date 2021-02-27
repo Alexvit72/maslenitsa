@@ -13,6 +13,12 @@
   }
 }
 
+@media screen and (max-width: 350px) {
+  .Dropdown {
+    width: 100% !important;
+  }
+}
+
 .DropdownItem-wrapper {
   background: #fff;
   box-shadow: inset 0px 4px 4px rgba(91, 193, 255, 0.1);
