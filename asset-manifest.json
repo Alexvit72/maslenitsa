@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/maslenitsa/static/css/main.f065c304.chunk.css",
-    "main.js": "/maslenitsa/static/js/main.37efbd63.chunk.js",
-    "main.js.map": "/maslenitsa/static/js/main.37efbd63.chunk.js.map",
+    "main.css": "/maslenitsa/static/css/main.baa8666e.chunk.css",
+    "main.js": "/maslenitsa/static/js/main.931dea16.chunk.js",
+    "main.js.map": "/maslenitsa/static/js/main.931dea16.chunk.js.map",
     "runtime-main.js": "/maslenitsa/static/js/runtime-main.7e331a21.js",
     "runtime-main.js.map": "/maslenitsa/static/js/runtime-main.7e331a21.js.map",
     "static/css/2.8c912331.chunk.css": "/maslenitsa/static/css/2.8c912331.chunk.css",
-    "static/js/2.67e0be47.chunk.js": "/maslenitsa/static/js/2.67e0be47.chunk.js",
-    "static/js/2.67e0be47.chunk.js.map": "/maslenitsa/static/js/2.67e0be47.chunk.js.map",
+    "static/js/2.cfb9f7a6.chunk.js": "/maslenitsa/static/js/2.cfb9f7a6.chunk.js",
+    "static/js/2.cfb9f7a6.chunk.js.map": "/maslenitsa/static/js/2.cfb9f7a6.chunk.js.map",
     "index.html": "/maslenitsa/index.html",
     "static/css/2.8c912331.chunk.css.map": "/maslenitsa/static/css/2.8c912331.chunk.css.map",
-    "static/css/main.f065c304.chunk.css.map": "/maslenitsa/static/css/main.f065c304.chunk.css.map",
-    "static/js/2.67e0be47.chunk.js.LICENSE.txt": "/maslenitsa/static/js/2.67e0be47.chunk.js.LICENSE.txt",
+    "static/css/main.baa8666e.chunk.css.map": "/maslenitsa/static/css/main.baa8666e.chunk.css.map",
+    "static/js/2.cfb9f7a6.chunk.js.LICENSE.txt": "/maslenitsa/static/js/2.cfb9f7a6.chunk.js.LICENSE.txt",
     "static/media/App.scss": "/maslenitsa/static/media/Inter-Regular.9cd7588f.ttf",
     "static/media/Scene.css": "/maslenitsa/static/media/tube.ceb9254f.svg",
     "static/media/back.06f262f9.svg": "/maslenitsa/static/media/back.06f262f9.svg",
-    "static/media/Form.css": "/maslenitsa/static/media/light_desk.76222aba.svg",
+    "static/media/Form.css": "/maslenitsa/static/media/light_desk.69ce298d.svg",
     "static/media/ball.ef91f85c.svg": "/maslenitsa/static/media/ball.ef91f85c.svg",
     "static/media/DropdownItem.css": "/maslenitsa/static/media/check.4e01a736.svg",
     "static/media/downArrow.19562e1b.svg": "/maslenitsa/static/media/downArrow.19562e1b.svg",
@@ -32,8 +32,8 @@
   "entrypoints": [
     "static/js/runtime-main.7e331a21.js",
     "static/css/2.8c912331.chunk.css",
-    "static/js/2.67e0be47.chunk.js",
-    "static/css/main.f065c304.chunk.css",
-    "static/js/main.37efbd63.chunk.js"
+    "static/js/2.cfb9f7a6.chunk.js",
+    "static/css/main.baa8666e.chunk.css",
+    "static/js/main.931dea16.chunk.js"
   ]
 }
