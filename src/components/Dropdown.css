@@ -18,3 +18,7 @@
 .DropdownItem {
   margin-bottom: 10px;
 }
+
+input:disabled {
+  cursor: default;
+}

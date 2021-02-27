@@ -4,7 +4,7 @@
 
 .label {
   position: relative;
-  cursor: pointer;
+
   display: flex;
   justify-content: space-between;
   font: 11px/30px Inter;
@@ -36,11 +36,17 @@
   color: #7D7E8D;
 }
 
-.checkbox:checked ~ .action::before {
+.checkbox:checked~.action::before {
   content: url(../img/check.svg);
   border: 2px solid #FF9E00;
 }
 
-.checkbox:checked ~ .action, .checkbox:checked ~ .bonus {
+.checkbox:checked~.action,
+.checkbox:checked~.bonus {
   color: #B1B2BA;
+  cursor: default;
+}
+
+.label input {
+  cursor: pointer;
 }
