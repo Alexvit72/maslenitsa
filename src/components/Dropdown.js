@@ -73,14 +73,22 @@ const Dropdown = props => {
   return (
     <div className={props.className}>
       <div className='DropdownItem-wrapper'>
-        <DropdownItem className='DropdownItem subscribe' name='subscribe' checked={subscribed} text1=' Подписаться на группу' attempts='3' text2='попытки' onChange={handleChange} disabled={subscribed}
+        <DropdownItem
+          className='DropdownItem subscribe'
+          name='subscribe'
+          checked={subscribed}
+          text1=' Подписаться на группу'
+          attempts='3'
+          text2='попытки'
+          onChange={!subscribed && handleChange}
+          disabled={subscribed}
         />
         <DropdownItem className='DropdownItem repost' name='repost'
           checked={reposted} text1=' Репост записи группы'
-          attempts='2' text2='попытки' onChange={handleChange} disabled={reposted}
+          attempts='2' text2='попытки' onChange={!reposted && handleChange} disabled={reposted}
         />
         <DropdownItem className='DropdownItem anket' name='anket'
-          checked={filled} text1=' Заполнить анкету ' attempts='2' text2='попытки' onChange={handleChange} />
+          checked={filled} text1=' Заполнить анкету ' attempts='2' text2='попытки' onChange={!filled && handleChange} />
       </div>
     </div>
   );
