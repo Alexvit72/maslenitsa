@@ -5,7 +5,12 @@
   border-radius: 13px;
   padding: 4px;
   z-index: 10;
+}
 
+@media screen and(max-width: 700px) {
+  .Dropdown {
+    width: 80%;
+  }
 }
 
 .DropdownItem-wrapper {

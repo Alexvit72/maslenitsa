@@ -78,6 +78,8 @@
   }
   .Main .Attempts {
     margin: 66px 14px;
+    position: relative;
+    z-index: 100000;
   }
   .Dropdown.visible {
     display: block;
