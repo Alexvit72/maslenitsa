@@ -54,14 +54,13 @@ const App = () => {
 		}, 500);
 	}
 
-<<<<<<< HEAD
-	async function fetchUser() {
+/*	async function fetchUser() {
 		const user = await bridge.send('VKWebAppGetUserInfo');
 		setUser(user);
 		console.log(fetchedUser);
 	}
 =======
->>>>>>> 5dc847e50f32440b97f5291b3845d873f2e37c0a
+>>>>>>> 5dc847e50f32440b97f5291b3845d873f2e37c0a*/
 
 	async function fetchData() {
 

@@ -50,9 +50,14 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 		}
 	}
 
+	function clearPower() {
+		clearInterval(timerId);
+		setProgress(1);
+	}
+
 	useEffect(() => {
 		changePower();
-		return function() {clearInterval(timerId)};
+		return clearPower;
 	}, []);
 
 	useEffect(() => {
@@ -123,7 +128,7 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 					let data = await response.json();
 					console.log(data);
 					setUserActivity(data.data);
-					setPopout(<Final result={data.result}
+					setPopout(<Final result={data.result} setRender={setRender}
 					 setPopout={setPopout} setActivePanel={setActivePanel}
 					 link={'https://vk.com/im?sel=-49256266'} />);
 				}
@@ -147,7 +152,7 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 					<Logo className='Logo' />
 					<Attempts className='Attempts' attempts={attempts} clickHandler={toggleDrop} />
 				</header>
-				<Dropdown className={'Dropdown' + (isDrop ? ' visible' : ' hidden')} userActivity={userActivity} setAttempts={setAttempts} setActivePanel={setActivePanel} />
+				<Dropdown className={'Dropdown' + (isDrop ? ' visible' : ' hidden')} userActivity={userActivity} setAttempts={setAttempts} setActivePanel={setActivePanel} timerId={timerId} />
 				<div className='game-container'>
 					<Headline className='Headline' text='Испытай удачу!' />
 					<div className='scene-container'>
@@ -156,7 +161,7 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 					<div>
 						<Power className='Power' value={progress * 5} />
 						<Button className='Button'
-							disabled={userActivity.attempts <= 0 || isRotaiting}
+							disabled={attempts <= 0 || isRotaiting}
 							onClick={rotate}
 							label='Крутить'
 						/>

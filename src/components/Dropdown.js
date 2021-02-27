@@ -27,6 +27,7 @@ const Dropdown = props => {
 
     if (event.target.name == 'anket') {
       props.setActivePanel('form');
+      clearInterval(props.timerId);
 
     } else if (event.target.name == 'subscribe') {
       bridge.subscribe(event => {

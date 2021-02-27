@@ -10,7 +10,7 @@ import './Final.css';
 
 const Final = props => {
 
-function handleClick() {
+async function handleClick() {
 	props.setPopout('');
 	props.setActivePanel('start');
 }
@@ -36,11 +36,5 @@ function handleClick() {
 	</PopoutWrapper>;
 
 }
-
-/*Final.propTypes = {
-	id: PropTypes.string.isRequired,
-	go: PropTypes.func.isRequired,
-	//result: PropTypes.boolean.isRequired
-};*/
 
 export default Final;
