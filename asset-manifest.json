@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/maslenitsa/static/css/main.c251e4fa.chunk.css",
+    "main.css": "/maslenitsa/static/css/main.38a4e9dd.chunk.css",
     "main.js": "/maslenitsa/static/js/main.37efbd63.chunk.js",
     "main.js.map": "/maslenitsa/static/js/main.37efbd63.chunk.js.map",
     "runtime-main.js": "/maslenitsa/static/js/runtime-main.7e331a21.js",
@@ -10,7 +10,7 @@
     "static/js/2.67e0be47.chunk.js.map": "/maslenitsa/static/js/2.67e0be47.chunk.js.map",
     "index.html": "/maslenitsa/index.html",
     "static/css/2.8c912331.chunk.css.map": "/maslenitsa/static/css/2.8c912331.chunk.css.map",
-    "static/css/main.c251e4fa.chunk.css.map": "/maslenitsa/static/css/main.c251e4fa.chunk.css.map",
+    "static/css/main.38a4e9dd.chunk.css.map": "/maslenitsa/static/css/main.38a4e9dd.chunk.css.map",
     "static/js/2.67e0be47.chunk.js.LICENSE.txt": "/maslenitsa/static/js/2.67e0be47.chunk.js.LICENSE.txt",
     "static/media/App.scss": "/maslenitsa/static/media/Inter-Regular.9cd7588f.ttf",
     "static/media/Scene.css": "/maslenitsa/static/media/tube.ceb9254f.svg",
@@ -33,7 +33,7 @@
     "static/js/runtime-main.7e331a21.js",
     "static/css/2.8c912331.chunk.css",
     "static/js/2.67e0be47.chunk.js",
-    "static/css/main.c251e4fa.chunk.css",
+    "static/css/main.38a4e9dd.chunk.css",
     "static/js/main.37efbd63.chunk.js"
   ]
 }
