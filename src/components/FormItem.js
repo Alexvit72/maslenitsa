@@ -111,7 +111,7 @@ const FormItem = props => {
       </div>
 
       <div className='field-wrapper stringOfProducts' onClick={(event) => props.focusField(event)}>
-        <label className='place products' htmlFor="stringOfProducts">Какие продукты чаще всего покупаете в Дикси (не более трёх)</label>
+        <label className='place products' htmlFor="stringOfProducts">Какие продукты чаще всего покупаешь в Дикси (не более 3)</label>
         <input className='Field' name="stringOfProducts" onChange={(event => setStringOfProducts(event.target.value))} onBlur={() => setVisited(true)} value={result.join('; ')} />
         <div className='select'>
           <DropdownItem className='DropdownItem' name='fruits' checked={fruits} onChange={(event) => handleChecked(event)} text1='Свежие фрукты, овощи, зелень' />
