@@ -18,14 +18,15 @@
     max-height: 100%;
     place-content: end;
     padding-bottom: 4rem;
+
     .card-wrapper {
       .Card {
-        > img {
-          max-width: 170px;
-        }
+        >img {}
+
         &.lose,
         &.win {
           img {
+            max-width: 170px;
             top: -6rem;
           }
         }
@@ -67,7 +68,7 @@
       padding-top: 3rem;
     }
 
-    > img {
+    >img {
       position: absolute;
       top: -8rem;
       left: 0;

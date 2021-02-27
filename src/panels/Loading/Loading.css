@@ -18,6 +18,12 @@
   position: relative;
 }
 
+@media (max-width: 450px) {
+  .Logo>img {
+    max-width: 100%;
+  }
+}
+
 @keyframes slideFromTop {
   from {
     transform: translateY(-100%);
