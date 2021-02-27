@@ -4,7 +4,7 @@
 
 .label {
   position: relative;
-
+  user-select: none;
   display: flex;
   justify-content: space-between;
   font: 11px/30px Inter;
@@ -44,9 +44,13 @@
 .checkbox:checked~.action,
 .checkbox:checked~.bonus {
   color: #B1B2BA;
-  cursor: default;
 }
 
-.label input {
+.label input+span {
   cursor: pointer;
+}
+
+.label input:checked+span {
+
+  cursor: default;
 }
