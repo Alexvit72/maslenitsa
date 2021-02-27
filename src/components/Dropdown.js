@@ -59,7 +59,6 @@ const Dropdown = props => {
         if (type === 'VKWebAppShareResult') {
           setReposted(true);
           props.fetchData()
-
         }
         if (type === 'VKWebAppShareFailed') {
           // Catching the error

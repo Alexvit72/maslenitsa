@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import bridge from '@vkontakte/vk-bridge';
 import View from '@vkontakte/vkui/dist/components/View/View';
 import '@vkontakte/vkui/dist/vkui.css';
@@ -8,6 +8,8 @@ import Start from './panels/Start/Start';
 import Main from './panels/Main/Main';
 import Form from './panels/Form/Form';
 import Final from './components/Final';
+import Send from './components/Send';
+
 import img1 from './img/1.png';
 import img2 from './img/2.png';
 import img3 from './img/3.png';
@@ -20,8 +22,6 @@ import './reset.css';
 import './App.scss';
 
 const App = () => {
-
-	let activity = { attempts: 5, vk_id: 482884100 };
 
 	const [activePanel, setActivePanel] = useState('loading');
 	const [popout, setPopout] = useState('');
@@ -56,12 +56,9 @@ const App = () => {
 		}, 500);
 	}
 
-=======
->>>>>>> 3c2b850ae2c52fc3c0bfee222e506cd7c282ca9a
-
 	async function fetchData() {
 
-		let token = await bridge.send("VKWebAppGetAuthToken", { "app_id": 7763188, "scope": "wall" });
+		let token = await bridge.send("VKWebAppGetAuthToken", { "app_id": 7763188, "scope": "wall" }); //7763188
 
 		let repost = await bridge.send("VKWebAppCallAPIMethod", { "method": "wall.getById", "params": { "posts": `${fetchedUser.id}_18`, "v": "5.130", "access_token": token.access_token } }); //295661
 		const response = await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${fetchedUser.id}&exist_repost=${repost.response.length ? 1 : 0}`);
@@ -71,6 +68,11 @@ const App = () => {
 			setUserActivity(data.data);
 		}
 		console.log(userActivity)
+	}
+
+	function closeSend() {
+		setPopout('');
+		setActivePanel('main');
 	}
 
 
@@ -85,9 +87,10 @@ const App = () => {
 			body: JSON.stringify(dataObject)
 		});
 
+		setPopout(<Send onClick={closeSend} />);
 		let result = await response.json();
 		if (result.success) {
-			setUserActivity(result.data);
+			fetchData();
 		}
 	}
 

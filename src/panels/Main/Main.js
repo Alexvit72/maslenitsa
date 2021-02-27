@@ -17,6 +17,7 @@ import './Main.css';
 
 const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserActivity, fetchData }) => {
 
+
 	const [progress, setProgress] = useState(1);
 	const [render, setRender] = useState(null);
 	const [timerId, setTimerId] = useState('');
@@ -24,7 +25,6 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 	const [startPositionX, setstartPositionX] = useState(0);
 	const [startPositionY, setStartPositionY] = useState(0);
 	const [isDrop, setIsDrop] = useState(false);
-	const [attempts, setAttempts] = useState(0);
 
 	function changePower() {
 		if (!isRotaiting && userActivity.attempts > 0) {
@@ -55,9 +55,6 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 		return function () { clearInterval(timerId) };
 	}, []);
 
-	useEffect(() => {
-		setAttempts(userActivity.attempts);
-	}, []);
 
 	function rotate() {
 		setIsRotaiting(true);
@@ -143,13 +140,13 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 			<div className={className}>
 				<header>
 					<Logo className='Logo' />
-					<Attempts className='Attempts' attempts={attempts} clickHandler={toggleDrop} />
+					<Attempts className='Attempts' attempts={userActivity.attempts} clickHandler={toggleDrop} />
 				</header>
 				<Dropdown
 					className={'Dropdown' + (isDrop ? ' visible' : ' hidden')}
 					userActivity={userActivity}
 					fetchData={fetchData}
-					setAttempts={setAttempts}
+					timerId={timerId}
 					setActivePanel={setActivePanel} />
 				<div className='game-container'>
 					<Headline className='Headline' text='Испытай удачу!' />
@@ -159,7 +156,7 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 					<div>
 						<Power className='Power' value={progress * 5} />
 						<Button className='Button'
-							disabled={attempts <= 0 || isRotaiting}
+							disabled={userActivity.attempts <= 0 || isRotaiting}
 							onClick={rotate}
 							label='Крутить'
 						/>
