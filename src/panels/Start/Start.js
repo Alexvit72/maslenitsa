@@ -13,7 +13,6 @@ const Start = props => {
 	}, []);
 
 	function start() {
-		props.setActivePanel('main');
 		bridge.subscribe((event) => {
 			const { type, data } = event.detail;
 			if (type === 'VKWebAppAllowMessagesFromGroupResult') {

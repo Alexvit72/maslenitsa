@@ -35,22 +35,33 @@
   .Form {
     position: relative;
     padding: 0;
+    height: 100vh;
+    background: url(../../img/light_desk.svg) center bottom no-repeat, url(../../img/back_desk.svg) center 80px / 100% 100% no-repeat, #ECF3FB;
+    background-size: cover, contain, contain;
+    display: grid;
+    place-items: center;
+  }
+
+  .card-wrapper {
+    width: 90%;
+    margin: auto;
   }
 
   .Form .Card {
     width: 100%;
-    padding: 68px 20px 160px;
-    margin: 178px 0 0;
+    padding: 1rem 1rem 3rem;
+  }
+
+  .Form .Card .prezent {
+    top: -7rem;
   }
 
   .form-footer {
     position: absolute;
     bottom: 30px;
+    left: 0;
+    right: 0;
+    margin: auto;
   }
-
-  .Form .Card .button-wrapper {
-    bottom: 115px;
-  }
-
 
 }

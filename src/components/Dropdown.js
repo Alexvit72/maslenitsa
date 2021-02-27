@@ -36,7 +36,8 @@ const Dropdown = props => {
         const { type, data } = event.detail;
         if (type === 'VKWebAppJoinGroupResult') {
           setSubscribed(data.result);
-          props.setActivePanel('start');
+          // props.setActivePanel('start');
+          props.fetchData()
         }
         if (type === 'VKWebAppJoinGroupFailed') {
           // Catching the error
@@ -54,22 +55,17 @@ const Dropdown = props => {
         }
         console.log(event.detail);
         const { type, data } = event.detail;
-        if (type === 'VKWebAppShowWallPostBoxResult') {
+        if (type === 'VKWebAppShareResult') {
           setReposted(true);
-          props.setAttempts(props.userActivity.attempts + 2);
           props.fetchData()
 
         }
-        if (type === 'VKWebAppShowWallPostBoxFailed') {
+        if (type === 'VKWebAppShareFailed') {
           // Catching the error
           console.log(data.error_type, data.error_data);
         }
       });
-      bridge.send('VKWebAppShowWallPostBox',
-        {
-          'message': 'Hello!',
-          'attachments': 'http://habrahabr.ru'
-        });
+      bridge.send('VKWebAppShare', { "link": "https://vk.com/app7763188" });
 
     }
   }

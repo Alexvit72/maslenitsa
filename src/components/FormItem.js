@@ -24,7 +24,7 @@ const FormItem = props => {
 
   useEffect(addProducts, [fruits, cheeses, beveredges, milk, pasta, fish, other]);
 
-  const products = {'fruits': [fruits, setFruits, 'Свежие фрукты, овощи, зелень'], 'cheeses': [cheeses, setCheeses, 'Сыры, колбасы'], 'beveredges': [beveredges, setBeveredges, 'Напитки'], 'milk': [milk, setMilk, 'Молочные продукты'], 'pasta': [pasta, setPasta, 'Макароны, крупы, мука'], 'fish': [fish, setFish, 'Рыба, морепродукты'], 'other': [other, setOther, 'другие товары']};
+  const products = { 'fruits': [fruits, setFruits, 'Свежие фрукты, овощи, зелень'], 'cheeses': [cheeses, setCheeses, 'Сыры, колбасы'], 'beveredges': [beveredges, setBeveredges, 'Напитки'], 'milk': [milk, setMilk, 'Молочные продукты'], 'pasta': [pasta, setPasta, 'Макароны, крупы, мука'], 'fish': [fish, setFish, 'Рыба, морепродукты'], 'other': [other, setOther, 'другие товары'] };
 
   function handleChecked(event) {
     let item = event.target.closest('.DropdownItem');
@@ -61,7 +61,7 @@ const FormItem = props => {
 
   const formik = useFormik({
 
-    initialValues: { first_name: '', phone: '', email: ''},
+    initialValues: { first_name: '', phone: '', email: '' },
 
     validationSchema: Yup.object({
       first_name: Yup.string()
@@ -82,7 +82,7 @@ const FormItem = props => {
         values.phone = values.phone.replace(/\D/g, '').slice(0, 11);
         delete values.stringOfProducts;
         props.sendData(values);
-        props.setActivePanel('start');
+        props.setActivePanel('main');
       }
     }
 
@@ -123,7 +123,7 @@ const FormItem = props => {
           <DropdownItem className='DropdownItem' name='other' checked={other} onChange={(event) => handleChecked(event)} text1='другие товары' />
         </div>
         <img className='arrow' src={downArrow} />
-        <div id='error-products' className={'error' + (result.length == 0  && visited ? '' : ' hidden')}>{'Это поле обязательно'}</div>
+        <div id='error-products' className={'error' + (result.length == 0 && visited ? '' : ' hidden')}>{'Это поле обязательно'}</div>
       </div>
     </form>
   );
