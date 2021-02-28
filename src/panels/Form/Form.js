@@ -8,7 +8,6 @@ import './Form.css';
 const Form = props => {
 
   function clickHandle(event) {
-    console.log('submit');
   }
 
   function close() {
