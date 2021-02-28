@@ -37,7 +37,7 @@ const Dropdown = props => {
         const { type, data } = event.detail;
         if (type === 'VKWebAppJoinGroupResult') {
           setSubscribed(data.result);
-          // props.setActivePanel('start');
+          props.increaseAttempts(3);
           props.fetchData()
         }
         if (type === 'VKWebAppJoinGroupFailed') {
@@ -57,15 +57,17 @@ const Dropdown = props => {
         console.log(event.detail);
         const { type, data } = event.detail;
         if (type === 'VKWebAppShareResult') {
+          console.log(data);
           setReposted(true);
-          props.fetchData()
+          props.increaseAttempts(2);
+          props.fetchData(true);
         }
         if (type === 'VKWebAppShareFailed') {
           // Catching the error
           console.log(data.error_type, data.error_data);
         }
       });
-      bridge.send('VKWebAppShare', { "link": "https://vk.com/app7763188" });
+      bridge.send('VKWebAppShare', { "link": "https://vk.com/app7763188"});//"https://vk.com/app7763188" });
 
     }
   }

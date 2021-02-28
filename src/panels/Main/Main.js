@@ -25,6 +25,7 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 	const [startPositionX, setstartPositionX] = useState(0);
 	const [startPositionY, setStartPositionY] = useState(0);
 	const [isDrop, setIsDrop] = useState(false);
+	const [attempts, setAttempts] = useState(userActivity.attempts);
 
 	function changePower() {
 		if (!isRotaiting && userActivity.attempts > 0) {
@@ -50,11 +51,16 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 		}
 	}
 
+	useEffect(() => console.log(userActivity), [userActivity, attempts]);
+
 	useEffect(() => {
 		changePower();
 		return function () { clearInterval(timerId) };
 	}, []);
 
+	function increaseAttempts(n) {
+		setAttempts(attempts => attempts + n);
+	}
 
 	function rotate() {
 		setIsRotaiting(true);
@@ -66,7 +72,7 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 		let startPositionX = outputBody.position.x;
 		let startPositionY = outputBody.position.y;
 
-		let currentRotation = progress / 10;
+		let currentRotation = progress / 20;
 
 		Matter.Events.on(render.engine, 'afterUpdate', function bar() {
 			if (currentRotation > 0.01) {
@@ -147,7 +153,9 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 					userActivity={userActivity}
 					fetchData={fetchData}
 					timerId={timerId}
-					setActivePanel={setActivePanel} />
+					setActivePanel={setActivePanel}
+					increaseAttempts={increaseAttempts}
+				/>
 				<div className='game-container'>
 					<Headline className='Headline' text='Испытай удачу!' />
 					<div className='scene-container'>
