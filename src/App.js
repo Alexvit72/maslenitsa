@@ -28,6 +28,7 @@ const App = () => {
 	const [fetchedUser, setUser] = useState(null);
 	const [userActivity, setUserActivity] = useState(null);
 	const [percentIndex, setPercentIndex] = useState(0);
+	const [token, setToken] = useState('');
 
 	useEffect(() => {
 		showLoading();
@@ -61,12 +62,16 @@ const App = () => {
 		let token = await bridge.send("VKWebAppGetAuthToken", { "app_id": 7763188, "scope": "wall" }); //7763188
 		console.log(token);
 
-		let repost = await bridge.send("VKWebAppCallAPIMethod", { "method": "wall.search", "params": { "owner_id": `${fetchedUser.id}`, "query": "https://vk.com/app7763188", "v": "5.130", "access_token": token.access_token } }); //295661
-		console.log('repost', repost);
-		let exist_repost = shared ? 1 : ((repost.response.items.length > 0) ? 1 : 0);
+		let reposts = await bridge.send("VKWebAppCallAPIMethod", { "method": "wall.get", "params": { "owner_id": `${fetchedUser.id}`, "v": "5.130", "access_token": token.access_token } }); //295661
+		console.log('reposts', reposts);
+
+		let arr = reposts.response.items.filter(item => {
+			return item.copy_history && item.copy_history[0].id == 295693
+		});
+		console.log('result', arr);
 		console.log('shared', shared);
-		console.log('exist_repost', exist_repost);
-		const response = await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${fetchedUser.id}&exist_repost=${exist_repost}`);
+
+		const response = await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${fetchedUser.id}&exist_repost=0`);//${arr.length > 0 ? 1 : 0}`);
 
 		if (response.ok) {
 			let data = await response.json();
@@ -122,7 +127,8 @@ const App = () => {
 				userActivity={userActivity}
 				setPopout={setPopout}
 				fetchData={fetchData}
-				setUserActivity={setUserActivity} />
+				setUserActivity={setUserActivity}
+				token={token} />
 			<Form id='form'
 				className='Form'
 				sendData={sendData}

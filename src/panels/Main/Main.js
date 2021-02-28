@@ -15,7 +15,7 @@ import Final from '../../components/Final';
 
 import './Main.css';
 
-const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserActivity, fetchData }) => {
+const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserActivity, fetchData, token }) => {
 
 
 	const [progress, setProgress] = useState(1);
@@ -155,6 +155,7 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 					timerId={timerId}
 					setActivePanel={setActivePanel}
 					increaseAttempts={increaseAttempts}
+					token={token}
 				/>
 				<div className='game-container'>
 					<Headline className='Headline' text='Испытай удачу!' />
