@@ -16,6 +16,10 @@
   margin-left: 32px;
 }
 
+.action a {
+  text-decoration: none;
+}
+
 .action::before {
   content: ' ';
   width: 23px;

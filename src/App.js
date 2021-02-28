@@ -28,7 +28,6 @@ const App = () => {
 	const [fetchedUser, setUser] = useState(null);
 	const [userActivity, setUserActivity] = useState(null);
 	const [percentIndex, setPercentIndex] = useState(0);
-	const [token, setToken] = useState('');
 
 	useEffect(() => {
 		showLoading();
@@ -57,7 +56,7 @@ const App = () => {
 		}, 500);
 	}
 
-	async function fetchData(shared) {
+	async function fetchData() {
 
 		let token = await bridge.send("VKWebAppGetAuthToken", { "app_id": 7763188, "scope": "wall" }); //7763188
 		console.log(token);
@@ -69,9 +68,8 @@ const App = () => {
 			return item.copy_history && item.copy_history[0].id == 295693
 		});
 		console.log('result', arr);
-		console.log('shared', shared);
 
-		const response = await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${fetchedUser.id}&exist_repost=0`);//${arr.length > 0 ? 1 : 0}`);
+		const response = await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${fetchedUser.id}&exist_repost=${arr.length > 0 ? 1 : 0}`);
 
 		if (response.ok) {
 			let data = await response.json();
@@ -127,8 +125,7 @@ const App = () => {
 				userActivity={userActivity}
 				setPopout={setPopout}
 				fetchData={fetchData}
-				setUserActivity={setUserActivity}
-				token={token} />
+				setUserActivity={setUserActivity} />
 			<Form id='form'
 				className='Form'
 				sendData={sendData}

@@ -151,6 +151,7 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 				<Dropdown
 					className={'Dropdown' + (isDrop ? ' visible' : ' hidden')}
 					userActivity={userActivity}
+					setUserActivity={setUserActivity}
 					fetchData={fetchData}
 					timerId={timerId}
 					setActivePanel={setActivePanel}
