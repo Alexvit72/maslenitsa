@@ -80,7 +80,6 @@ const Dropdown = props => {
   function handleClick() {
     setReposted(true);
     props.increaseAttempts(2);
-    props.fetchData();
   }
 
   return (
@@ -102,7 +101,7 @@ const Dropdown = props => {
           text1={reposted ? 'Репост записи группы' : <a href='https://vk.com/dixyclub?w=wall-49256266_295693' target='_blank'>Репост записи группы</a>}
           attempts='2' text2='попытки'
           onChange={!reposted && handleChange} disabled={reposted}
-          onClick={handleClick}
+          onClick={!reposted && handleClick}
         />
         <DropdownItem className='DropdownItem anket' name='anket'
           checked={filled} text1=' Заполнить анкету ' attempts='2' text2='попытки' onChange={!filled && handleChange} />

@@ -51,6 +51,15 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 		}
 	}
 
+	useEffect( () => document.addEventListener('visibilitychange', function func() {
+		fetchData();
+		console.log(document.visibilityState);
+		return function() {
+			document.removeEventListener('visibilitychange', func);
+		};
+	}), []);
+
+
 	useEffect(() => console.log(userActivity), [userActivity, attempts]);
 
 	useEffect(() => {
