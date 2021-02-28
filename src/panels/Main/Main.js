@@ -17,7 +17,6 @@ import './Main.css';
 
 const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserActivity, fetchData, token }) => {
 
-
 	const [progress, setProgress] = useState(1);
 	const [render, setRender] = useState(null);
 	const [timerId, setTimerId] = useState('');
