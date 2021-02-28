@@ -25,6 +25,7 @@ const Dropdown = props => {
   async function handleChange(event) {
     console.log(event)
     if (event.target.name == 'anket') {
+      console.log('anket');
       props.setActivePanel('form');
       clearInterval(props.timerId);
     }
@@ -52,11 +53,9 @@ const Dropdown = props => {
   }
 
   function handleClick(e) {
-    setTimeout(() => {
-      props.fetchData()
-      props.increaseAttempts(2)
-      setReposted(true)
-    }, 2500)
+    clearInterval(props.timerId);
+    setReposted(true);
+    props.fetchData()
   }
 
   return (
@@ -73,7 +72,7 @@ const Dropdown = props => {
           onChange={handleChange}
         />
         <DropdownItem
-          lassName='DropdownItem repost' name='repost'
+          className='DropdownItem repost' name='repost'
           checked={reposted}
           text1={!reposted ?
             // <a href='https://vk.com/dixyclub?w=wall-49256266_295661' target='_blank'>Репост записи группы</a> :
@@ -82,7 +81,8 @@ const Dropdown = props => {
           }
           attempts='2' text2='попытки'
           disabled={reposted}
-          onChange={handleClick}
+          onChange={handleChange}
+          onClick={!reposted && handleClick}
         />
         <DropdownItem
           className='DropdownItem anket'
@@ -91,7 +91,7 @@ const Dropdown = props => {
           text1=' Заполнить анкету'
           attempts='2'
           text2='попытки'
-          disabled={filled}
+          //disabled={filled}
           onChange={handleChange} />
       </div>
     </div>

@@ -51,7 +51,8 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 	}
 
 	useEffect( () => document.addEventListener('visibilitychange', function func() {
-		fetchData();
+		clearInterval(timerId);
+		setActivePanel('start');
 		console.log(document.visibilityState);
 		return function() {
 			document.removeEventListener('visibilitychange', func);
@@ -164,7 +165,6 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 					timerId={timerId}
 					setActivePanel={setActivePanel}
 					increaseAttempts={increaseAttempts}
-					token={token}
 				/>
 				<div className='game-container'>
 					<Headline className='Headline' text='Испытай удачу!' />

@@ -77,10 +77,11 @@ const App = () => {
 		});
 
 		const response =
-			await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${fetchedUser.id}&exist_repost=${arr.length > 0 ? 1 : 0}`);
+			await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${fetchedUser.id}&exist_repost=0`);//${arr.length > 0 ? 1 : 0}`);
 
 			if (response.ok) {
 			let data = await response.json();
+			console.log(data);
 			setUserActivity(data.data);
 		}
 	}
