@@ -104,7 +104,7 @@
   }
 }
 
-@media (max-width: 450px) {
+@media screen and (max-width: 450px) {
   .Main .Logo {
     width: 50%;
     padding: 0;
@@ -115,6 +115,7 @@
   .game-container {
     position: relative;
     top: -6rem;
+    transform: scale(.93) translateY(-1.7rem);
   }
   .Main .Headline {
     position: relative;
