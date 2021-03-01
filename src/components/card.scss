@@ -36,7 +36,7 @@
   @media screen and (max-width: 330px) {
     padding-bottom: 0;
     place-content: center;
-    
+
     .card-wrapper {
       .Card {
         padding-top: 3rem;
@@ -132,6 +132,10 @@
           font-family: "Baloo";
           font-size: 120%;
           color: #f60112;
+        }
+        &:last-child {
+          font-size: 75%;
+          text-align: center;
         }
 
         @media screen and (max-width: 600px) {
