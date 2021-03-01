@@ -21,7 +21,7 @@ const Card = props => {
         </div>
         <div className='button-wrapper'>
           <Button
-            className='Button'
+            className={props.play ? 'Button' : 'Button disabled'}
             label={props.label}
             onClick={(event) => props.onClick(event)}
             form={props.form}

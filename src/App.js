@@ -28,6 +28,8 @@ const App = () => {
 	const [fetchedUser, setUser] = useState(null);
 	const [userActivity, setUserActivity] = useState(null);
 	const [percentIndex, setPercentIndex] = useState(0);
+	const [play, setCanPlay] = useState(null);
+	const [message, setMessage] = useState(false)
 
 	useEffect(() => {
 		showLoading();
@@ -83,8 +85,11 @@ const App = () => {
 		if (response.ok) {
 			let data = await response.json();
 			setUserActivity(data.data);
+			setCanPlay(data.canPlay)
+			setMessage(!data.canPlay)
 		}
 	}
+
 
 	function closeSend() {
 		setPopout('');
@@ -125,6 +130,10 @@ const App = () => {
 				className='Start'
 				setActivePanel={setActivePanel}
 				userActivity={userActivity}
+				play={play}
+				setPopout={setPopout}
+				setMessage={setMessage}
+				message={message}
 				fetchData={fetchData} />
 			<Main id='main'
 				className='Main'
