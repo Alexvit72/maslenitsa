@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/maslenitsa/static/css/main.338c2bec.chunk.css",
-    "main.js": "/maslenitsa/static/js/main.7adb5216.chunk.js",
-    "main.js.map": "/maslenitsa/static/js/main.7adb5216.chunk.js.map",
+    "main.js": "/maslenitsa/static/js/main.f4376e08.chunk.js",
+    "main.js.map": "/maslenitsa/static/js/main.f4376e08.chunk.js.map",
     "runtime-main.js": "/maslenitsa/static/js/runtime-main.7e331a21.js",
     "runtime-main.js.map": "/maslenitsa/static/js/runtime-main.7e331a21.js.map",
     "static/css/2.8c912331.chunk.css": "/maslenitsa/static/css/2.8c912331.chunk.css",
@@ -27,6 +27,7 @@
     "static/media/power.95280663.svg": "/maslenitsa/static/media/power.95280663.svg",
     "static/media/prezentLose.407845d9.png": "/maslenitsa/static/media/prezentLose.407845d9.png",
     "static/media/prezentWin.c8a510d6.svg": "/maslenitsa/static/media/prezentWin.c8a510d6.svg",
+    "static/media/sad.8ab339fb.png": "/maslenitsa/static/media/sad.8ab339fb.png",
     "static/media/Main.css": "/maslenitsa/static/media/wooman.fe282c46.png"
   },
   "entrypoints": [
@@ -34,6 +35,6 @@
     "static/css/2.8c912331.chunk.css",
     "static/js/2.c43b5f3c.chunk.js",
     "static/css/main.338c2bec.chunk.css",
-    "static/js/main.7adb5216.chunk.js"
+    "static/js/main.f4376e08.chunk.js"
   ]
 }
