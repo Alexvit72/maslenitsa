@@ -75,13 +75,11 @@ const App = () => {
 
 			return item.copy_history && item.copy_history[0].id == 295693   //wall-49256266_295661
 		});
-
 		const response =
-			await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${fetchedUser.id}&exist_repost=0`);//${arr.length > 0 ? 1 : 0}`);
+			await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${fetchedUser.id}&exist_repost=${arr.length > 0 ? 1 : 0}`);
 
 			if (response.ok) {
 			let data = await response.json();
-			console.log(data);
 			setUserActivity(data.data);
 		}
 	}

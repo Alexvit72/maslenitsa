@@ -13,11 +13,13 @@ const Start = props => {
 	}, []);
 
 	function start() {
+		props.fetchData();
+		console.log('start');
 		bridge.subscribe((e) => {
 			if (e.detail.type === 'VKWebAppAllowMessagesFromGroupResult') {
 				props.setActivePanel('main');
 			}
-		
+
 		});
 		bridge.send('VKWebAppAllowMessagesFromGroup',
 			{'group_id': 49256266});

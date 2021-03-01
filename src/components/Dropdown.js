@@ -47,15 +47,15 @@ const Dropdown = props => {
         { 'group_id': 49256266 });
 
     }
-    if (event.target.name == 'repost') {
+  /*  if (event.target.name == 'repost') {
       handleClick()
-    }
+    }*/
   }
 
   function handleClick(e) {
+    console.log('click');
     clearInterval(props.timerId);
     setReposted(true);
-    props.fetchData()
   }
 
   return (
@@ -82,7 +82,7 @@ const Dropdown = props => {
           attempts='2' text2='попытки'
           disabled={reposted}
           onChange={handleChange}
-          onClick={!reposted && handleClick}
+          onClick={!reposted ? handleClick : undefined}
         />
         <DropdownItem
           className='DropdownItem anket'

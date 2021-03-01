@@ -51,6 +51,7 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 	}
 
 	useEffect( () => document.addEventListener('visibilitychange', function func() {
+		fetchData();
 		clearInterval(timerId);
 		setActivePanel('start');
 		console.log(document.visibilityState);
@@ -60,7 +61,7 @@ const Main = ({ id, className, setActivePanel, userActivity, setPopout, setUserA
 	}), []);
 
 
-	useEffect(() => console.log(userActivity), [userActivity, attempts]);
+	/*useEffect(() => console.log(userActivity), [userActivity, attempts]);*/
 
 	useEffect(() => {
 		changePower();

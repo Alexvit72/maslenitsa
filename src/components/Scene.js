@@ -57,7 +57,7 @@ const Scene = ({ setRender, className }) => {
     Composite.add(output, [outputBody1, outputBody2, outputBody3, outputBody4, outputBody5]);
     Composite.scale(output, 0.7, 0.7, {x: 200, y: 200});
 
-    let balls = Composites.stack(100, 100, 5, 4, 0, 0, (x, y) => Bodies.circle(x, y, 15, {render: {sprite: {texture: ball}}}));
+    let balls = Composites.stack(80, 80, 5, 4, 0, 0, (x, y) => Bodies.circle(x, y, 15, {render: {sprite: {texture: ball}}}));
 
     let ground = Bodies.rectangle(200, 400, 400, 1, {isStatic: true,  render: {visible: false}});
 
