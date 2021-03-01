@@ -31,6 +31,30 @@ button:hover {
     width: 100vw;
     height: 100vh;
   }
+  @media screen and (max-width: 420px) {
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      position: relative;
+      width: 5px;
+      right: 10px;
+    }
+
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-track,
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      -webkit-appearance: none;
+    }
+
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #ff9e00;
+    }
+  }
   .Panel__in-before + div {
     // iPhone X, iPhone 11 Pro, iPhone 12 Mini
     @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {

@@ -57,7 +57,7 @@ const App = () => {
 
 	async function fetchData() {
 
-		let token = await bridge.send("VKWebAppGetAuthToken", { "app_id": 7763188, "scope": "wall,stats,photos,groups" }); //7763188
+		let token = await bridge.send("VKWebAppGetAuthToken", { "app_id": 7763188, "scope": "wall" }); //7763188
 
 		let reposts = await bridge.send("VKWebAppCallAPIMethod",
 			{

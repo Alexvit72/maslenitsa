@@ -15,7 +15,10 @@
 
 .form-footer {
   margin: 1rem auto 0;
-  max-width: 70%;
+  max-width: 100%;
+  padding: 0 1rem;
+  font-size: .8rem;
+  line-height: 1.3;
 }
 
 .Form .Card .prezent {
@@ -31,37 +34,59 @@
 }
 
 @media (max-width: 797px) {
-
   .Form {
     position: relative;
     padding: 0;
-    height: 100vh;
+    min-height: 100vh;
     background: url(../../img/light_desk.svg) center bottom no-repeat, url(../../img/back_desk.svg) center 80px / 100% 100% no-repeat, #ECF3FB;
     background-size: cover, contain, contain;
     display: grid;
     place-items: center;
+    height: fit-content;
+    display: block;
+    margin-top: 0;
+    overflow-y: auto;
+    position: static;
+    padding-bottom: 1rem;
   }
-
   .card-wrapper {
     width: 90%;
     margin: auto;
   }
-
   .Form .Card {
     width: 100%;
     padding: 1rem 1rem 3rem;
   }
-
   .Form .Card .prezent {
     top: -7rem;
   }
 
-  .form-footer {
-    position: absolute;
-    bottom: 30px;
-    left: 0;
-    right: 0;
-    margin: auto;
-  }
+}
 
+@media screen and (max-width: 451px) {
+  .Form .Card {
+    margin-top: 5rem;
+  }
+  .Form .Card .prezent {
+    top: -6rem;
+    width: 270px;
+  }
+  .FormItem {
+    width: 100%;
+    padding: 0;
+    margin: 1rem auto;
+    grid-template-columns: 1fr;
+  }
+  .field-wrapper {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 321px) {
+  .place.products {
+    font-size: .6rem;
+  }
+  .Field {
+    font-size: .75rem;
+  }
 }

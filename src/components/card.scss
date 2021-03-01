@@ -11,17 +11,18 @@
   @media screen and (max-width: 600px) {
     place-items: center start;
     padding-top: 4rem;
+    background-size: cover;
   }
 
   @media screen and (max-width: 450px) {
     max-width: 100%;
     max-height: 100%;
-    place-content: end;
     padding-bottom: 4rem;
+    background-size: cover;
+    place-content: end;
 
     .card-wrapper {
       .Card {
-
         &.lose,
         &.win {
           img {
@@ -32,15 +33,17 @@
       }
     }
   }
-
   @media screen and (max-width: 330px) {
     padding-bottom: 0;
-
+    place-content: center;
+    
     .card-wrapper {
       .Card {
         padding-top: 3rem;
         transform: scale(0.9);
         padding: 3rem 0.75rem;
+        width: 115%;
+        max-width: 115%;
       }
     }
   }
@@ -67,7 +70,7 @@
       padding-top: 3rem;
     }
 
-    >img {
+    > img {
       position: absolute;
       top: -8rem;
       left: 0;
@@ -76,13 +79,14 @@
       max-width: 70%;
 
       @media screen and (max-width: 600px) {
-        top: -6rem;
+        top: -5rem;
         width: 300px;
         max-width: 100%;
       }
 
       @media screen and (max-width: 400px) {
-        top: -6.5rem;
+        top: -5rem;
+        width: 242px;
       }
 
       @media screen and (max-width: 325px) {
