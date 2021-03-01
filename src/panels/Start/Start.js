@@ -18,7 +18,6 @@ const Start = props => {
 			if (e.detail.type === 'VKWebAppAllowMessagesFromGroupResult') {
 				props.setActivePanel('main');
 			}
-
 		});
 		bridge.send('VKWebAppAllowMessagesFromGroup',
 			{ 'group_id': 49256266 });

@@ -111,7 +111,7 @@ const App = () => {
 	let percents = [0, 15, 27, 48, 63, 84, 100];
 
 	return (
-		<View activePanel={percentIndex == 6 && userActivity != null ? activePanel : 'loading'} popout={popout}>
+		<View activePanel={(percentIndex == 6 && userActivity != null) ? activePanel : 'loading'} popout={popout}>
 			<Loading
 				id='loading'
 				img={images[percentIndex]}
