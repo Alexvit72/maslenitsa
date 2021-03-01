@@ -30,6 +30,7 @@ const Dropdown = props => {
       clearInterval(props.timerId);
     }
     if (event.target.name == 'subscribe') {
+      clearInterval(props.timerId);
       bridge.subscribe(event => {
         if (!event.detail) {
           return;
