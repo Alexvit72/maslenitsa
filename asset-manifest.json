@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/maslenitsa/static/css/main.b445b92e.chunk.css",
-    "main.js": "/maslenitsa/static/js/main.35412855.chunk.js",
-    "main.js.map": "/maslenitsa/static/js/main.35412855.chunk.js.map",
+    "main.js": "/maslenitsa/static/js/main.741dd619.chunk.js",
+    "main.js.map": "/maslenitsa/static/js/main.741dd619.chunk.js.map",
     "runtime-main.js": "/maslenitsa/static/js/runtime-main.7e331a21.js",
     "runtime-main.js.map": "/maslenitsa/static/js/runtime-main.7e331a21.js.map",
     "static/css/2.8c912331.chunk.css": "/maslenitsa/static/css/2.8c912331.chunk.css",
@@ -34,6 +34,6 @@
     "static/css/2.8c912331.chunk.css",
     "static/js/2.e80638c6.chunk.js",
     "static/css/main.b445b92e.chunk.css",
-    "static/js/main.35412855.chunk.js"
+    "static/js/main.741dd619.chunk.js"
   ]
 }
