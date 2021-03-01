@@ -45,14 +45,14 @@ const App = () => {
 
 	function showLoading() {
 		let index = 0;
-		fetchedUser && fetchData()
+
 		let timerId = setInterval(() => {
 			if (index < 6) {
 				index++;
 				setPercentIndex(index);
-				
+
 			}
-			if (userActivity) {
+			else {
 				setActivePanel('start');
 				clearInterval(timerId);
 			}
