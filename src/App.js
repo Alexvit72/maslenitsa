@@ -67,13 +67,13 @@ const App = () => {
 					"v": "5.130",
 					"access_token": token.access_token
 				}
-			}); //295661
+			});
 
 
 
 		let arr = reposts.response.items.filter(item => {
 
-			return item.copy_history && item.copy_history[0].id == 295661   //wall-49256266_295661
+			return item.copy_history && item.copy_history[0].id == 295801   //wall-49256266_295661
 		});
 		const response =
 			await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${fetchedUser.id}&exist_repost=${arr.length > 0 ? 1 : 0}`);

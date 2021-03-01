@@ -75,7 +75,7 @@ const Dropdown = props => {
           className='DropdownItem repost' name='repost'
           checked={reposted}
           text1={!reposted ?
-            <a href='https://vk.com/dixyclub?w=wall-49256266_295661' target='_blank'>Репост записи группы</a> :
+            <a href='https://vk.com/dixyclub?w=wall-49256266_295801' target='_blank'>Репост записи группы</a> :
             'Репост записи группы'
           }
           attempts='2' text2='попытки'
