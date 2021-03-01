@@ -65,7 +65,7 @@ const Dropdown = props => {
           name='subscribe'
           checked={subscribed}
           text1=' Подписаться на группу'
-          attempts='3'
+          attempts='2'
           text2='попытки'
           disabled={subscribed}
           onChange={handleChange}
@@ -77,7 +77,7 @@ const Dropdown = props => {
             <a href='https://vk.com/dixyclub?w=wall-49256266_295874' target='_blank'>Репост записи группы</a> :
             'Репост записи группы'
           }
-          attempts='2' text2='попытки'
+          attempts='1' text2='попытки'
           disabled={reposted}
           onChange={handleChange}
           onClick={!reposted ? handleClick : undefined}
@@ -87,7 +87,7 @@ const Dropdown = props => {
           name='anket'
           checked={filled}
           text1=' Заполнить анкету'
-          attempts='2'
+          attempts='1'
           text2='попытки'
           //disabled={filled}
           onChange={handleChange} />
