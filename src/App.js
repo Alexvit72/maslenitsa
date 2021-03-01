@@ -44,11 +44,14 @@ const App = () => {
 
 	function showLoading() {
 		let index = 0;
+		fetchedUser && fetchData()
 		let timerId = setInterval(() => {
 			if (index < 6) {
 				index++;
 				setPercentIndex(index);
-			} else {
+				
+			}
+			if (userActivity) {
 				setActivePanel('start');
 				clearInterval(timerId);
 			}
@@ -76,7 +79,7 @@ const App = () => {
 		const response =
 			await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${fetchedUser.id}&exist_repost=${arr.length > 0 ? 1 : 0}`);
 
-			if (response.ok) {
+		if (response.ok) {
 			let data = await response.json();
 			setUserActivity(data.data);
 		}

@@ -14,7 +14,7 @@ const Start = props => {
 
 	async function start() {
 		await props.fetchData();
-		console.log('start');
+
 		bridge.subscribe((e) => {
 			if (e.detail.type === 'VKWebAppAllowMessagesFromGroupResult') {
 				if (props.userActivity) {
