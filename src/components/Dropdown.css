@@ -15,7 +15,13 @@
 
 @media screen and (max-width: 350px) {
   .Dropdown {
-    width: 100% !important;
+    width: calc(100% - 30px) !important;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .Dropdown {
+    width: calc(100% - 30px) !important;
   }
 }
 
@@ -26,7 +32,7 @@
   padding: 16px;
 }
 
-.DropdownItem { 
+.DropdownItem {
   margin-bottom: 10px;
 }
 
