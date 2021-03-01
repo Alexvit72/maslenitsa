@@ -34,13 +34,13 @@ const App = () => {
 	}, []);
 
 	useEffect(() => {
-
 		async function fetchUser() {
 			const user = await bridge.send('VKWebAppGetUserInfo');
 			setUser(user);
 		}
 		fetchUser();
 	}, []);
+
 
 	function showLoading() {
 		let index = 0;
@@ -68,8 +68,6 @@ const App = () => {
 					"access_token": token.access_token
 				}
 			});
-
-
 
 		let arr = reposts.response.items.filter(item => {
 

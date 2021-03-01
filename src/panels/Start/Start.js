@@ -12,12 +12,14 @@ const Start = props => {
 		props.fetchData();
 	}, []);
 
-	function start() {
-		props.fetchData();
+	async function start() {
+		await props.fetchData();
 		console.log('start');
 		bridge.subscribe((e) => {
 			if (e.detail.type === 'VKWebAppAllowMessagesFromGroupResult') {
-				props.setActivePanel('main');
+				if (props.userActivity) {
+					props.setActivePanel('main');
+				}
 			}
 
 		});

@@ -22,6 +22,7 @@ async function handleClick() {
 				text='Проверь личные сообщения, мы отправили подарок'
 				label={<a href={props.link} target='_blank'>Забрать</a>}
 				onClose={handleClick}
+				onClick={handleClick}
 				close={true}
 			/> :
 			<Card className='Card lose'
