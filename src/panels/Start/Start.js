@@ -15,12 +15,12 @@ const Start = props => {
 
 	function start() {
 		props.fetchData();
-		!props.play && setMess(true)
+		!props.play && props.setMessage(true)
 		bridge.subscribe((e) => {
 			if (e.detail.type === 'VKWebAppAllowMessagesFromGroupResult') {
 				props.setActivePanel('main');
 			}
-			
+
 		});
 		bridge.send('VKWebAppAllowMessagesFromGroup',
 			{ 'group_id': 49256266 });
@@ -36,7 +36,8 @@ const Start = props => {
 		return <p className='list-item' key={index}>{item}</p>;
 	});
 	function closeSend(e) {
-		setMess(false)
+		console.log('close');
+		props.setMessage(false)
 	}
 	console.log(props)
 
@@ -52,19 +53,20 @@ const Start = props => {
 					inner={<a href='https://dixy.ru/upload/medialibrary/765/Rules.27a4066a.pdf'
 						target="_blank"> Полные правила акции</a>} label='Начать' onClick={start} />
 			</div>
-			{/* {message ?
+			{ props.message ?
 				<PopoutWrapper alignX='center' alignY='center' className='Send'>
 					<Card className='Card message'
 						title='Упс!'
 						text='Купоны на сегодня закончились. Передохните. Завтра продолжим игру.'
 						label='Закрыть'
 						play={true}
-						onClick={() => closeSend()}
+						onClick={closeSend}
+						onClose={closeSend}
 						close={true}
 					/>
 				</PopoutWrapper>
 				: <></>
-			} */}
+			}
 		</Panel >
 	);
 };
