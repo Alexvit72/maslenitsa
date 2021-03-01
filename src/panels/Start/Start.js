@@ -5,6 +5,7 @@ import bridge from '@vkontakte/vk-bridge';
 import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
 import Card from '../../components/Card';
 import logo from '../../img/logo.png';
+import Rules from '../../Rules.pdf'
 
 const Start = props => {
 
@@ -25,7 +26,7 @@ const Start = props => {
 	}
 
 	const list = [
-		`1. Испытай удачу в нашей игре! Получи возможность выиграть скидочные купоны в Дикси.`,
+		`1. Испытай удачу в нашей игре! Получи возможность выиграть скидочные купоны в Дикси.*`,
 		`2. Чтобы регулировать силу вращения барабана, нажми кнопку «крутить», когда шкала силы заполнится до нужного уровня.`,
 		`3. Ты можешь получить дополнительные попытки. Для этого или кликни по кнопке “+” вверху и выполняй задания, или дождись паузы в 5 часов.`,
 		`4. В случае выигрыша купон со скидкой будет отправлен в личные сообщения. Для этого нужно разрешить сообществу Дикси отправлять сообщения. Приступим ?`,
@@ -37,9 +38,9 @@ const Start = props => {
 	return (
 		<Panel id={props.id}>
 			<div className={props.className}>
-				<Card className='Card' title='Как играть?' img={logo} text={list} label='Начать' onClick={start} />
+				<Card className='Card' title='Как играть?' img={logo} text={list} inner={<a href={Rules} target="_blank"> Полные правила акции</a>} label='Начать' onClick={start} />
 			</div>
-		</Panel>
+		</Panel >
 	);
 };
 
