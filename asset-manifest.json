@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/maslenitsa/static/css/main.12550250.chunk.css",
-    "main.js": "/maslenitsa/static/js/main.1294cd94.chunk.js",
-    "main.js.map": "/maslenitsa/static/js/main.1294cd94.chunk.js.map",
+    "main.js": "/maslenitsa/static/js/main.f2fa7fd3.chunk.js",
+    "main.js.map": "/maslenitsa/static/js/main.f2fa7fd3.chunk.js.map",
     "runtime-main.js": "/maslenitsa/static/js/runtime-main.7e331a21.js",
     "runtime-main.js.map": "/maslenitsa/static/js/runtime-main.7e331a21.js.map",
     "static/css/2.8c912331.chunk.css": "/maslenitsa/static/css/2.8c912331.chunk.css",
@@ -13,7 +13,7 @@
     "static/css/main.12550250.chunk.css.map": "/maslenitsa/static/css/main.12550250.chunk.css.map",
     "static/js/2.e80638c6.chunk.js.LICENSE.txt": "/maslenitsa/static/js/2.e80638c6.chunk.js.LICENSE.txt",
     "static/media/App.scss": "/maslenitsa/static/media/Inter-Regular.9cd7588f.ttf",
-    "static/media/Rules.937557c2.pdf": "/maslenitsa/static/media/Rules.937557c2.pdf",
+    "static/media/Rules.27a4066a.pdf": "/maslenitsa/static/media/Rules.27a4066a.pdf",
     "static/media/Scene.css": "/maslenitsa/static/media/tube.ceb9254f.svg",
     "static/media/back.06f262f9.svg": "/maslenitsa/static/media/back.06f262f9.svg",
     "static/media/Form.css": "/maslenitsa/static/media/light_desk.76222aba.svg",
@@ -35,6 +35,6 @@
     "static/css/2.8c912331.chunk.css",
     "static/js/2.e80638c6.chunk.js",
     "static/css/main.12550250.chunk.css",
-    "static/js/main.1294cd94.chunk.js"
+    "static/js/main.f2fa7fd3.chunk.js"
   ]
 }
