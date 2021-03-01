@@ -5,7 +5,7 @@ import Card from './Card';
 
 const Send = props => {
   return <PopoutWrapper alignX='center' alignY='center' className='Send'>
-		<Card className='Card' close={false} img='' title='Отправлено' text='' label='Закрыть' onClick={props.onClick} />
+		<Card className='Card' close={false} img='' title='Анкета принята' text='' label='Закрыть' onClick={props.onClick} />
 	</PopoutWrapper>;
 };
 
