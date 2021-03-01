@@ -47,9 +47,9 @@ const Dropdown = props => {
         { 'group_id': 49256266 });
 
     }
-  /*  if (event.target.name == 'repost') {
-      handleClick()
-    }*/
+    /*  if (event.target.name == 'repost') {
+        handleClick()
+      }*/
   }
 
   function handleClick(e) {
@@ -74,7 +74,7 @@ const Dropdown = props => {
           className='DropdownItem repost' name='repost'
           checked={reposted}
           text1={!reposted ?
-             //<a href='https://vk.com/dixyclub?w=wall-49256266_295661' target='_blank'>Репост записи группы</a> :
+            //<a href='https://vk.com/dixyclub?w=wall-49256266_295661' target='_blank'>Репост записи группы</a> :
             <a href='https://vk.com/dixyclub?w=wall-49256266_295693' target='_blank'>Репост записи группы</a> :
             'Репост записи группы'
           }
@@ -92,6 +92,12 @@ const Dropdown = props => {
           text2='попытки'
           //disabled={filled}
           onChange={handleChange} />
+        <div class="DropdownItem anket">
+          <label class="label">
+            <span class="action no-before">Закончились попытки? Дарим еще одну раз в 5 часов (см. правила)</span>
+            <span class="bonus">+1попытка</span>
+          </label>
+        </div>
       </div>
     </div>
   );
