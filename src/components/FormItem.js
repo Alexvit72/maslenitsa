@@ -70,6 +70,7 @@ const FormItem = props => {
         .matches(phoneRegExp, 'Введите полный номер')
         .required('Это поле обязательно'),
       email: Yup.string()
+        .trim()
         .email('Введите действительный адрес')
         .required('Это поле обязательно')
     }),
