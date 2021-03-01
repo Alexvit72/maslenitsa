@@ -39,7 +39,8 @@ const Dropdown = props => {
         if (type === 'VKWebAppJoinGroupResult') {
           setSubscribed(data.result);
           props.increaseAttempts(3);
-          props.fetchData()
+          props.fetchData();
+          //props.setActivePanel('start');
         }
 
       });
