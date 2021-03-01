@@ -36,7 +36,7 @@
   @media screen and (max-width: 330px) {
     padding-bottom: 0;
     place-content: center;
-    
+
     .card-wrapper {
       .Card {
         padding-top: 3rem;
@@ -58,7 +58,7 @@
     background: #fff;
     max-width: 100%;
     border-radius: 1rem;
-    padding: 5rem 2rem 3rem;
+    padding: 5rem 2rem 2rem;
     position: relative;
     box-shadow: -1px 1px 10px #bad7ff;
 
@@ -121,17 +121,29 @@
     }
 
     .text {
+      > a {
+        display: block;
+        margin: 1rem auto;
+        width: fit-content;
+        font-family: "Inter";
+        color: #f60112;
+      }
       .list-item {
         font-family: "Inter";
         margin-bottom: 0.5rem;
         font-style: normal;
         color: #7d7e8d;
         line-height: 1.5;
+        font-size: 0.9rem;
 
         &::first-letter {
           font-family: "Baloo";
           font-size: 120%;
           color: #f60112;
+        }
+        &:last-child {
+          font-size: 75%;
+          text-align: center;
         }
 
         @media screen and (max-width: 600px) {

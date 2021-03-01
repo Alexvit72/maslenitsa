@@ -28,6 +28,8 @@ const App = () => {
 	const [fetchedUser, setUser] = useState(null);
 	const [userActivity, setUserActivity] = useState(null);
 	const [percentIndex, setPercentIndex] = useState(0);
+	const [play, setCanPlay] = useState(null);
+	const [message, setMessage] = useState(false)
 
 	useEffect(() => {
 		showLoading();
@@ -45,11 +47,14 @@ const App = () => {
 
 	function showLoading() {
 		let index = 0;
+
 		let timerId = setInterval(() => {
 			if (index < 6) {
 				index++;
 				setPercentIndex(index);
-			} else {
+
+			}
+			else {
 				setActivePanel('start');
 				clearInterval(timerId);
 			}
@@ -72,16 +77,19 @@ const App = () => {
 
 		let arr = reposts.response.items.filter(item => {
 
-			return item.copy_history && item.copy_history[0].id == 295661   //wall-49256266_295661
+			return item.copy_history && item.copy_history[0].id == 295874   //wall-49256266_295661
 		});
 		const response =
 			await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${user ? user.id : fetchedUser.id}&exist_repost=${arr.length > 0 ? 1 : 0}`);
 
-			if (response.ok) {
+		if (response.ok) {
 			let data = await response.json();
 			setUserActivity(data.data);
+			setCanPlay(data.canPlay)
+			setMessage(!data.canPlay)
 		}
 	}
+
 
 	function closeSend() {
 		setPopout('');
@@ -122,6 +130,10 @@ const App = () => {
 				className='Start'
 				setActivePanel={setActivePanel}
 				userActivity={userActivity}
+				play={play}
+				setPopout={setPopout}
+				setMessage={setMessage}
+				message={message}
 				fetchData={fetchData} />
 			<Main id='main'
 				className='Main'

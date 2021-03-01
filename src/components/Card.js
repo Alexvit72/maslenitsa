@@ -15,10 +15,13 @@ const Card = props => {
           className='Headline'
           text={props.title}
         />
-        <div className='text'>{props.text}</div>
+        <div className='text'>
+          {props.text}
+          {props.inner && props.inner}
+        </div>
         <div className='button-wrapper'>
           <Button
-            className='Button'
+            className={props.play ? 'Button' : 'Button disabled'}
             label={props.label}
             onClick={(event) => props.onClick(event)}
             form={props.form}

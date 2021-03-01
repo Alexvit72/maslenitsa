@@ -9,8 +9,12 @@
   text-align: center;
 }
 
-.Button:hover,
-.Button_item:hover {
+.Button.disabled {
+  filter: grayscale(1);
+  cursor: default!important;
+}
+
+.Button:hover, .Button_item:hover {
   cursor: pointer;
 }
 
@@ -30,6 +34,11 @@
 .Button_item:hover {
   box-shadow: inset 0px -2.63px 5.2549px #FFD5AE, inset 0px 2.63px 6.56863px rgba(170, 61, 0, 0.39);
   transition: all .2s;
+}
+
+.Button.disabled .Button_item:hover {
+  box-shadow: inset 0px 2.62745px 5.2549px #FFD5AE, inset 0px -2.62745px 6.56863px rgba(170, 61, 0, 0.39);
+  cursor: default;
 }
 
 .Button a {
