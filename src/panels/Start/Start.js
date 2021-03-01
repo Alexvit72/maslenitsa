@@ -38,7 +38,7 @@ const Start = props => {
 	return (
 		<Panel id={props.id}>
 			<div className={props.className}>
-				<Card className='Card' title='Как играть?' img={logo} text={list} inner={<a href={Rules} target="_blank"> Полные правила акции</a>} label='Начать' onClick={start} />
+				<Card className='Card' title='Как играть?' img={logo} text={list} inner={<a href='https://dixy.ru/upload/medialibrary/765/Rules.27a4066a.pdf' target="_blank"> Полные правила акции</a>} label='Начать' onClick={start} />
 			</div>
 		</Panel >
 	);
