@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/maslenitsa/static/css/main.338c2bec.chunk.css",
-    "main.js": "/maslenitsa/static/js/main.f4376e08.chunk.js",
-    "main.js.map": "/maslenitsa/static/js/main.f4376e08.chunk.js.map",
+    "main.css": "/maslenitsa/static/css/main.0b6a1475.chunk.css",
+    "main.js": "/maslenitsa/static/js/main.11657e8e.chunk.js",
+    "main.js.map": "/maslenitsa/static/js/main.11657e8e.chunk.js.map",
     "runtime-main.js": "/maslenitsa/static/js/runtime-main.7e331a21.js",
     "runtime-main.js.map": "/maslenitsa/static/js/runtime-main.7e331a21.js.map",
     "static/css/2.8c912331.chunk.css": "/maslenitsa/static/css/2.8c912331.chunk.css",
-    "static/js/2.c43b5f3c.chunk.js": "/maslenitsa/static/js/2.c43b5f3c.chunk.js",
-    "static/js/2.c43b5f3c.chunk.js.map": "/maslenitsa/static/js/2.c43b5f3c.chunk.js.map",
+    "static/js/2.a76cc847.chunk.js": "/maslenitsa/static/js/2.a76cc847.chunk.js",
+    "static/js/2.a76cc847.chunk.js.map": "/maslenitsa/static/js/2.a76cc847.chunk.js.map",
     "index.html": "/maslenitsa/index.html",
     "static/css/2.8c912331.chunk.css.map": "/maslenitsa/static/css/2.8c912331.chunk.css.map",
-    "static/css/main.338c2bec.chunk.css.map": "/maslenitsa/static/css/main.338c2bec.chunk.css.map",
-    "static/js/2.c43b5f3c.chunk.js.LICENSE.txt": "/maslenitsa/static/js/2.c43b5f3c.chunk.js.LICENSE.txt",
+    "static/css/main.0b6a1475.chunk.css.map": "/maslenitsa/static/css/main.0b6a1475.chunk.css.map",
+    "static/js/2.a76cc847.chunk.js.LICENSE.txt": "/maslenitsa/static/js/2.a76cc847.chunk.js.LICENSE.txt",
     "static/media/App.scss": "/maslenitsa/static/media/Inter-Regular.9cd7588f.ttf",
     "static/media/Scene.css": "/maslenitsa/static/media/tube.ceb9254f.svg",
     "static/media/back.06f262f9.svg": "/maslenitsa/static/media/back.06f262f9.svg",
-    "static/media/Form.css": "/maslenitsa/static/media/light_desk.76222aba.svg",
+    "static/media/Form.css": "/maslenitsa/static/media/light_desk.69ce298d.svg",
     "static/media/ball.ef91f85c.svg": "/maslenitsa/static/media/ball.ef91f85c.svg",
     "static/media/DropdownItem.css": "/maslenitsa/static/media/check.4e01a736.svg",
     "static/media/downArrow.19562e1b.svg": "/maslenitsa/static/media/downArrow.19562e1b.svg",
@@ -27,14 +27,13 @@
     "static/media/power.95280663.svg": "/maslenitsa/static/media/power.95280663.svg",
     "static/media/prezentLose.407845d9.png": "/maslenitsa/static/media/prezentLose.407845d9.png",
     "static/media/prezentWin.c8a510d6.svg": "/maslenitsa/static/media/prezentWin.c8a510d6.svg",
-    "static/media/sad.8ab339fb.png": "/maslenitsa/static/media/sad.8ab339fb.png",
     "static/media/Main.css": "/maslenitsa/static/media/wooman.fe282c46.png"
   },
   "entrypoints": [
     "static/js/runtime-main.7e331a21.js",
     "static/css/2.8c912331.chunk.css",
-    "static/js/2.c43b5f3c.chunk.js",
-    "static/css/main.338c2bec.chunk.css",
-    "static/js/main.f4376e08.chunk.js"
+    "static/js/2.a76cc847.chunk.js",
+    "static/css/main.0b6a1475.chunk.css",
+    "static/js/main.11657e8e.chunk.js"
   ]
 }
