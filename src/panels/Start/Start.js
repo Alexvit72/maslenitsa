@@ -15,7 +15,7 @@ const Start = props => {
 
 	function start() {
 		props.fetchData();
-		!props.play && setMess(true)
+		!props.play && props.setMessage(true)
 		bridge.subscribe((e) => {
 			if (e.detail.type === 'VKWebAppAllowMessagesFromGroupResult') {
 				props.setActivePanel('main');
@@ -36,7 +36,8 @@ const Start = props => {
 		return <p className='list-item' key={index}>{item}</p>;
 	});
 	function closeSend(e) {
-		setMess(false)
+		console.log('close');
+		props.setMessage(false)
 	}
 	console.log(props)
 
@@ -48,11 +49,11 @@ const Start = props => {
 					title='Как играть?'
 					img={logo}
 					text={list}
-					play={props.play}
+					play={true}
 					inner={<a href='https://dixy.ru/upload/medialibrary/765/Rules.27a4066a.pdf'
 						target="_blank"> Полные правила акции</a>} label='Начать' onClick={start} />
 			</div>
-			{!props.play ?
+			{/* {!props.play ?
 				<PopoutWrapper alignX='center' alignY='center' className='Send'>
 					<Card className='Card message'
 						title='Упс!'
@@ -60,12 +61,13 @@ const Start = props => {
 						label='Закрыть'
 						img={sad}
 						play={true}
-						onClick={() => closeSend()}
+						onClick={closeSend}
+						onClose={closeSend}
 						close={true}
 					/>
 				</PopoutWrapper>
 				: <></>
-			}
+			} */}
 		</Panel >
 	);
 };

@@ -85,7 +85,8 @@ const App = () => {
 		if (response.ok) {
 			let data = await response.json();
 			setUserActivity(data.data);
-			setCanPlay(data.canPlay)
+			setCanPlay(true)
+			setMessage(!data.canPlay)
 		}
 	}
 
@@ -118,7 +119,7 @@ const App = () => {
 	let percents = [0, 15, 27, 48, 63, 84, 100];
 
 	return (
-		<View activePanel={percentIndex == 6 && userActivity != null ? activePanel : 'loading'} popout={popout}>
+		<View activePanel={(percentIndex == 6 && userActivity != null) ? activePanel : 'loading'} popout={popout}>
 			<Loading
 				id='loading'
 				img={images[percentIndex]}
@@ -140,6 +141,7 @@ const App = () => {
 				userActivity={userActivity && userActivity}
 				setPopout={setPopout}
 				fetchData={fetchData}
+				play={play}
 				setUserActivity={setUserActivity} />
 			<Form id='form'
 				className='Form'

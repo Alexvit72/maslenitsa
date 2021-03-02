@@ -30,6 +30,7 @@ const Dropdown = props => {
       clearInterval(props.timerId);
     }
     if (event.target.name == 'subscribe') {
+      clearInterval(props.timerId);
       bridge.subscribe(event => {
         if (!event.detail) {
           return;
@@ -38,7 +39,8 @@ const Dropdown = props => {
         if (type === 'VKWebAppJoinGroupResult') {
           setSubscribed(data.result);
           props.increaseAttempts(3);
-          props.fetchData()
+          props.fetchData();
+          //props.setActivePanel('start');
         }
 
       });
