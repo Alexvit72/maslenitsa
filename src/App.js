@@ -85,7 +85,7 @@ const App = () => {
 		if (response.ok) {
 			let data = await response.json();
 			setUserActivity(data.data);
-			setCanPlay(data.canPlay)
+			setCanPlay(true)
 			setMessage(!data.canPlay)
 		}
 	}
@@ -130,7 +130,7 @@ const App = () => {
 				className='Start'
 				setActivePanel={setActivePanel}
 				userActivity={userActivity}
-				// play={play}
+				play={play}
 				setPopout={setPopout}
 				setMessage={setMessage}
 				message={message}
@@ -141,6 +141,7 @@ const App = () => {
 				userActivity={userActivity && userActivity}
 				setPopout={setPopout}
 				fetchData={fetchData}
+				play={play}
 				setUserActivity={setUserActivity} />
 			<Form id='form'
 				className='Form'
