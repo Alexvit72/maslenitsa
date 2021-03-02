@@ -130,7 +130,7 @@ const App = () => {
 				className='Start'
 				setActivePanel={setActivePanel}
 				userActivity={userActivity}
-				play={play}
+				// play={play}
 				setPopout={setPopout}
 				setMessage={setMessage}
 				message={message}

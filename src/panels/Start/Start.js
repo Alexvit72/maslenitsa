@@ -49,11 +49,11 @@ const Start = props => {
 					title='Как играть?'
 					img={logo}
 					text={list}
-					play={props.play}
+					play={true}
 					inner={<a href='https://dixy.ru/upload/medialibrary/765/Rules.27a4066a.pdf'
 						target="_blank"> Полные правила акции</a>} label='Начать' onClick={start} />
 			</div>
-			{ props.message ?
+			{/* { props.message ?
 				<PopoutWrapper alignX='center' alignY='center' className='Send'>
 					<Card className='Card message'
 						title='Упс!'
@@ -66,7 +66,7 @@ const Start = props => {
 					/>
 				</PopoutWrapper>
 				: <></>
-			}
+			} */}
 		</Panel >
 	);
 };
