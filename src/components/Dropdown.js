@@ -40,7 +40,7 @@ const Dropdown = props => {
           setSubscribed(data.result);
           props.increaseAttempts(3);
           props.fetchData();
-          //props.setActivePanel('start');
+          props.setActivePanel('start');
         }
 
       });

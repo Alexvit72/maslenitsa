@@ -81,12 +81,12 @@ const App = () => {
 		});
 		const response =
 			await fetch(`https://maslenitsa.promo-dixy.ru/api/user?vk_id=${user ? user.id : fetchedUser.id}&exist_repost=${arr.length > 0 ? 1 : 0}`);
-
 		if (response.ok) {
 			let data = await response.json();
+			console.log('data', data);
 			setUserActivity(data.data);
-			setCanPlay(true)
-			setMessage(!data.canPlay)
+			setCanPlay(data.can_play);
+			setMessage(!data.can_play);
 		}
 	}
 
@@ -141,7 +141,7 @@ const App = () => {
 				userActivity={userActivity && userActivity}
 				setPopout={setPopout}
 				fetchData={fetchData}
-				play={play}
+				//play={play}
 				setUserActivity={setUserActivity} />
 			<Form id='form'
 				className='Form'

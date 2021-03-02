@@ -21,12 +21,13 @@ const Card = props => {
         </div>
         <div className='button-wrapper'>
           <Button
-            className='Button'//{props.play ? 'Button' : 'Button disabled'}
+            className={props.disabled ? 'Button disabled' : 'Button'}
             label={props.label}
             onClick={props.onClick}
             form={props.form}
             type={props.type}
-            play={props.play}
+            //play={props.play}
+            disabled={props.disabled}
           />
         </div>
       </div>

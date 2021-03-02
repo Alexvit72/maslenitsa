@@ -36,8 +36,7 @@ const Start = props => {
 		return <p className='list-item' key={index}>{item}</p>;
 	});
 	function closeSend(e) {
-		console.log('close');
-		props.setMessage(false)
+		props.setMessage(false);
 	}
 	console.log(props)
 
@@ -49,24 +48,24 @@ const Start = props => {
 					title='Как играть?'
 					img={logo}
 					text={list}
-					play={true}
+					disabled={!props.play}
 					inner={<a href='https://dixy.ru/upload/medialibrary/765/Rules.27a4066a.pdf'
 						target="_blank"> Полные правила акции</a>} label='Начать' onClick={start} />
 			</div>
-			{/* { props.message ?
+			{ props.message ?
 				<PopoutWrapper alignX='center' alignY='center' className='Send'>
 					<Card className='Card message'
 						title='Упс!'
 						text='Купоны на сегодня закончились. Передохните. Завтра продолжим игру.'
 						label='Закрыть'
-						play={true}
+						//play={true}
 						onClick={closeSend}
 						onClose={closeSend}
 						close={true}
 					/>
 				</PopoutWrapper>
 				: <></>
-			} */}
+			}
 		</Panel >
 	);
 };
