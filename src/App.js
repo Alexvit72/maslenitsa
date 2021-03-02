@@ -84,6 +84,7 @@ const App = () => {
 		if (response.ok) {
 			let data = await response.json();
 			console.log('data', data);
+			// data.can_play = false;
 			setUserActivity(data.data);
 			setCanPlay(data.can_play);
 			setMessage(!data.can_play);
