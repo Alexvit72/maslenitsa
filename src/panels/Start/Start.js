@@ -4,6 +4,7 @@ import bridge from '@vkontakte/vk-bridge';
 import Panel from '@vkontakte/vkui/dist/components/Panel/Panel';
 import Card from '../../components/Card';
 import logo from '../../img/logo.png';
+import sad from '../../img/sad.png';
 import PopoutWrapper from '@vkontakte/vkui/dist/components/PopoutWrapper/PopoutWrapper';
 
 
@@ -56,7 +57,8 @@ const Start = props => {
 				<PopoutWrapper alignX='center' alignY='center' className='Send'>
 					<Card className='Card message'
 						title='Упс!'
-						text='Купоны на сегодня закончились. Передохните. Завтра продолжим игру.'
+						img={sad}
+					text='Купоны на сегодня закончились. Передохните. Завтра продолжим игру.'
 						label='Закрыть'
 						//play={true}
 						onClick={closeSend}

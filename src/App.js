@@ -28,8 +28,8 @@ const App = () => {
 	const [fetchedUser, setUser] = useState(null);
 	const [userActivity, setUserActivity] = useState(null);
 	const [percentIndex, setPercentIndex] = useState(0);
-	const [play, setCanPlay] = useState(false);
-	const [message, setMessage] = useState(true)
+	const [play, setCanPlay] = useState(null);
+	const [message, setMessage] = useState(false)
 
 	useEffect(() => {
 		showLoading();
@@ -85,8 +85,8 @@ const App = () => {
 			let data = await response.json();
 			console.log('data', data);
 			setUserActivity(data.data);
-			//setCanPlay(data.can_play);
-			//setMessage(!data.can_play);
+			setCanPlay(data.can_play);
+			setMessage(!data.can_play);
 		}
 	}
 
